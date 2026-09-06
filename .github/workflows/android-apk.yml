@@ -1,0 +1,86 @@
+name: Build Android APK
+
+# Builds an installable .apk on GitHub's servers, so no Android SDK, JDK or
+# Gradle is needed on your own machine — which is the point: this can be
+# triggered and the result downloaded entirely from a phone.
+#
+# Run it: repository → Actions → "Build Android APK" → "Run workflow".
+# Download it: open the finished run → Artifacts → "color-clash-apk".
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Capacitor 6 targets JDK 17.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install project
+        run: npm install
+
+      # Guard rail: never ship an APK built from code that does not pass.
+      - name: Typecheck and test
+        run: |
+          npm run typecheck
+          npm test
+
+      # A store build must not carry anyone else's trademark. See docs/BRANDING.md.
+      - name: Branding audit
+        run: npm run audit:brand
+
+      - name: Install Capacitor
+        # Installed here rather than in package.json so the repository itself
+        # stays dependency-free for anyone who does not want an APK.
+        run: npm i -D @capacitor/core@^6 @capacitor/cli@^6 @capacitor/android@^6 @capacitor/assets@^3
+
+      - name: Build the web app
+        # dist/pwa is the ordinary web build plus a manifest and a service
+        # worker: real files the WebView caches individually, rather than one
+        # inlined document re-parsed on every cold start. Nothing is fetched at
+        # runtime, so the APK still needs no network at all.
+        run: npm run build:pwa
+
+      - name: Add the Android platform
+        run: npx cap add android
+
+      - name: Generate launcher icons and splash screens
+        run: npx @capacitor/assets generate --android
+
+      - name: Sync web assets into the Android project
+        run: npx cap sync android
+
+      - name: Assemble debug APK
+        run: |
+          chmod +x android/gradlew
+          cd android
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Rename for clarity
+        run: |
+          mkdir -p out
+          cp android/app/build/outputs/apk/debug/app-debug.apk \
+             "out/color-clash-${GITHUB_SHA::7}.apk"
+          ls -lh out/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: color-clash-apk
+          path: out/*.apk
+          retention-days: 30
+          if-no-files-found: error

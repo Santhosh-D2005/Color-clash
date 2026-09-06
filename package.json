@@ -1,0 +1,43 @@
+{
+  "name": "color-clash",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Color Clash — one deterministic engine, five isolated ruleset modules.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "link": "node tools/link-workspaces.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck:installed": "tsc -p tsconfig.installed.json --noEmit",
+    "test": "tsx tools/run-tests.ts",
+    "test:file": "tsx tools/run-tests.ts",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "audit:brand": "node tools/audit-brand.mjs",
+    "dev": "npm run dev --workspace @colorclash/client",
+    "dev:server": "npm run start --workspace @colorclash/server",
+    "brand": "tsx tools/gen-brand.ts && tsx tools/gen-assets.ts",
+    "assets": "tsx tools/gen-assets.ts",
+    "build": "npm run build:web",
+    "build:web": "npm run build --workspace @colorclash/client",
+    "build:single": "tsx tools/build-single-file.ts",
+    "build:pwa": "npm run build:web && tsx tools/build-pwa.ts",
+    "verify": "npm run typecheck && npm test && npm run audit:brand"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1"
+  }
+}

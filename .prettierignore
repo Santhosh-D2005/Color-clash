@@ -1,0 +1,8 @@
+# Generated, and enormous: assets.gen.ts is base64 image data.
+apps/client/src/assets/assets.gen.ts
+dist
+.build
+node_modules
+android
+data
+package-lock.json

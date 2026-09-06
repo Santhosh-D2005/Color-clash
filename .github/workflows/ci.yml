@@ -1,0 +1,80 @@
+name: CI
+
+# Runs on every push and every pull request.
+#
+# Before this existed the test suite only ran inside the two Android build
+# workflows, which meant nothing checked an ordinary commit — a branch could be
+# red for days and nobody would know until release day.
+#
+# Kept deliberately plain: one job, no matrix, no caching cleverness. It has to
+# be the thing people trust, which means it has to be the thing that always
+# works.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+concurrency:
+  # A new push supersedes an in-flight run on the same branch.
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install
+        run: npm install
+
+      # The repository is designed to typecheck with no dependencies at all,
+      # using the hand-written shims in types/. That guarantee is worth keeping,
+      # so it is checked separately from the real one.
+      - name: Typecheck (offline shims)
+        run: npm run typecheck
+
+      - name: Typecheck (installed types)
+        run: npm run typecheck:installed
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Unit and integration tests
+        run: npm test
+
+      # A trademark comes back through one copied line, not a decision.
+      - name: Branding audit
+        run: npm run audit:brand
+
+      # One bundler, three outputs: the web build, the installable/APK folder
+      # built from it, and the single-document build for hosting the game as
+      # one file. build:pwa runs build:web itself.
+      - name: Build every target
+        run: |
+          npm run build:pwa
+          npm run build:single
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser tests
+        run: npm run test:e2e
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

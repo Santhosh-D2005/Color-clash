@@ -1,0 +1,42 @@
+{
+  // Typecheck against the real type packages instead of the hand-written shims.
+  //
+  // `tsconfig.json` is the offline configuration: it uses `types/*.d.ts`, which
+  // are narrow, hand-written declarations of only the Node and React APIs this
+  // repository touches. They exist so the project can be typechecked and tested
+  // on a machine with no registry access, which is a real constraint here — not
+  // a preference.
+  //
+  // They are also strictly worse than the real thing: narrower, and quietly
+  // accepting code that `@types/node` and `@types/react` would reject. So once
+  // `npm install` has run, this configuration is the authoritative one, and CI
+  // runs both — offline for the guarantee, installed for the truth.
+  //
+  //   npm run typecheck            offline, always works
+  //   npm run typecheck:installed  after npm install
+  //
+  // See docs/DEVELOPMENT.md.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["node", "vite/client"],
+    "paths": {
+      "@colorclash/shared": ["./packages/shared/src/index.ts"],
+      "@colorclash/game-content": ["./packages/game-content/src/index.ts"],
+      "@colorclash/game-engine": ["./packages/game-engine/src/index.ts"],
+      "@colorclash/ai": ["./packages/ai/src/index.ts"],
+      "@colorclash/ai/driver": ["./packages/ai/src/driver.ts"],
+      "@colorclash/test-fixtures": ["./packages/test-fixtures/src/index.ts"]
+    }
+  },
+  // The shims are deliberately absent: including both would give every global
+  // two conflicting declarations.
+  "include": [
+    "packages/*/src/**/*",
+    "packages/*/test/**/*",
+    "apps/*/src/**/*",
+    "tools/**/*",
+    "e2e/**/*"
+  ]
+}

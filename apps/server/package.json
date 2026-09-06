@@ -1,0 +1,17 @@
+{
+  "name": "@colorclash/server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@colorclash/shared": "file:../../packages/shared",
+    "@colorclash/game-content": "file:../../packages/game-content",
+    "@colorclash/game-engine": "file:../../packages/game-engine",
+    "@colorclash/ai": "file:../../packages/ai"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@colorclash/game-engine",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@colorclash/shared": "file:../shared",
+    "@colorclash/game-content": "file:../game-content"
+  }
+}
