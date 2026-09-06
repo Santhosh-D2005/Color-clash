@@ -86,7 +86,9 @@ export function useLocalMatch(reducedMotion = false): LocalMatch {
   const bannerSeq = useRef(0);
   const flightSeq = useRef(0);
   /** The scheduled next bot step, so it can be cancelled on reset or unmount. */
-  const pumpRef = useRef<number | null>(null);
+  // Whatever this environment's setTimeout returns: `number` in a browser and
+  // under the offline shim, `NodeJS.Timeout` once @types/node is in scope.
+  const pumpRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const reducedRef = useRef(reducedMotion);
   reducedRef.current = reducedMotion;
   /**

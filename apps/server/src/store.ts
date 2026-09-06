@@ -41,7 +41,13 @@ export class RoomStore {
   private readonly dir: string;
   private readonly flushMs: number;
   private pending = new Map<string, PersistedRoom>();
-  private timer: (number & { unref?(): void }) | null = null;
+  /*
+   * Whatever this environment's setTimeout hands back, rather than a shape
+   * copied from one of them. The offline shim returns `number & { unref?() }`
+   * and @types/node returns `NodeJS.Timeout`, so hardcoding either makes the
+   * file typecheck under one config and fail under the other.
+   */
+  private timer: (ReturnType<typeof setTimeout> & { unref?(): void }) | null = null;
 
   constructor(opts: StoreOptions) {
     this.dir = opts.dir;
