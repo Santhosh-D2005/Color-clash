@@ -1,66 +1,104 @@
 /*
- * Visual system — §9.3.
+ * ==================================================================
+ * COLOR CLASH — POP-ART & VINTAGE COMIC BOOK UI THEME
+ * ==================================================================
  *
- * Every colour token below is the project's own, shared with the artwork
- * generator in tools/gen-brand.ts so the CSS chrome and the images sit in one
- * palette. Motion timings follow Appendix A Table 11: 120-250ms micro,
- * 300-600ms major reveals, with a reduced-motion mode that disables both.
+ * Visual System:
+ * - Thick Inked Outlines: 2.5px–4px solid black strokes with hand-drawn comic borders.
+ * - Neo-brutalist / Comic Drop Shadows: 3px–6px solid black offset shadows (no blur).
+ * - Halftone Dots: Retro Ben-Day printing press dot textures in CSS.
+ * - Sunburst Rays: Dynamic repeating conic gradients for explosions, victories, and battles.
+ * - Saturated Pop-Art Colors: High-contrast yellow (#FFD600), cyan (#00E5FF), comic red (#FF204E),
+ *   vivid green (#22C55E), electric purple (#9D4EDD), and crisp white paper (#FFFFFF).
+ * - Speech & Thought Bubbles: Dialogue balloons with pointer tails and scalloped thought clouds.
+ * - Action Typography: 'Bangers' for bold titles & sound effects, 'Nunito' for crisp numbers.
  */
 
 :root {
-  /* Surfaces */
+  /* Comic Display & Body Typography */
+  --font-comic: 'Bangers', cursive, Impact, -apple-system, sans-serif;
+  --font-body: 'Nunito', 'Barlow', system-ui, -apple-system, sans-serif;
+
+  /* Comic Inking & Strokes */
+  --ink: #000000;
+  --border-ink: 3px solid #000000;
+  --border-ink-thick: 4px solid #000000;
+  --border-ink-thin: 2px solid #000000;
+  --shadow-comic: 4px 4px 0px #000000;
+  --shadow-comic-sm: 2.5px 2.5px 0px #000000;
+  --shadow-comic-lg: 6px 6px 0px #000000;
+  --shadow-comic-pressed: 1.5px 1.5px 0px #000000;
+
+  /* Saturated Pop-Art Palette */
+  --comic-yellow: #ffd600;
+  --comic-yellow-glow: #ffe600;
+  --comic-cyan: #00e5ff;
+  --comic-blue: #0096c7;
+  --comic-blue-dark: #023e8a;
+  --comic-red: #ff204e;
+  --comic-red-dark: #d90429;
+  --comic-green: #22c55e;
+  --comic-green-dark: #16a34a;
+  --comic-purple: #9d4edd;
+  --comic-purple-dark: #7b2cbf;
+  --comic-orange: #ff7b00;
+  --comic-paper: #ffffff;
+  --comic-cream: #fffdf0;
+
+  /* Surfaces & Backing */
   --navy-900: #070f20;
   --navy-800: #0b1730;
   --navy-700: #10203c;
   --navy-600: #16294a;
-  --panel: rgba(12, 26, 52, 0.86);
-  --panel-solid: #0e1c38;
-  --line: rgba(96, 148, 224, 0.28);
-  --line-strong: rgba(120, 175, 255, 0.5);
+  --panel: #ffffff;
+  --panel-solid: #ffffff;
+  --line: #000000;
+  --line-strong: #000000;
 
-  /* Brand accents */
-  --gold-100: #ffd977;
-  --gold: #f0a81c;
+  /* Brand Accents */
+  --gold-100: #ffe600;
+  --gold: #ffd600;
   --gold-600: #d1860a;
   --gold-800: #8a5605;
-  --blue: #2b7fd4;
-  --blue-600: #1a5da3;
-  --blue-800: #103c6e;
-  --red: #d8332f;
-  --red-700: #96201d;
-  --green: #3f9e2e;
-  --purple: #7a3fc0;
+  --blue: #0096c7;
+  --blue-600: #023e8a;
+  --blue-800: #012a5e;
+  --red: #ff204e;
+  --red-700: #d90429;
+  --green: #22c55e;
+  --purple: #9d4edd;
 
-  /* Card colours — identical values to packages/game-content/src/colors.ts */
-  --c-RED: #d8332f;
-  --c-YELLOW: #f0a81c;
-  --c-GREEN: #3f9e2e;
-  --c-BLUE: #1f6fc4;
-  --c-PINK: #e4478f;
-  --c-TEAL: #17a9a0;
-  --c-PURPLE: #7a3fc0;
-  --c-ORANGE: #e8752a;
-  --c-DARK_PINK: #8e1c53;
-  --c-DARK_TEAL: #0c6560;
-  --c-DARK_PURPLE: #4a2076;
-  --c-DARK_ORANGE: #8f4212;
+  /* Card Colours */
+  --c-RED: #ff204e;
+  --c-YELLOW: #ffd600;
+  --c-GREEN: #22c55e;
+  --c-BLUE: #0088ff;
+  --c-PINK: #ff2a85;
+  --c-TEAL: #00d2c4;
+  --c-PURPLE: #9d4edd;
+  --c-ORANGE: #ff7b00;
+  --c-DARK_PINK: #a0104e;
+  --c-DARK_TEAL: #006059;
+  --c-DARK_PURPLE: #531687;
+  --c-DARK_ORANGE: #a84700;
 
-  --text: #eaf1ff;
-  --text-dim: #94a9c9;
+  --text: #ffffff;
+  --text-dark: #000000;
+  --text-dim: #e2e8f0;
 
-  --radius: 14px;
-  --radius-lg: 20px;
-  --micro: 160ms;
-  --reveal: 420ms;
-  --ease: cubic-bezier(0.2, 0.8, 0.25, 1);
+  --radius: 12px;
+  --radius-lg: 16px;
+  --micro: 140ms;
+  --reveal: 380ms;
+  --ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  --card-w: 62px;
-  --card-h: 92px;
+  --card-w: 64px;
+  --card-h: 96px;
 
-  color-scheme: dark;
+  color-scheme: light dark;
 }
 
-/* §12: "Support reduced motion". Also honours the OS setting. */
+/* Reduced motion support */
 .reduced-motion *,
 .reduced-motion *::before,
 .reduced-motion *::after {
@@ -90,9 +128,9 @@ body,
 }
 
 body {
-  background: var(--navy-900);
-  color: var(--text);
-  font-family: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: #070f20;
+  color: #000000;
+  font-family: var(--font-body);
   font-size: 15px;
   overflow: hidden;
   overscroll-behavior: none;
@@ -107,7 +145,7 @@ button {
 }
 
 /* ------------------------------------------------------------------ */
-/* App shell                                                          */
+/* App Shell & Letterbox Stage                                        */
 /* ------------------------------------------------------------------ */
 
 .app {
@@ -117,10 +155,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--navy-900);
+  background-color: #050b18;
+  background-image:
+    radial-gradient(rgba(0, 229, 255, 0.15) 18%, transparent 19%),
+    radial-gradient(rgba(255, 214, 0, 0.1) 18%, transparent 19%);
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
 }
 
-/* Mobile-first stage that letterboxes on desktop (§9.2 responsive rule). */
 .stage {
   position: relative;
   width: 100%;
@@ -128,19 +170,11 @@ button {
   max-width: 1180px;
   max-height: 780px;
   overflow: hidden;
-  background: var(--navy-800);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  background: var(--comic-blue);
+  border: var(--border-ink-thick);
+  box-shadow: 0 0 0 4px #000000, 10px 10px 0px #000000;
 }
-/*
- * On a screen held upright, the board takes the height it has.
- *
- * The flat 780px cap above is right for a wide desktop, where letterboxing is
- * what stops the felt being stretched across a monitor. Applied to a tall
- * screen it did the opposite: a 900x1600 tablet used 780px and left 820px —
- * 51% of the display — as dead margin, with the cards no larger than on a
- * phone. Bounded at 2.2x the width so a very tall device still cannot stretch
- * the table into a corridor.
- */
+
 @media (orientation: portrait) {
   .stage {
     max-height: min(100%, 220vw);
@@ -148,8 +182,7 @@ button {
 }
 @media (min-width: 1024px) and (min-height: 700px) {
   .stage {
-    border-radius: 22px;
-    border: 1px solid var(--line);
+    border-radius: 20px;
   }
 }
 
@@ -163,97 +196,122 @@ button {
 @keyframes screen-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: scale(0.96) translateY(12px);
   }
 }
 
-/* Backgrounds built from the generated textures + vignettes */
-.bg-menu {
-  background-color: var(--navy-800);
-  background-image: radial-gradient(
-      120% 90% at 50% 0%,
-      rgba(40, 92, 170, 0.32),
-      rgba(7, 15, 32, 0) 62%
-    ),
-    var(--tex-navy);
-  background-size: auto, 380px auto;
-  background-repeat: no-repeat, repeat;
-}
+/* ------------------------------------------------------------------ */
+/* Comic Sunburst & Halftone Background Textures                      */
+/* ------------------------------------------------------------------ */
 
+/* Blue/Cyan Sunburst (Menu, Table, Lobby) */
+.bg-menu,
 .bg-table {
-  background-color: #0d3040;
-  background-image: radial-gradient(
-      95% 75% at 50% 42%,
-      rgba(46, 138, 158, 0.55),
-      rgba(4, 22, 32, 0.9) 78%
-    ),
-    var(--tex-water);
-  background-size: auto, 300px auto;
-  background-repeat: no-repeat, repeat;
+  background-color: #0096c7;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.22) 18%, transparent 19%),
+    repeating-conic-gradient(from 0deg at 50% 50%, #00b4d8 0deg 12deg, #0077b6 12deg 24deg);
+  background-size: 16px 16px, 100% 100%;
 }
 
-.bg-splash {
-  background: radial-gradient(60% 55% at 50% 46%, #7d1420 0%, #3a0a18 45%, #0a0714 100%);
+/* Yellow Sunburst (Loading, Splash) */
+.bg-splash,
+.bg-loading {
+  background-color: #ffd000;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.18) 18%, transparent 19%),
+    repeating-conic-gradient(from 0deg at 50% 50%, #ffe600 0deg 10deg, #ffb700 10deg 20deg);
+  background-size: 16px 16px, 100% 100%;
 }
 
+/* Win Screen Sunbursts */
 .bg-win {
-  background:
-    repeating-conic-gradient(
-      from 0deg at 50% 40%,
-      rgba(255, 214, 110, 0.32) 0deg 5deg,
-      rgba(255, 214, 110, 0) 5deg 13deg
-    ),
-    radial-gradient(46% 42% at 50% 40%, #f5b52a 0%, #a05c05 42%, #2a1403 76%, #0a0714 100%);
+  background-color: #0096c7;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.18) 18%, transparent 19%),
+    repeating-conic-gradient(from 0deg at 50% 50%, #00e5ff 0deg 10deg, #0077b6 10deg 20deg);
+  background-size: 16px 16px, 100% 100%;
+}
+.bg-win.tone-lost,
+.bg-win.tone-out {
+  background-color: #d90429;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.2) 18%, transparent 19%),
+    repeating-conic-gradient(from 0deg at 50% 50%, #ff204e 0deg 10deg, #9d0208 10deg 20deg);
+  background-size: 16px 16px, 100% 100%;
 }
 
 /* ------------------------------------------------------------------ */
-/* Panels, buttons, typography                                        */
+/* Panels, Comic Headers, Action Typography                           */
 /* ------------------------------------------------------------------ */
 
 .panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: var(--comic-paper);
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
   border-radius: var(--radius);
-  backdrop-filter: blur(2px);
 }
 
 .h1 {
-  font-size: clamp(22px, 4.4vw, 34px);
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-family: var(--font-comic);
+  font-size: clamp(24px, 4.8vw, 36px);
+  font-weight: 400;
+  letter-spacing: 0.05em;
   margin: 0;
-  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  color: #000000;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
 }
 
 .h2 {
-  font-size: 17px;
-  font-weight: 700;
+  font-family: var(--font-comic);
+  font-size: 20px;
+  font-weight: 400;
   letter-spacing: 0.04em;
   margin: 0;
+  text-transform: uppercase;
+  color: #000000;
 }
 
 .dim {
-  color: var(--text-dim);
+  color: #555555;
 }
 
+/* Yellow Comic Banner Heading (Panels 3, 4, 5, 6, 10) */
 .rule-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  padding: 14px 0 6px;
+  gap: 12px;
+  padding: 10px 0 6px;
+}
+.rule-title .h1,
+.comic-banner-h1 {
+  background: var(--comic-yellow);
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  padding: 4px 18px;
+  border-radius: 6px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+  font-size: clamp(22px, 4vw, 32px);
+  letter-spacing: 0.06em;
 }
 .rule-title::before,
 .rule-title::after {
-  content: '';
-  width: 46px;
-  height: 3px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold));
+  content: '★';
+  color: var(--comic-yellow);
+  font-size: 22px;
+  font-weight: 900;
+  -webkit-text-stroke: 2px #000000;
+  text-shadow: 2px 2px 0 #000000;
 }
-.rule-title::after {
-  background: linear-gradient(90deg, var(--gold), transparent);
-}
+
+/* ------------------------------------------------------------------ */
+/* Comic Buttons & Interactive Elements                               */
+/* ------------------------------------------------------------------ */
 
 .btn {
   position: relative;
@@ -261,86 +319,108 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 22px;
-  border-radius: 12px;
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 0.05em;
-  color: #fff;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
-  transition:
-    transform var(--micro) var(--ease),
-    filter var(--micro) var(--ease);
-  border-bottom: 3px solid rgba(0, 0, 0, 0.35);
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-family: var(--font-comic);
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease), filter var(--micro) var(--ease);
 }
 .btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  filter: brightness(1.08);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
+  filter: brightness(1.06);
 }
 .btn:active:not(:disabled) {
-  transform: translateY(1px);
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-comic-pressed);
   filter: brightness(0.95);
 }
 .btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+  filter: grayscale(0.8);
 }
 .btn:focus-visible {
-  outline: 3px solid var(--gold-100);
+  outline: 3px solid var(--comic-yellow);
   outline-offset: 2px;
 }
 
 .btn-gold {
-  background: linear-gradient(180deg, #ffc248 0%, var(--gold) 45%, var(--gold-600) 100%);
+  background: var(--comic-yellow);
+  color: #000000;
 }
 .btn-blue {
-  background: linear-gradient(180deg, #3f95e6 0%, var(--blue) 45%, var(--blue-600) 100%);
+  background: var(--comic-cyan);
+  color: #000000;
 }
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--line);
-  border-bottom-color: rgba(0, 0, 0, 0.35);
+  background: #ffffff;
+  color: #000000;
 }
 
+/* Square Comic Icon Button (Panels 4, 7) */
 .icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: rgba(9, 20, 40, 0.72);
-  border: 1px solid var(--line);
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--comic-yellow);
+  border: var(--border-ink);
+  box-shadow: 3px 3px 0px #000000;
   display: grid;
   place-items: center;
-  transition: transform var(--micro) var(--ease);
+  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
+  color: #000000;
 }
 .icon-btn:hover {
   transform: scale(1.06);
+  box-shadow: 4px 4px 0px #000000;
+}
+.icon-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-comic-pressed);
 }
 .icon-btn img {
   width: 22px;
   height: 22px;
   object-fit: contain;
+  filter: drop-shadow(1px 1px 0px #000000);
 }
 
 /* ------------------------------------------------------------------ */
-/* 1. Loading                                                         */
+/* 1. Loading & Splash Screen (Panels 1 & 2)                          */
 /* ------------------------------------------------------------------ */
 
 .splash {
   align-items: center;
   justify-content: center;
-  gap: 26px;
+  gap: 22px;
+  padding: 24px;
 }
 .splash-logo {
-  width: min(52%, 320px);
-  filter: drop-shadow(0 10px 26px rgba(255, 90, 40, 0.35));
-  animation: logo-pop 620ms var(--ease);
+  width: min(72%, 360px);
+  filter: drop-shadow(4px 6px 0px #000000);
+  animation: comic-logo-bounce 650ms var(--ease);
 }
-@keyframes logo-pop {
-  from {
-    transform: scale(0.82);
+@keyframes comic-logo-bounce {
+  0% {
+    transform: scale(0.6) rotate(-8deg);
     opacity: 0;
   }
+  70% {
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
+
 .splash-cards {
   position: absolute;
   inset: 0;
@@ -348,38 +428,63 @@ button {
 }
 .splash-card {
   position: absolute;
-  animation: float 5s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(4px 4px 0px #000000);
 }
 @keyframes float {
   50% {
-    transform: translateY(-10px) rotate(var(--r, 0deg));
+    transform: translateY(-12px) rotate(var(--r, 0deg));
   }
 }
+
+/* Comic Loading Bar (Panel 1) */
 .progress {
-  width: min(62%, 340px);
-  height: 12px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
+  width: min(74%, 380px);
+  height: 22px;
+  border-radius: 12px;
+  background: #002244;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic);
+  padding: 2px;
 }
 .progress > i {
   display: block;
   height: 100%;
   border-radius: 8px;
-  background: linear-gradient(90deg, #6b4df5, #37b6f5, #63e0ff);
+  background: linear-gradient(180deg, #fff777 0%, var(--comic-yellow) 50%, var(--comic-orange) 100%);
+  border: 1.5px solid #000000;
   transition: width 200ms linear;
 }
 .progress-label {
   display: flex;
   justify-content: space-between;
-  width: min(62%, 340px);
-  font-weight: 700;
+  width: min(74%, 380px);
+  font-family: var(--font-comic);
+  font-size: 18px;
   letter-spacing: 0.08em;
+  color: #000000;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+/* Comic Subtitle Ribbon Banner ("SAME COLORS. NEW BATTLES!") */
+.comic-ribbon-sub {
+  display: inline-block;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: 3px 3px 0px #000000;
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  padding: 3px 14px;
+  border-radius: 4px;
+  transform: rotate(1deg);
+  margin-top: -12px;
 }
 
 /* ------------------------------------------------------------------ */
-/* 2. Main menu                                                       */
+/* 2. Main Menu (Panels 3, 5, 6)                                      */
 /* ------------------------------------------------------------------ */
 
 .menu {
@@ -392,50 +497,64 @@ button {
   gap: 10px;
   flex-wrap: wrap;
 }
+
+/* Profile Chip in Comic Style (Yellow Comic Capsule) */
 .profile-chip {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 16px 7px 7px;
-  border-radius: 40px;
-  background: var(--panel);
-  border: 1px solid var(--line);
+  padding: 5px 14px 5px 6px;
+  border-radius: 30px;
+  background: var(--comic-yellow);
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
   min-width: 0;
 }
 .profile-chip img.avatar {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  border: 2px solid var(--gold);
+  border: 2px solid #000000;
+  background: #ffffff;
 }
 .profile-name {
-  font-weight: 800;
-  line-height: 1.15;
+  font-family: var(--font-comic);
+  font-size: 17px;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
 }
+
+/* Currency Badges in Comic White Capsules */
 .currency {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
-  padding: 7px 14px;
-  border-radius: 40px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.04em;
 }
 .currency img {
   width: 22px;
   height: 22px;
+  object-fit: contain;
 }
 .spacer {
   flex: 1;
 }
 
+/* Main Menu Comic Mode Tiles (Panel 3) */
 .tile-row {
   flex: 1;
-  max-height: 62%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 14px;
   min-height: 0;
 }
 @media (min-width: 760px) {
@@ -446,7 +565,7 @@ button {
 
 .tile {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   padding: 14px 12px 16px;
   display: flex;
   flex-direction: column;
@@ -454,345 +573,471 @@ button {
   text-align: center;
   gap: 6px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-bottom-width: 4px;
-  border-bottom-color: rgba(0, 0, 0, 0.4);
-  transition:
-    transform var(--micro) var(--ease),
-    box-shadow var(--micro) var(--ease);
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  color: #ffffff;
+  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
 }
 .tile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 2px #000, 8px 8px 0px #000000;
+}
+.tile:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-comic-pressed);
 }
 .tile:focus-visible {
-  outline: 3px solid var(--gold-100);
-  outline-offset: 2px;
+  outline: 3px solid var(--comic-yellow);
+  outline-offset: 3px;
 }
 .tile-title {
-  font-size: clamp(16px, 2.6vw, 22px);
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  font-family: var(--font-comic);
+  font-size: clamp(20px, 3.2vw, 28px);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-text-stroke: 1.5px #000000;
+  text-shadow: 2px 2px 0 #000000;
 }
 .tile-sub {
   font-size: 13px;
-  opacity: 0.92;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1.5px solid #000000;
+  border-radius: 6px;
+  padding: 2px 8px;
+  color: #ffffff;
 }
 .tile-art {
   margin-top: auto;
-  max-height: 44%;
-  max-width: 68%;
+  max-height: 48%;
+  max-width: 72%;
   object-fit: contain;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(3px 3px 0px #000000);
 }
 
+.comic-good-luck-sticker {
+  position: absolute;
+  bottom: 62px;
+  right: 18px;
+  background: var(--comic-yellow);
+  color: #000000;
+  font-family: var(--font-comic);
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  border-radius: 6px;
+  transform: rotate(8deg);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Bottom Nav Bar */
 .navbar {
   display: flex;
   justify-content: space-around;
-  padding: 8px 4px;
+  padding: 6px 4px;
   border-radius: var(--radius);
-  background: rgba(8, 18, 38, 0.7);
-  border: 1px solid var(--line);
+  background: var(--comic-yellow);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
 }
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: var(--text-dim);
-  position: relative;
-  transition: color var(--micro);
+  gap: 3px;
+  padding: 4px 12px;
+  font-family: var(--font-comic);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: #000000;
+  transition: transform var(--micro);
 }
 .nav-item:hover {
-  color: var(--text);
+  transform: scale(1.06);
 }
 .nav-item img {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
+  filter: drop-shadow(1px 1px 0px #000000);
+}
+
+/* Resume Match Bar */
+.resume-bar {
+  display: flex;
+  gap: 8px;
+  margin: 0 14px 10px;
+}
+.resume-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--comic-yellow);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
+  text-align: left;
+  color: #000000;
+}
+.resume-main:hover {
+  filter: brightness(1.05);
+}
+.resume-title {
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+.resume-sub {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333333;
+}
+.resume-discard {
+  padding: 0 16px;
+  border-radius: var(--radius);
+  background: #ffffff;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
+  font-family: var(--font-comic);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: #000000;
 }
 
 /* ------------------------------------------------------------------ */
-/* 3. Mode select                                                     */
+/* 3. Mode Select (Panel 3 & 8)                                       */
 /* ------------------------------------------------------------------ */
 
 .modes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
   padding: 12px 14px 18px;
   overflow-y: auto;
   flex: 1;
   align-content: start;
 }
+.mode-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .mode-card {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   padding: 16px 12px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
   text-align: center;
-  min-height: 230px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom-width: 4px;
-  border-bottom-color: rgba(0, 0, 0, 0.42);
-  transition:
-    transform var(--micro) var(--ease),
-    box-shadow var(--micro) var(--ease);
+  min-height: 220px;
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  color: #ffffff;
+  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
 }
 .mode-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 0 0 2px #000, 8px 8px 0px #000000;
 }
 .mode-card:focus-visible {
-  outline: 3px solid var(--gold-100);
+  outline: 3px solid var(--comic-yellow);
   outline-offset: 3px;
 }
 .mode-art {
-  height: 92px;
+  height: 88px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(3px 3px 0px #000000);
 }
 .mode-name {
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+  font-family: var(--font-comic);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-text-stroke: 1.5px #000000;
+  text-shadow: 2px 2px 0px #000000;
 }
 .mode-tag {
-  font-size: 12.5px;
-  line-height: 1.35;
-  opacity: 0.92;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.3;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1.5px solid #000000;
+  border-radius: 6px;
+  padding: 3px 8px;
 }
 .badge-new {
   position: absolute;
-  top: -4px;
-  right: -2px;
-  width: 54px;
+  top: -8px;
+  right: -8px;
+  width: 58px;
   pointer-events: none;
+  filter: drop-shadow(2px 2px 0px #000000);
 }
 .complexity {
   display: flex;
-  gap: 3px;
-  margin-top: 2px;
+  gap: 4px;
+  margin-top: 4px;
 }
 .complexity i {
   width: 14px;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.24);
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid #000000;
 }
 .complexity i.on {
-  background: var(--gold-100);
+  background: var(--comic-yellow);
+}
+
+.mode-rules {
+  font-family: var(--font-comic);
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: transform var(--micro);
+}
+.mode-rules:hover {
+  transform: scale(1.03);
+  background: var(--comic-yellow);
 }
 
 /* ------------------------------------------------------------------ */
-/* 4. Lobby                                                           */
+/* 4. Lobby & Room Setup (Panels 5 & 6)                               */
 /* ------------------------------------------------------------------ */
 
-/*
- * The lobby column scrolls; the panels inside it do not.
- *
- * It used to be the other way round, and that was a hard functional break on a
- * phone: a one-column grid gives every row an equal share of a bounded height,
- * so each panel was squashed below its content, and two controls — "+ ADD BOT"
- * and the Chat toggle — ended up rendered underneath the panel below them.
- * Hit-testing the centre of ADD BOT returned the Game Settings panel, so the
- * button could not be pressed at all. Remove a bot and there was no way to add
- * one back.
- *
- * `min-content` rows size to their content, `align-content: start` stops the
- * grid stretching them, and the column scrolls instead.
- */
 .lobby-body {
   flex: 1;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   align-content: start;
-  gap: 12px;
+  gap: 14px;
   padding: 0 14px 14px;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 @media (min-width: 720px) {
-  /* Wide enough for three columns side by side, where each panel does fit. */
   .lobby-body {
     grid-template-columns: 1fr 1.2fr auto;
     grid-auto-rows: auto;
     align-content: stretch;
     overflow: hidden;
   }
-  .seat-list,
-  .settings-list {
-    min-height: 0;
-    overflow-y: auto;
-  }
 }
 
-.seat-list {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.seat-list,
+.settings-list {
+  background: var(--comic-paper);
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: var(--radius);
+  padding: 14px;
+  color: #000000;
 }
+
 .seat-row {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 10px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f4f6fa;
+  border: 2px solid #000000;
+  margin-bottom: 6px;
 }
 .seat-row img.avatar {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
+  border: 2px solid #000000;
+  background: #ffffff;
 }
 .seat-name {
-  font-weight: 700;
+  font-family: var(--font-comic);
+  font-size: 18px;
+  letter-spacing: 0.04em;
   flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: #000000;
 }
 .pill {
-  font-size: 10px;
-  font-weight: 800;
+  font-family: var(--font-comic);
+  font-size: 13px;
   letter-spacing: 0.08em;
-  padding: 3px 7px;
+  padding: 3px 8px;
   border-radius: 6px;
-  background: var(--gold-800);
-  color: var(--gold-100);
+  background: var(--comic-yellow);
+  color: #000000;
+  border: 1.5px solid #000000;
 }
-.pill.ok {
-  background: rgba(63, 158, 46, 0.28);
-  color: #9ce88a;
+
+/* Thought Balloon: "Waiting for players..." (Panel 6) */
+.waiting-balloon {
+  position: relative;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink-thick);
+  border-radius: 28px;
+  padding: 14px 24px;
+  font-family: var(--font-comic);
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  box-shadow: var(--shadow-comic-lg);
+  display: inline-block;
+  margin: 12px auto;
 }
-.settings-list {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.waiting-balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 36px;
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 50%;
+  box-shadow: 2px 2px 0px #000000;
 }
+.waiting-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -28px;
+  left: 24px;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border: 2.5px solid #000000;
+  border-radius: 50%;
+  box-shadow: 1px 1px 0px #000000;
+}
+
 .setting {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 9px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 13px;
-  letter-spacing: 0.04em;
-}
-.setting:last-child {
-  border-bottom: none;
+  padding: 10px 8px;
+  border-bottom: 2px solid #000000;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
 }
 .setting-label {
-  color: var(--text-dim);
-  font-weight: 700;
+  color: #000000;
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 0.09em;
 }
 .setting select {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--line);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 5px 8px;
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+  border-radius: 6px;
+  padding: 6px 10px;
   font-family: inherit;
-  font-weight: 700;
+  font-weight: 800;
 }
+
+/* Green Comic Toggle Switch (Panel 4) */
 .toggle {
-  width: 44px;
-  height: 24px;
+  width: 48px;
+  height: 26px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.16);
+  background: #cccccc;
+  border: 2.5px solid #000000;
   position: relative;
   transition: background var(--micro);
+  box-shadow: 2px 2px 0px #000000;
 }
 .toggle.on {
-  background: #3f9e2e;
+  background: var(--comic-green);
 }
 .toggle i {
   position: absolute;
-  top: 3px;
-  left: 3px;
+  top: 2px;
+  left: 2px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
+  border: 2px solid #000000;
   transition: transform var(--micro) var(--ease);
 }
 .toggle.on i {
-  transform: translateX(20px);
-}
-.theme-picker {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  min-width: 130px;
-}
-.theme-picker img {
-  width: 82px;
-  border-radius: 10px;
+  transform: translateX(21px);
 }
 
 /* ------------------------------------------------------------------ */
-/* 5-8. Table                                                         */
+/* 5-8. Table & Gameplay (Panel 7)                                    */
 /* ------------------------------------------------------------------ */
 
 .table-top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  padding: 10px 12px;
-  gap: 8px;
+  padding: 10px 14px;
+  gap: 10px;
   z-index: 4;
 }
+
+/* Turn Chip (Comic Dialogue Badge) */
 .turn-chip {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 12px 5px 5px;
-  border-radius: 40px;
-  background: rgba(6, 20, 34, 0.78);
-  border: 1px solid var(--line);
+  padding: 4px 14px 4px 6px;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
 }
 .turn-chip img.avatar {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 2px solid var(--gold);
+  border: 2px solid #000000;
+  background: var(--comic-yellow);
 }
 .turn-chip.you {
-  box-shadow: 0 0 0 2px var(--gold-100), 0 0 22px rgba(255, 200, 80, 0.5);
+  background: var(--comic-yellow);
+  box-shadow: 0 0 0 2px #000, 4px 4px 0px #000000;
 }
-.timer {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 40px;
-  background: rgba(6, 20, 34, 0.78);
-  border: 1px solid var(--line);
+.turn-chip-name {
+  font-family: var(--font-comic);
+  font-size: 16px;
+  line-height: 1.1;
+  color: #000000;
+}
+.turn-chip-meta {
+  font-size: 11px;
   font-weight: 800;
-  font-variant-numeric: tabular-nums;
+  color: #333333;
 }
-.timer img {
-  width: 18px;
-  height: 18px;
+.turn-dir {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 900;
+  color: #000000;
 }
 
 .felt {
@@ -803,43 +1048,45 @@ button {
   min-height: 0;
 }
 
+/* Comic Direction Ring */
 .direction-ring {
   position: absolute;
-  width: min(58%, 300px);
+  width: min(60%, 320px);
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 3px dashed rgba(220, 245, 255, 0.16);
-  animation: spin 26s linear infinite;
+  border: 4px dashed rgba(0, 0, 0, 0.45);
+  animation: spin 24s linear infinite;
 }
 .direction-ring.ccw {
   animation-direction: reverse;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .pile-row {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 6vw, 54px);
+  gap: clamp(20px, 7vw, 60px);
   z-index: 2;
 }
 
+/* Draw Pile with Inked Borders */
 .draw-pile {
   position: relative;
+  border: var(--border-ink-thick);
+  border-radius: 12px;
+  box-shadow: var(--shadow-comic);
+  background: #ffffff;
   transition: transform var(--micro) var(--ease);
 }
 .draw-pile:hover {
-  transform: translateY(-3px) scale(1.03);
+  transform: translateY(-3px) scale(1.04);
 }
 .draw-pile.actionable {
-  animation: pulse 1.6s ease-in-out infinite;
+  animation: comic-draw-pulse 1.4s ease-in-out infinite;
 }
-@keyframes pulse {
+@keyframes comic-draw-pulse {
   50% {
-    filter: drop-shadow(0 0 14px rgba(255, 210, 110, 0.85));
+    box-shadow: 0 0 0 4px var(--comic-yellow), 6px 6px 0px #000000;
+    transform: translateY(-4px) scale(1.05);
   }
 }
 .draw-pile img {
@@ -849,54 +1096,84 @@ button {
 }
 .pile-count {
   position: absolute;
-  bottom: -9px;
+  bottom: -11px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 11px;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.65);
-  border: 1px solid var(--line);
+  font-family: var(--font-comic);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: var(--comic-yellow);
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
 }
 
+/* Discard Pile with Comic Starburst Halo (Panel 7) */
 .discard {
   position: relative;
 }
 .discard .card {
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--shadow-comic-lg);
 }
 .color-halo {
   position: absolute;
-  inset: -26px;
+  inset: -28px;
   border-radius: 50%;
-  filter: blur(22px);
-  opacity: 0.55;
+  background: var(--comic-yellow) !important;
+  clip-path: polygon(50% 0%, 63% 18%, 85% 6%, 82% 28%, 100% 35%, 88% 53%, 98% 70%, 78% 75%, 79% 98%, 60% 88%, 45% 100%, 35% 85%, 15% 95%, 20% 73%, 0% 65%, 15% 48%, 2% 32%, 22% 28%, 18% 5%, 38% 18%);
+  animation: comic-halo-spin 8s linear infinite;
+  opacity: 0.95;
   z-index: -1;
+  border: 3px solid #000000;
+  filter: drop-shadow(3px 3px 0px #000000);
+}
+@keyframes comic-halo-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+.color-name.active-color {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto 0;
+  padding: 3px 14px;
+  border-radius: 20px;
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: var(--ink, #000);
+  background: var(--swatch, var(--comic-yellow));
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+/* Player Seats (Panel 7) */
 .seat {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px;
+  gap: 8px;
+  padding: 6px;
   border-radius: 12px;
   z-index: 3;
 }
 .seat.left {
-  left: 8px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
 .seat.right {
-  right: 8px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   flex-direction: row-reverse;
 }
 .seat.top {
-  top: 4px;
+  top: 6px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -904,60 +1181,74 @@ button {
   position: relative;
 }
 .seat-avatar img {
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  background: #ffffff;
   display: block;
 }
 .seat.active .seat-avatar img {
-  border-color: var(--gold);
-  box-shadow: 0 0 16px rgba(255, 200, 80, 0.75);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px var(--comic-yellow), 4px 4px 0px #000000;
 }
 .seat.out {
-  opacity: 0.42;
-  filter: grayscale(0.85);
+  opacity: 0.45;
+  filter: grayscale(1);
 }
+
+/* Seat Name Tag in Yellow Comic Badge (Panel 7) */
 .seat-meta {
-  font-size: 11px;
-  font-weight: 800;
+  font-family: var(--font-comic);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: #000000;
+  background: var(--comic-yellow);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
   text-align: center;
-  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
-  line-height: 1.2;
 }
+/* Red Card Count Pill on Seat Avatar (Panel 7) */
+.clash-flag {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-comic);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  background: var(--comic-red);
+  color: #ffffff;
+  padding: 1px 8px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+}
+
 .seat-fan {
   display: flex;
 }
 .seat-fan img {
-  width: 24px;
-  border-radius: 3px;
-  margin-left: -15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  width: 26px;
+  border-radius: 4px;
+  margin-left: -16px;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
 }
 .seat-fan img:first-child {
   margin-left: 0;
 }
-.clash-flag {
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  background: var(--red);
-  padding: 1px 6px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
 
-/* Hand */
+/* Hand & Action Bar (Panel 7 & 12) */
 .hand-bar {
   position: relative;
-  padding: 4px 8px 10px;
+  padding: 6px 12px 12px;
   display: flex;
   align-items: flex-end;
-  gap: 10px;
+  gap: 12px;
   z-index: 5;
 }
 .hand-scroll {
@@ -966,59 +1257,8 @@ button {
   position: relative;
   overflow-x: auto;
   overflow-y: visible;
-  /*
-   * A visible horizontal scrollbar adds its own height inside this element,
-   * which pushed the whole hand bar a few pixels below the fold in landscape.
-   * The hand is a touch surface that is dragged, not a scrollbar people aim
-   * at, so hiding it costs nothing and gives those pixels back.
-   */
   scrollbar-width: none;
-  scrollbar-width: thin;
-  padding-top: 26px;
-}
-/*
- * "There are more cards this way."
- *
- * The scrollbar is hidden above, so without these a hand wider than the bar is
- * indistinguishable from a hand that fits. The fade is the peripheral cue; the
- * badge is the one that answers "how many".
- */
-.hand-scroll.more-left::before,
-.hand-scroll.more-right::after {
-  content: '';
-  position: sticky;
-  top: 0;
-  z-index: 4;
-  display: block;
-  width: 26px;
-  height: 100%;
-  pointer-events: none;
-}
-.hand-scroll.more-left::before {
-  float: left;
-  left: 0;
-  margin-right: -26px;
-  background: linear-gradient(90deg, rgba(6, 12, 24, 0.85), rgba(6, 12, 24, 0));
-}
-.hand-scroll.more-right::after {
-  float: right;
-  right: 0;
-  margin-left: -26px;
-  background: linear-gradient(270deg, rgba(6, 12, 24, 0.85), rgba(6, 12, 24, 0));
-}
-.hand-more {
-  position: absolute;
-  right: 4px;
-  top: 4px;
-  z-index: 6;
-  padding: 1px 7px;
-  border-radius: 999px;
-  background: rgba(6, 12, 24, 0.92);
-  border: 1px solid var(--line);
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--text-dim);
-  pointer-events: none;
+  padding-top: 24px;
 }
 .hand {
   display: flex;
@@ -1027,7 +1267,7 @@ button {
   padding: 0 10px;
 }
 .hand .card-slot {
-  margin-left: -22px;
+  margin-left: -24px;
   transition: transform var(--micro) var(--ease);
 }
 .hand .card-slot:first-child {
@@ -1035,45 +1275,75 @@ button {
 }
 @media (min-width: 820px) {
   .hand .card-slot {
-    margin-left: -8px;
+    margin-left: -10px;
   }
 }
-.card-slot.playable:hover,
-.card-slot.playable:focus-within {
-  transform: translateY(-18px);
-  z-index: 3;
+
+/* Playable Card Pop-out (Panel 7) */
+.card-slot.playable .card {
+  border: 3px solid #000000;
+  box-shadow: 0 0 0 2px var(--comic-yellow), 4px 4px 0px #000000;
+  cursor: pointer;
 }
-/*
- * A card you cannot play right now is still a card you are planning around.
- *
- * This used to be brightness(0.55) saturate(0.5), which dimmed the rank and the
- * colour past reading at phone size — so a hand of fifteen became a hand of
- * "the three lit ones", and planning two turns ahead was impossible. The face
- * stays legible; the slot recedes instead.
- */
+.card-slot.playable:hover .card,
+.card-slot.playable:focus-within .card {
+  transform: translateY(-20px) rotate(-1deg);
+  box-shadow: 0 0 0 3px var(--comic-yellow), 6px 6px 0px #000000;
+  z-index: 4;
+}
 .card-slot.blocked .card {
-  filter: saturate(0.82);
-  opacity: 0.82;
-}
-.card-slot.blocked {
+  filter: saturate(0.65) brightness(0.9);
+  opacity: 0.75;
   cursor: not-allowed;
 }
-/* The frame carries the "not now", not the artwork. */
-.card-slot.blocked .card::after {
-  content: '';
+
+/* "Your Turn!" Speech Bubble over Hand (Panel 7) */
+.your-turn-bubble {
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 2px rgba(6, 12, 24, 0.55);
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-family: var(--font-comic);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  z-index: 10;
+  animation: comic-pop 350ms var(--ease);
   pointer-events: none;
 }
-.card-slot.playable .card {
-  box-shadow:
-    0 0 0 2px var(--gold-100),
-    0 8px 18px rgba(0, 0, 0, 0.5);
+.your-turn-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-width: 10px 8px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+}
+.your-turn-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-width: 13px 10px 0;
+  border-style: solid;
+  border-color: #000000 transparent;
 }
 
+/* Explosive Clash Button (Panel 8, 11) */
 .clash-button {
+  position: relative;
   border: none;
   background: none;
   padding: 0;
@@ -1081,60 +1351,59 @@ button {
   transition: transform var(--micro) var(--ease);
 }
 .clash-button img {
-  width: 108px;
+  width: 112px;
   display: block;
+  filter: drop-shadow(4px 4px 0px #000000);
 }
 .clash-button:disabled {
-  filter: grayscale(0.85) brightness(0.6);
+  filter: grayscale(0.85) brightness(0.7);
   cursor: default;
 }
 .clash-button:not(:disabled) {
-  animation: clash-pulse 1.1s ease-in-out infinite;
+  animation: clash-comic-shake 0.8s infinite ease-in-out;
 }
-@keyframes clash-pulse {
-  50% {
-    transform: scale(1.06);
-    filter: drop-shadow(0 0 16px rgba(255, 180, 60, 0.9));
-  }
+@keyframes clash-comic-shake {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.08) rotate(-4deg); }
+  75% { transform: scale(1.08) rotate(4deg); }
 }
-
-.reason-toast {
+.clash-countdown {
   position: absolute;
-  bottom: 128px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 8px 16px;
-  border-radius: 10px;
-  background: rgba(10, 20, 40, 0.94);
-  border: 1px solid var(--line-strong);
-  font-size: 13px;
-  font-weight: 600;
-  z-index: 20;
-  animation: toast-in 220ms var(--ease);
-  pointer-events: none;
-}
-@keyframes toast-in {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 8px);
-  }
+  top: -6px;
+  right: -6px;
+  min-width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--comic-red);
+  color: #ffffff;
+  border: 2px solid #000000;
+  font-family: var(--font-comic);
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  box-shadow: 2px 2px 0px #000000;
 }
 
+/* Stack Badge Alert (Panel 11) */
 .stack-badge {
   position: absolute;
-  top: 12px;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 6px 16px;
+  padding: 6px 18px;
   border-radius: 30px;
-  background: linear-gradient(180deg, #ff5b4a, #b21f16);
-  font-weight: 900;
+  background: var(--comic-red);
+  color: #ffffff;
+  font-family: var(--font-comic);
+  font-size: 18px;
   letter-spacing: 0.06em;
-  border: 2px solid rgba(255, 255, 255, 0.35);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
   z-index: 6;
+  animation: comic-pop 250ms var(--ease);
 }
 
-/* Action banner (screen 6) */
+/* Action Moments & Explosions (Screen 6, Panel 8, 11) */
 .action-burst {
   position: absolute;
   inset: 0;
@@ -1142,146 +1411,187 @@ button {
   place-items: center;
   z-index: 15;
   pointer-events: none;
-  background: radial-gradient(45% 40% at 50% 45%, rgba(40, 120, 255, 0.42), transparent 70%);
-  animation: burst var(--reveal) var(--ease);
+  animation: comic-burst-anim var(--reveal) var(--ease);
 }
-@keyframes burst {
-  from {
+@keyframes comic-burst-anim {
+  0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.4) rotate(-10deg);
+  }
+  70% {
+    transform: scale(1.15) rotate(4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
   }
 }
 .action-title {
-  font-size: clamp(28px, 7vw, 54px);
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  color: var(--gold-100);
-  text-shadow:
-    0 0 18px rgba(255, 170, 40, 0.9),
-    0 5px 0 rgba(0, 0, 0, 0.5);
+  font-family: var(--font-comic);
+  font-size: clamp(34px, 8.5vw, 64px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--comic-yellow);
+  -webkit-text-stroke: 3px #000000;
+  text-shadow: 4px 4px 0px #000000, 0 0 20px rgba(255, 214, 0, 0.8);
   transform: rotate(-3deg);
+  display: inline-block;
+  background: #ff204e;
+  padding: 8px 24px;
+  border: var(--border-ink-thick);
+  border-radius: 8px;
+  box-shadow: var(--shadow-comic-lg);
 }
 .action-note {
   margin-top: 12px;
-  padding: 7px 18px;
-  border-radius: 10px;
-  background: rgba(8, 18, 36, 0.9);
-  border: 1px solid var(--line-strong);
-  font-weight: 700;
+  padding: 6px 20px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  font-family: var(--font-comic);
+  font-size: 18px;
+  letter-spacing: 0.04em;
 }
 
-/* Modals (screens 7 & 8) */
+.reason-toast {
+  position: absolute;
+  bottom: 128px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: var(--comic-yellow);
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  z-index: 20;
+  animation: toast-in 220ms var(--ease);
+  pointer-events: none;
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Modals & Choices (Panels 10 & 11)                                  */
+/* ------------------------------------------------------------------ */
+
 .scrim {
   position: absolute;
   inset: 0;
-  background: rgba(3, 8, 18, 0.72);
+  background: rgba(0, 0, 0, 0.75);
   display: grid;
   place-items: center;
   z-index: 30;
-  animation: fade var(--micro) var(--ease);
   padding: 16px;
-}
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
+  animation: fade var(--micro) var(--ease);
 }
 .modal {
-  background: linear-gradient(180deg, #12243f, #0a1730);
-  border: 1px solid var(--line-strong);
-  border-radius: 22px;
-  padding: 22px 24px 24px;
+  background: var(--comic-paper);
+  color: #000000;
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
   text-align: center;
-  max-width: 420px;
+  max-width: 440px;
   width: 100%;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
   animation: modal-in var(--reveal) var(--ease);
 }
 @keyframes modal-in {
   from {
     opacity: 0;
-    transform: scale(0.92) translateY(12px);
+    transform: scale(0.9) translateY(16px);
   }
 }
+
+/* Color Choice Grid (Panel 10) */
 .color-grid {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 14px;
   margin-top: 18px;
-  flex-wrap: wrap;
 }
-/* §12: colour is never the only signal — each swatch is named. */
 .color-choice {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  cursor: pointer;
   transition: transform var(--micro) var(--ease);
 }
-.color-choice:hover,
-.color-choice:focus-visible {
-  transform: scale(1.1);
-  outline: none;
+.color-choice:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
 }
-.color-choice:focus-visible .color-dot {
-  box-shadow: 0 0 0 3px var(--gold-100);
+.color-choice:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-comic-pressed);
 }
 .color-dot {
-  display: block;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 2px solid #000000;
 }
+.color-choice .color-name {
+  font-family: var(--font-comic);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+
 .target-grid {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin-top: 16px;
 }
 .target-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid var(--line);
-  transition: background var(--micro);
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #f4f6fa;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
+  cursor: pointer;
+  color: #000000;
+  font-family: var(--font-comic);
+  font-size: 18px;
+  transition: transform var(--micro);
 }
 .target-row:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--comic-yellow);
+  transform: scale(1.02);
 }
 .target-row img {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-}
-
-.clash-reminder {
-  display: grid;
-  place-items: center;
-  gap: 6px;
-}
-.clash-reminder .big {
-  font-size: clamp(40px, 11vw, 76px);
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  color: var(--gold-100);
-  text-shadow:
-    0 0 22px rgba(255, 160, 30, 0.95),
-    0 6px 0 rgba(0, 0, 0, 0.55);
+  border: 2px solid #000000;
 }
 
 /* ------------------------------------------------------------------ */
-/* 9-10. Result                                                       */
+/* 9-10. Result Screens (Panels 13, 14, 15, 16)                        */
 /* ------------------------------------------------------------------ */
 
 .win {
-  /* No `position` here: `.screen` already sets `position: absolute; inset: 0`,
-     and re-declaring it later in the sheet would collapse the screen to the
-     height of its content. */
   align-items: center;
   justify-content: center;
   gap: 14px;
@@ -1304,9 +1614,11 @@ button {
   right: 0;
   transform: scaleX(-1);
 }
+
 .win-banner {
-  width: min(72%, 380px);
-  animation: logo-pop 500ms var(--ease);
+  width: min(78%, 420px);
+  filter: drop-shadow(4px 6px 0px #000000);
+  animation: comic-logo-bounce 550ms var(--ease);
 }
 .win-portrait {
   position: relative;
@@ -1314,193 +1626,187 @@ button {
   place-items: center;
 }
 .win-portrait .crown {
-  width: 84px;
+  width: 88px;
   margin-bottom: -22px;
   z-index: 2;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(3px 3px 0px #000000);
 }
 .win-portrait .avatar {
-  width: 122px;
-  height: 122px;
+  width: 128px;
+  height: 128px;
   border-radius: 50%;
-  border: 6px solid var(--gold);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  background: #ffffff;
 }
+
+/* Comic Victory Ribbon (Panel 13) */
 .win-ribbon {
-  margin-top: -10px;
-  padding: 8px 34px;
-  background: linear-gradient(180deg, #d8332f, #8d1a17);
-  border: 2px solid rgba(255, 255, 255, 0.35);
+  margin-top: -12px;
+  padding: 6px 36px;
+  background: var(--comic-yellow);
+  color: #000000;
+  border: var(--border-ink-thick);
   border-radius: 8px;
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 0.03em;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-comic);
+  font-family: var(--font-comic);
+  font-size: 26px;
+  letter-spacing: 0.05em;
+  transform: rotate(-1deg);
 }
+
+/* Dialogue Bubble on Result Screens: "Colors never lie!" (Panel 13) */
+.comic-speech-balloon {
+  position: relative;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  border-radius: 18px;
+  padding: 6px 18px;
+  font-family: var(--font-comic);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  margin: 6px auto;
+  display: inline-block;
+}
+.comic-speech-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 24px;
+  width: 0;
+  height: 0;
+  border-width: 9px 7px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+}
+.comic-speech-balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -13px;
+  left: 22px;
+  width: 0;
+  height: 0;
+  border-width: 12px 9px 0;
+  border-style: solid;
+  border-color: #000000 transparent;
+}
+
 .rewards {
   display: flex;
   gap: 20px;
-  padding: 8px 22px;
-  border-radius: 12px;
-  background: rgba(8, 16, 32, 0.72);
-  border: 1px solid var(--line);
-  font-weight: 800;
+  padding: 8px 24px;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  font-family: var(--font-comic);
+  font-size: 18px;
 }
 .rewards span {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
 }
 .rewards img {
-  width: 20px;
+  width: 22px;
 }
 
-/*
- * The player's own result on the round-over screen.
- *
- * Shown above the winner reveal when somebody else won, so the first thing on
- * screen after the heading is how *you* did. The rewards live inside it for
- * the same reason: under the winner's name they read as the winner's.
- */
 .you-result {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
-  padding: 12px 18px;
-  border-radius: 14px;
-  background: rgba(8, 16, 32, 0.6);
-  border: 1px solid var(--line);
-  max-width: 420px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  max-width: 440px;
   width: 100%;
 }
-.you-place {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.05;
-}
 .you-place-value {
-  font-size: 30px;
-  font-weight: 900;
-}
-.you-place-label {
-  font-size: 11px;
-  color: var(--text-dim);
-  font-weight: 700;
-}
-.you-lines {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+  font-family: var(--font-comic);
+  font-size: 36px;
+  color: #000000;
 }
 .you-score {
-  font-size: 17px;
-  font-weight: 900;
-  font-variant-numeric: tabular-nums;
-}
-.you-sub {
-  font-size: 12px;
-}
-.you-result .rewards {
-  padding: 6px 14px;
-  gap: 14px;
+  font-family: var(--font-comic);
+  font-size: 20px;
+  color: #000000;
 }
 
+/* Match Summary & End Game Screen (Panel 16) */
 .summary-body {
   flex: 1;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 14px;
   padding: 0 14px 14px;
   overflow-y: auto;
 }
 @media (min-width: 720px) {
   .summary-body {
-    grid-template-columns: 1.25fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     overflow: hidden;
   }
 }
-.standings {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.standings,
+.stat-panel {
+  background: var(--comic-paper);
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: var(--radius);
+  padding: 14px;
+  color: #000000;
 }
 .standing {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 8px 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  background: #f4f6fa;
+  border: 2px solid #000000;
+  margin-bottom: 6px;
+  font-family: var(--font-comic);
+  font-size: 18px;
 }
 .standing.first {
-  background: linear-gradient(90deg, rgba(240, 168, 28, 0.24), rgba(240, 168, 28, 0.04));
-  border: 1px solid rgba(240, 168, 28, 0.4);
-}
-.standing img.medal {
-  width: 30px;
+  background: var(--comic-yellow);
+  box-shadow: 0 0 0 2px #000000;
 }
 .standing img.avatar {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
+  border: 2px solid #000000;
 }
 .standing .rank {
-  width: 30px;
-  text-align: center;
-  font-weight: 800;
-  color: var(--text-dim);
-}
-/*
- * The position column. A fixed width so every row lines up whether or not it
- * also carries a medal.
- */
-.standing .standing-rank {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  flex: 0 0 54px;
-}
-.standing .standing-rank img.medal {
-  width: 24px;
-}
-.standing .standing-rank .rank {
-  width: auto;
-  min-width: 14px;
-  text-align: right;
-}
-/* The viewer's own row, so it can be picked out of the list at a glance. */
-.standing.you {
-  background: rgba(90, 170, 255, 0.14);
-  box-shadow: inset 0 0 0 1px rgba(90, 170, 255, 0.35);
+  font-family: var(--font-comic);
+  font-size: 20px;
+  color: #000000;
 }
 .standing .score {
-  font-weight: 900;
-  font-variant-numeric: tabular-nums;
-}
-.standing.first .score {
-  color: var(--gold-100);
-}
-.stat-panel {
-  padding: 12px 14px;
+  font-family: var(--font-comic);
+  font-size: 20px;
+  color: #000000;
 }
 .stat-row {
   display: flex;
   justify-content: space-between;
-  padding: 9px 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 14px;
+  padding: 10px 6px;
+  border-bottom: 2px solid #000000;
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: #000000;
 }
 .stat-row:last-child {
   border-bottom: none;
-}
-.stat-row b {
-  font-variant-numeric: tabular-nums;
 }
 
 .footer-actions {
@@ -1513,184 +1819,452 @@ button {
 }
 
 /* ------------------------------------------------------------------ */
-/* Cards — CSS-rendered from the sampled palette                      */
+/* Cards — Comic Inked Styles                                         */
 /* ------------------------------------------------------------------ */
 
 .card {
   position: relative;
   width: var(--card-w);
   height: var(--card-h);
-  border-radius: 11%;
-  background: #f4f6fa;
-  padding: 6%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  background: #ffffff;
+  border: var(--border-ink);
+  padding: 5px;
+  box-shadow: var(--shadow-comic-sm);
   user-select: none;
   flex-shrink: 0;
+  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
 }
 .card.lg {
-  --card-w: 84px;
-  --card-h: 124px;
+  --card-w: 86px;
+  --card-h: 128px;
 }
 .card.sm {
-  --card-w: 40px;
-  --card-h: 60px;
+  --card-w: 42px;
+  --card-h: 62px;
 }
 .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 9%;
+  border-radius: 6px;
   overflow: hidden;
   background: var(--face);
   display: grid;
   place-items: center;
+  border: 2px solid #000000;
 }
-/*
- * Card face motif — original to Color Clash.
- *
- * The brand mark is four shards meeting at a point; every card repeats that
- * one idea as a single shard cutting across the face on the same 28-degree
- * diagonal used throughout the identity. Two flat layers, no curves: a lighter
- * wedge, and a hairline along its leading edge.
- */
 .card-inner::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.19);
-  clip-path: polygon(0 100%, 44% 0, 100% 0, 100% 30%, 56% 100%);
-}
-.card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.92);
-  clip-path: polygon(
-    44% 0,
-    calc(44% + var(--card-h) * 0.03) 0,
-    calc(56% + var(--card-h) * 0.03) 100%,
-    56% 100%
-  );
-}
-/* A quiet inner rim keeps the face readable against the white frame. */
-.card-inner {
-  box-shadow: inset 0 0 0 calc(var(--card-h) * 0.012) rgba(0, 0, 0, 0.22);
+  background: rgba(255, 255, 255, 0.22);
+  clip-path: polygon(0 100%, 45% 0, 100% 0, 100% 30%, 55% 100%);
 }
 .card-inner.wild {
   background: conic-gradient(
     from 225deg,
-    var(--c-RED) 0deg 90deg,
-    var(--c-BLUE) 90deg 180deg,
-    var(--c-GREEN) 180deg 270deg,
-    var(--c-YELLOW) 270deg 360deg
+    #ff204e 0deg 90deg,
+    #0088ff 90deg 180deg,
+    #22c55e 180deg 270deg,
+    #ffd600 270deg 360deg
   );
 }
-.card-inner.dark-face {
-  box-shadow: inset 0 0 0 calc(var(--card-h) * 0.03) rgba(0, 0, 0, 0.55);
-}
+
 .card-glyph {
   position: relative;
   z-index: 1;
-  font-family: 'Nunito', system-ui, sans-serif;
-  font-weight: 900;
-  font-size: calc(var(--card-h) * 0.44);
+  font-family: var(--font-comic);
+  font-size: calc(var(--card-h) * 0.48);
   line-height: 1;
-  color: #fff;
-  -webkit-text-stroke: calc(var(--card-h) * 0.022) rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  -webkit-text-stroke: calc(var(--card-h) * 0.038) #000000;
   paint-order: stroke fill;
-  text-shadow: 0 calc(var(--card-h) * 0.02) 0 rgba(0, 0, 0, 0.28);
+  text-shadow: 2px 2px 0px #000000;
 }
 .card-glyph.small {
-  font-size: calc(var(--card-h) * 0.26);
+  font-size: calc(var(--card-h) * 0.28);
 }
 .card-corner {
   position: absolute;
-  font-family: 'Nunito', system-ui, sans-serif;
-  font-weight: 800;
-  font-size: calc(var(--card-h) * 0.15);
-  color: #fff;
+  font-family: var(--font-comic);
+  font-size: calc(var(--card-h) * 0.2);
+  color: #ffffff;
   z-index: 2;
   line-height: 1;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  -webkit-text-stroke: 1.5px #000000;
+  paint-order: stroke fill;
+  text-shadow: 1px 1px 0px #000000;
 }
 .card-corner.tl {
-  top: 9%;
-  left: 11%;
+  top: 6%;
+  left: 8%;
 }
 .card-corner.br {
-  bottom: 9%;
-  right: 11%;
+  bottom: 6%;
+  right: 8%;
   transform: rotate(180deg);
 }
-.card-flex-tri {
-  position: absolute;
-  right: 6%;
-  top: 6%;
-  width: 0;
-  height: 0;
-  z-index: 3;
-  border-left: calc(var(--card-w) * 0.22) solid transparent;
-  border-top: calc(var(--card-w) * 0.22) solid var(--flex);
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
-}
+
 .card-back-img {
   width: var(--card-w);
-  border-radius: 11%;
+  border-radius: 10px;
+  border: var(--border-ink);
   display: block;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-comic-sm);
 }
 
 .card-play-anim {
-  animation: play-card var(--reveal) var(--ease);
+  animation: comic-card-drop var(--reveal) var(--ease);
 }
-@keyframes play-card {
+@keyframes comic-card-drop {
   from {
-    transform: translateY(60px) scale(0.8) rotate(-12deg);
+    transform: translateY(70px) scale(0.7) rotate(-14deg);
     opacity: 0;
   }
 }
 
-/* Accessibility: never rely on colour alone (§12). */
-.color-name {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+/* ------------------------------------------------------------------ */
+/* Sheets & Settings (Panel 4)                                        */
+/* ------------------------------------------------------------------ */
+
+.sheet {
+  width: min(460px, 100%);
+  max-height: min(88vh, 740px);
+  display: flex;
+  flex-direction: column;
+  background: var(--comic-paper);
+  color: #000000;
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: var(--radius-lg);
+  animation: sheet-in var(--reveal) var(--ease);
+  outline: none;
+}
+.sheet.wide {
+  width: min(580px, 100%);
+}
+.sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px 12px;
+  border-bottom: 3px solid #000000;
+  background: var(--comic-yellow);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.sheet-head .h2 {
+  flex: 1;
+  font-family: var(--font-comic);
+  font-size: 24px;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+.sheet-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 2.5px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-comic);
+  font-size: 18px;
+  box-shadow: 2px 2px 0px #000000;
+}
+.sheet-body {
+  padding: 16px 18px;
+  overflow-y: auto;
+  color: #000000;
+}
+.sheet-foot {
+  display: flex;
+  gap: 10px;
+  padding: 12px 18px 16px;
+  border-top: 3px solid #000000;
+  background: #f4f6fa;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.sheet-row,
+.sheet-row-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #f4f6fa;
+  border: 2px solid #000000;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* Switch */
+.switch {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 52px;
+  height: 28px;
+  border-radius: 16px;
+  background: #dddddd;
+  border: 2.5px solid #000000;
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000000;
+  transition: background var(--micro);
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #000000;
+  transition: transform var(--micro) var(--ease);
+}
+.switch:checked {
+  background: var(--comic-green);
+}
+.switch:checked::after {
+  transform: translateX(24px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Emotes & Speech Balloons (Panel 7 & 12)                            */
+/* ------------------------------------------------------------------ */
+
+.emote-anchor {
+  position: relative;
+}
+.emote-tray {
+  position: absolute;
+  bottom: 52px;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 8px;
+  border-radius: var(--radius);
+  background: #ffffff;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-lg);
+  z-index: 25;
+}
+.emote-choice {
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  border-radius: 8px;
+  background: #f4f6fa;
+  border: 2px solid #000000;
+  transition: transform var(--micro);
+}
+.emote-choice:hover {
+  background: var(--comic-yellow);
+  transform: scale(1.1);
+}
+
+/* Authentic Comic Dialogue Balloon with Pointer Tail */
+.emote-bubble {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-comic);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic);
+  z-index: 10;
+  animation: comic-pop 250ms var(--ease);
+}
+@keyframes comic-pop {
+  0% { transform: scale(0.3) rotate(-8deg); opacity: 0; }
+  70% { transform: scale(1.15) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.emote-bubble.from-right::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  right: 18px;
+  width: 0;
+  height: 0;
+  border-width: 9px 7px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+}
+.emote-bubble.from-right::before {
+  content: '';
+  position: absolute;
+  bottom: -13px;
+  right: 16px;
+  width: 0;
+  height: 0;
+  border-width: 12px 9px 0;
+  border-style: solid;
+  border-color: #000000 transparent;
+}
+
+.emote-bubble.from-left::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 18px;
+  width: 0;
+  height: 0;
+  border-width: 9px 7px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+}
+.emote-bubble.from-left::before {
+  content: '';
+  position: absolute;
+  bottom: -13px;
+  left: 16px;
+  width: 0;
+  height: 0;
+  border-width: 12px 9px 0;
+  border-style: solid;
+  border-color: #000000 transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Online Room Cards & Input (Panel 5)                                */
+/* ------------------------------------------------------------------ */
+
+.online-home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 14px 18px;
+  overflow-y: auto;
+}
+.online-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: var(--radius);
+}
+.code-input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: var(--border-ink);
+  color: #000000;
+  font-family: var(--font-comic);
+  font-size: 30px;
+  letter-spacing: 0.3em;
+  text-align: center;
   text-transform: uppercase;
 }
-/*
- * The active colour under the discard.
- *
- * The colour is the chip and the word sits on top of it in whichever ink reads
- * against that colour — see COLOR_INK, which is chosen per swatch because a
- * single ink cannot serve the palette: white on YELLOW is 2.03:1, worse than
- * the 2.93:1 defect this replaces. Every pairing now clears AA, and
- * colors.test.ts fails if a new colour breaks that.
- */
-.color-name.active-color {
-  display: inline-flex;
+.code-input:focus-visible {
+  outline: 3px solid var(--comic-yellow);
+}
+
+.room-code {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 22px;
+  margin: 0 auto 8px;
+  border-radius: 8px;
+  background: var(--comic-yellow);
+  color: #000000;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-comic-sm);
+}
+.room-code b {
+  font-family: var(--font-comic);
+  font-size: 26px;
+  letter-spacing: 0.2em;
+  color: #000000;
+}
+
+/* ------------------------------------------------------------------ */
+/* First-Run Name Prompt                                              */
+/* ------------------------------------------------------------------ */
+
+.name-screen {
   align-items: center;
   justify-content: center;
-  margin: 8px auto 0;
-  padding: 3px 10px;
-  border-radius: 999px;
+  gap: 20px;
+  padding: 24px;
+}
+.name-logo {
+  width: min(260px, 64%);
+  filter: drop-shadow(4px 4px 0px #000000);
+}
+.name-card {
+  width: min(400px, 100%);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  color: #000000;
+  border: var(--border-ink-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: var(--radius);
+}
+.name-title {
+  text-align: center;
+  font-family: var(--font-comic);
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+.name-hint {
   font-size: 13px;
-  color: var(--ink, #fff);
-  background: var(--swatch, rgba(8, 16, 32, 0.9));
-  box-shadow:
-    inset 0 0 0 1px rgba(0, 0, 0, 0.35),
-    0 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 14px;
 }
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.name-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #f4f6fa;
+  border: var(--border-ink);
+  color: #000000;
+  font-family: var(--font-comic);
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  text-align: center;
 }
+.name-input:focus-visible {
+  outline: 3px solid var(--comic-yellow);
+}
+
+/* ------------------------------------------------------------------ */
+/* In-Game Log & Rules Copy                                           */
+/* ------------------------------------------------------------------ */
 
 .log {
   position: absolute;
@@ -1699,34 +2273,24 @@ button {
   max-width: 240px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   z-index: 6;
-  /*
-   * Fourteen lines rather than five, so the history outlives a glance away
-   * from the screen. Capped and scrollable so a long round cannot grow the
-   * column up over the seats, and tappable so it can actually be scrolled —
-   * it only covers the lower-left felt, which holds nothing interactive.
-   */
   max-height: 34vh;
   overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
   pointer-events: auto;
 }
 .log div {
   font-size: 11px;
-  padding: 3px 9px;
-  border-radius: 8px;
-  background: rgba(4, 12, 26, 0.72);
-  border: 1px solid rgba(120, 175, 255, 0.18);
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
   animation: toast-in 200ms var(--ease);
 }
 
-/*
- * Freestyle's rule twist, kept on screen for the whole round.
- *
- * It was 11px of dim text naming the token and not saying what it did.
- */
 .flex-twist {
   position: absolute;
   bottom: 8px;
@@ -1737,978 +2301,54 @@ button {
   align-items: flex-end;
   gap: 1px;
   max-width: 52%;
-  padding: 5px 10px;
-  border-radius: 10px;
-  background: rgba(4, 12, 26, 0.82);
-  border: 1px solid var(--line);
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
   text-align: right;
-  pointer-events: none;
 }
 .flex-twist b {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-.flex-twist span {
-  font-size: 10px;
-  line-height: 1.25;
-  color: var(--text-dim);
-}
-.flex-twist.ready {
-  border-color: rgba(156, 232, 138, 0.5);
-}
-.flex-twist.ready b {
-  color: #b6f0a6;
-}
-.flex-twist.spent b {
-  color: #8393b0;
-}
-
-/* ------------------------------------------------------------------ */
-/* Online — room home, code entry, connection state                   */
-/* ------------------------------------------------------------------ */
-
-.online-home {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 4px 14px 18px;
-  overflow-y: auto;
-}
-
-.online-card {
-  width: 100%;
-  max-width: 460px;
-  padding: 16px 18px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.code-input {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid var(--line);
-  color: var(--text);
-  font-family: 'Nunito', system-ui, sans-serif;
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 0.34em;
-  text-align: center;
-  text-transform: uppercase;
-}
-.code-input::placeholder {
-  color: rgba(148, 169, 201, 0.4);
-  letter-spacing: 0.34em;
-}
-.code-input:focus-visible {
-  outline: 3px solid var(--gold-100);
-  outline-offset: 2px;
-}
-
-.room-code {
-  align-self: center;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 20px;
-  margin: 0 auto 8px;
-  border-radius: 12px;
-  background: rgba(8, 18, 38, 0.72);
-  border: 1px solid var(--line);
-}
-.room-code .dim {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-.room-code b {
-  font-family: 'Nunito', system-ui, sans-serif;
-  font-size: 24px;
-  letter-spacing: 0.22em;
-  color: var(--gold-100);
-}
-
-/* Connection state is never colour-only: it carries its own label (§12). */
-.conn-pill {
-  align-self: center;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  margin-bottom: 6px;
-  border-radius: 40px;
-  font-size: 12px;
-  font-weight: 700;
-  background: rgba(8, 18, 38, 0.72);
-  border: 1px solid var(--line);
-}
-.conn-pill i {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-}
-.conn-pill.ok {
-  color: #8fe07a;
-}
-.conn-pill.warn {
-  color: var(--gold-100);
-}
-.conn-pill.bad {
-  color: #ef8b83;
-}
-
-.net-error {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  max-width: 460px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: rgba(150, 32, 29, 0.28);
-  border: 1px solid rgba(239, 139, 131, 0.5);
-  font-size: 13px;
-  font-weight: 600;
-}
-.net-error .btn {
-  margin-left: auto;
-  font-size: 12px;
-}
-
-.waiting-note {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: rgba(3, 8, 18, 0.68);
-  z-index: 40;
-  text-align: center;
-  gap: 10px;
-  font-weight: 700;
-}
-
-/* ------------------------------------------------------------------ */
-/* Phone layout                                                       */
-/*                                                                    */
-/* On a narrow screen the three opponent seats and the centre piles    */
-/* compete for the same horizontal space, and the hand gets squeezed   */
-/* between the emote and CLASH buttons. Below this width the seats drop  */
-/* their card fans and shrink to an avatar plus a count, and the hand  */
-/* takes a full-width row of its own above the action buttons.         */
-/* ------------------------------------------------------------------ */
-
-@media (max-width: 700px) {
-  .seat-fan {
-    display: none;
-  }
-  .seat {
-    gap: 4px;
-    padding: 3px;
-  }
-  .seat-avatar img {
-    width: 36px;
-    height: 36px;
-  }
-  .seat.left {
-    left: 4px;
-  }
-  .seat.right {
-    right: 4px;
-  }
-  .seat-meta {
-    font-size: 10px;
-    max-width: 58px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .pile-row {
-    gap: 20px;
-  }
-  .card.lg {
-    --card-w: 74px;
-    --card-h: 110px;
-  }
-  .draw-pile img {
-    width: 56px;
-  }
-  .direction-ring {
-    width: min(70%, 230px);
-  }
-
-  /* Hand gets its own full-width row; buttons sit under it. */
-  .hand-bar {
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    padding-bottom: 8px;
-  }
-  .hand-scroll {
-    order: -1;
-    flex: 0 0 100%;
-    padding-top: 22px;
-  }
-  .clash-button {
-    margin-left: auto;
-  }
-  .clash-button img {
-    width: 96px;
-  }
-
-  .log {
-    bottom: auto;
-    top: 52px;
-    max-width: 150px;
-  }
-  .reason-toast {
-    bottom: 168px;
-  }
-
-  /* Result and summary breathe better stacked. */
-  .win-portrait .avatar {
-    width: 96px;
-    height: 96px;
-  }
-  .win-portrait .crown {
-    width: 66px;
-  }
-}
-
-/* Phone in landscape: very little vertical room, so trim the chrome. */
-@media (max-height: 480px) and (orientation: landscape) {
-  .table-top {
-    padding: 4px 8px;
-  }
-  .turn-chip img.avatar {
-    width: 26px;
-    height: 26px;
-  }
-  .card {
-    --card-w: 50px;
-    --card-h: 74px;
-  }
-  .card.lg {
-    --card-w: 62px;
-    --card-h: 92px;
-  }
-  .hand-scroll {
-    padding-top: 16px;
-  }
-  .clash-button img {
-    width: 84px;
-  }
-  .direction-ring {
-    display: none;
-  }
-  /* At this height the log's default position lands on the side seats. */
-  .log {
-    top: 44px;
-    bottom: auto;
-    max-width: 140px;
-  }
-  .reason-toast {
-    bottom: 104px;
-  }
-
-  /*
-   * Landscape is only ~410px tall, and the top seat's card fan was reaching
-   * down into the discard pile — found by the layout spec, which measures the
-   * two rectangles rather than trusting a screenshot. Pulling the seat up and
-   * dropping its fan gives the pile the middle of the table back.
-   */
-  /*
-   * With only ~410px of height the centred top seat sits directly on top of
-   * the pile column. Moving it off-centre and dropping its card fan restores
-   * the middle of the table to the cards, which is what the player is looking
-   * at. Found by the layout spec, which compares the two bounding boxes rather
-   * than trusting a screenshot.
-   */
-  .seat.top {
-    top: 6px;
-    left: 26%;
-  }
-  .seat.top .seat-fan {
-    display: none;
-  }
-  .pile-row {
-    margin-top: 22px;
-  }
-  /* And the hand bar was ending a few pixels below the fold. */
-  .hand-bar {
-    padding-bottom: 4px;
-  }
-  .hand-scroll {
-    padding-top: 10px;
-  }
-  .turn-timer {
-    height: 13px;
-  }
-}
-
-.hand-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* ------------------------------------------------------------------ */
-/* 12. Sheets — pause, rules and coming-soon                           */
-/*                                                                     */
-/* One surface for every panel added in the remediation pass, so the    */
-/* three of them cannot drift into three slightly different modals.     */
-/* ------------------------------------------------------------------ */
-
-.sheet {
-  width: min(440px, 100%);
-  max-height: min(86vh, 720px);
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #12243f, #0a1730);
-  border: 1px solid var(--line-strong);
-  border-radius: 22px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-  animation: sheet-in var(--reveal) var(--ease);
-  outline: none;
-}
-.sheet.wide {
-  width: min(560px, 100%);
-}
-@keyframes sheet-in {
-  from {
-    transform: translateY(18px) scale(0.97);
-    opacity: 0;
-  }
-}
-.sheet-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 18px 10px;
-  border-bottom: 1px solid var(--line);
-}
-.sheet-head .h2 {
-  flex: 1;
-  margin: 0;
-  text-align: left;
-}
-.sheet-close {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.sheet-close:hover {
-  background: rgba(255, 255, 255, 0.14);
-}
-.sheet-body {
-  padding: 14px 18px 18px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.sheet-foot {
-  display: flex;
-  gap: 10px;
-  padding: 12px 18px 16px;
-  border-top: 1px solid var(--line);
-}
-.sheet-foot .btn {
-  flex: 1;
-}
-
-/* Rows inside a sheet: a label, a hint, and one control. */
-.sheet-row,
-.sheet-row-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 8px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--line);
-  text-align: left;
-  color: var(--text);
-  cursor: pointer;
-}
-.sheet-row-btn:hover,
-.sheet-row:hover {
-  background: rgba(255, 255, 255, 0.09);
-}
-.sheet-row-hint {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  margin-top: 2px;
-}
-.settings-note {
-  font-size: 12.5px;
-  margin: 0 0 12px;
-}
-
-/*
- * The switch is a real checkbox with the pill drawn over it, so it keeps
- * keyboard operation and the correct screen-reader announcement for free.
- */
-.switch {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 50px;
-  height: 28px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid var(--line);
-  position: relative;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: background var(--micro) var(--ease);
-}
-.switch::after {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #dbe6f7;
-  transition: transform var(--micro) var(--ease);
-}
-.switch:checked {
-  background: var(--gold-100);
-}
-.switch:checked::after {
-  transform: translateX(22px);
-  background: #10203c;
-}
-.switch:focus-visible {
-  outline: 3px solid var(--gold-100);
-  outline-offset: 3px;
-}
-
-/* ---- rules sheet ---- */
-
-.rules-objective {
-  margin: 0 0 14px;
+  font-family: var(--font-comic);
   font-size: 14px;
-  line-height: 1.5;
+  letter-spacing: 0.05em;
 }
-.rules-section {
-  margin-bottom: 14px;
-}
+
 .rules-heading {
+  font-family: var(--font-comic);
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: #000000;
   margin: 0 0 6px;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-100);
 }
 .rules-list {
-  margin: 0;
   padding-left: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.rules-list li {
-  font-size: 13.5px;
+  font-size: 14px;
+  font-weight: 700;
   line-height: 1.45;
 }
-.rules-divider {
-  height: 1px;
-  background: var(--line);
-  margin: 18px 0 12px;
-}
-.rules-note {
-  font-size: 12px;
-  margin: 0 0 12px;
-}
-
-/* ---- coming soon ---- */
 
 .soon-badge {
   display: inline-block;
   padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  background: rgba(240, 168, 28, 0.18);
-  border: 1px solid rgba(240, 168, 28, 0.5);
-  color: var(--gold-100);
-  margin-bottom: 12px;
-}
-.soon-blurb {
-  margin: 0 0 10px;
-  font-size: 15px;
-  line-height: 1.5;
-}
-.soon-detail {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
-}
-.nav-soon {
-  position: absolute;
-  top: -2px;
-  right: 0;
-  font-size: 8px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  padding: 1px 4px;
   border-radius: 6px;
-  background: rgba(240, 168, 28, 0.22);
-  color: var(--gold-100);
-}
-
-/* ------------------------------------------------------------------ */
-/* 13. Turn timer                                                      */
-/* ------------------------------------------------------------------ */
-
-/*
- * The countdown sits inside the turn chip.
- *
- * It used to be an absolutely-positioned bar 52px from the top, which landed on
- * top of the chip whenever the mode name wrapped to a second line — printing
- * "WAITING - 5s" across "CLASSIC CLASH" and making both unreadable. Inside the
- * chip it belongs to the same idea and cannot collide with it.
- */
-.turn-timer {
-  position: relative;
-  width: 100%;
-  height: 15px;
-  margin-top: 4px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: rgba(6, 20, 34, 0.55);
-  border: 1px solid var(--line);
-  display: grid;
-  place-items: center;
-  flex-basis: 100%;
-}
-.turn-timer-bar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(120, 175, 255, 0.35);
-  transition: width 0.25s linear;
-}
-.turn-timer.mine .turn-timer-bar {
-  background: rgba(240, 168, 28, 0.42);
-}
-/* Urgency is a colour change *and* a border change, never colour alone. */
-.turn-timer.urgent {
-  border-color: #e2483f;
-}
-.turn-timer.urgent .turn-timer-bar {
-  background: rgba(226, 72, 63, 0.5);
-}
-.turn-timer-text {
-  position: relative;
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  font-variant-numeric: tabular-nums;
-}
-
-/* ------------------------------------------------------------------ */
-/* 14. Emotes                                                          */
-/* ------------------------------------------------------------------ */
-
-.emote-anchor {
-  position: relative;
-  flex-shrink: 0;
-}
-/* Your own bubble sits above the emote button; opponents' sit on their seat. */
-.emote-slot {
-  position: relative;
-  flex-shrink: 0;
-}
-.emote-slot .emote-bubble {
-  top: -34px;
-  right: auto;
-  left: 0;
-}
-.emote-tray {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  padding: 8px;
-  border-radius: 16px;
-  background: linear-gradient(180deg, #12243f, #0a1730);
-  border: 1px solid var(--line-strong);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
-  z-index: 20;
-  animation: sheet-in var(--micro) var(--ease);
-}
-.emote-choice {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--line);
-}
-.emote-choice:hover {
-  background: rgba(255, 255, 255, 0.16);
-}
-.emote-bubble {
-  position: absolute;
-  top: -10px;
-  right: -14px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 8px;
-  border-radius: 14px;
-  background: #f4f7fb;
-  color: #10203c;
+  font-family: var(--font-comic);
   font-size: 13px;
-  font-weight: 800;
-  white-space: nowrap;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
-  animation: sheet-in var(--micro) var(--ease);
-  z-index: 8;
-}
-.emote-bubble-label {
-  font-size: 9px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-/* ------------------------------------------------------------------ */
-/* 15. Card travel                                                     */
-/*                                                                     */
-/* The played card starts at the seat it came from and lands on the     */
-/* pile, so the eye can follow who did what. Reduced motion collapses   */
-/* it to a fade via the global rule at the top of this file.            */
-/* ------------------------------------------------------------------ */
-
-.card-travel {
-  animation: card-travel var(--reveal) var(--ease);
-}
-@keyframes card-travel {
-  from {
-    opacity: 0.2;
-    transform: translate(var(--fx, 0), var(--fy, 120px)) scale(0.55) rotate(var(--fr, 0deg));
-  }
-}
-.card-travel.from-hand {
-  --fx: 0;
-  --fy: 140px;
-  --fr: -8deg;
-}
-.card-travel.from-left {
-  --fx: -150px;
-  --fy: -10px;
-  --fr: 14deg;
-}
-.card-travel.from-top {
-  --fx: 0;
-  --fy: -140px;
-  --fr: 6deg;
-}
-.card-travel.from-right {
-  --fx: 150px;
-  --fy: -10px;
-  --fr: -14deg;
-}
-
-/* ------------------------------------------------------------------ */
-/* 16. Mode select — rules link                                        */
-/* ------------------------------------------------------------------ */
-
-.mode-slot {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.mode-slot .mode-card {
-  width: 100%;
-}
-.mode-rules {
-  padding: 7px 10px;
-  border-radius: 10px;
-  font-size: 10.5px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  color: var(--text-dim);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--line);
-}
-.mode-rules:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.11);
-}
-
-/* ------------------------------------------------------------------ */
-/* 17. Summary standings                                               */
-/* ------------------------------------------------------------------ */
-
-.standing-name {
-  flex: 1;
-  font-weight: 700;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.standing-result {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  line-height: 1.25;
-}
-.standing-sub {
-  font-size: 10.5px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.standing .score.won {
-  color: var(--gold-100);
-}
-
-@media (max-width: 700px) {
-  .emote-tray {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .standing-sub {
-    font-size: 9.5px;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/* 18. Second remediation pass                                         */
-/* ------------------------------------------------------------------ */
-
-/* ---- turn chip: name, direction, mode, countdown ---- */
-
-.turn-chip {
-  flex-wrap: wrap;
-}
-.turn-chip-text {
-  min-width: 0;
-}
-.turn-chip-name {
-  font-weight: 800;
-  line-height: 1.1;
-}
-.turn-chip-meta {
-  font-size: 11px;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-/*
- * Play direction, next to the name.
- *
- * The dashed ring on the felt was the only direction cue, and it is hidden in
- * landscape to make room — which left no answer at all to "who plays after me"
- * on a phone held sideways.
- */
-.turn-dir {
-  display: inline-block;
-  font-size: 13px;
-  line-height: 1;
-  color: var(--gold-100);
-}
-
-/* ---- deck count replaces the elapsed clock ---- */
-
-/* ---- Clash grace countdown ---- */
-
-.clash-button {
-  position: relative;
-}
-.clash-countdown {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  min-width: 22px;
-  height: 22px;
-  padding: 0 5px;
-  border-radius: 11px;
-  background: var(--red);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 900;
-  line-height: 22px;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-/* ---- emote bubbles, clamped to the viewport ---- */
-
-.emote-bubble.from-right {
-  right: -14px;
-  left: auto;
-}
-/* A left-hand seat opens the other way, so the bubble cannot run off screen. */
-.emote-bubble.from-left {
-  left: 0;
-  right: auto;
-}
-
-/* ---- resume / rejoin bar ---- */
-
-.resume-bar {
-  display: flex;
-  gap: 8px;
-  margin: 0 14px 10px;
-}
-.resume-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  background: linear-gradient(100deg, rgba(240, 168, 28, 0.22), rgba(240, 168, 28, 0.06));
-  border: 1px solid rgba(240, 168, 28, 0.5);
-  text-align: left;
-}
-.resume-main:hover {
-  background: linear-gradient(100deg, rgba(240, 168, 28, 0.3), rgba(240, 168, 28, 0.1));
-}
-.resume-title {
-  font-size: 13px;
-  font-weight: 900;
   letter-spacing: 0.08em;
-  color: var(--gold-100);
-}
-.resume-sub {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-dim);
-}
-.resume-discard {
-  padding: 0 14px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--line);
-  font-size: 10.5px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  color: var(--text-dim);
-}
-.resume-discard:hover {
-  color: var(--text);
+  background: var(--comic-yellow);
+  color: #000000;
+  border: 1.5px solid #000000;
 }
 
-/* ---- first-run name prompt ---- */
-
-.name-screen {
-  align-items: center;
-  justify-content: center;
-  gap: 22px;
-  padding: 24px;
-}
-.name-logo {
-  width: min(240px, 62%);
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.5));
-}
-.name-card {
-  width: min(380px, 100%);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-.name-title {
-  text-align: center;
-  margin-bottom: 6px;
-}
-.name-hint {
-  font-size: 12.5px;
-  line-height: 1.5;
-  text-align: center;
-  margin: 0 0 14px;
-}
-.name-input {
-  width: 100%;
-  padding: 13px 14px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--line-strong);
-  color: var(--text);
-  font: inherit;
-  font-size: 17px;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 0.04em;
-}
-.name-input:focus-visible {
-  outline: 3px solid var(--gold-100);
-  outline-offset: 2px;
-}
-.name-input[aria-invalid='true'] {
-  border-color: var(--red);
-}
-.name-error {
-  min-height: 16px;
-  margin: 6px 0 10px;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-  color: #ff9a92;
-}
-.name-go {
-  width: 100%;
-}
-
-/* ---- result tone: celebration only when it is earned ---- */
-
-/*
- * Losing used to look identical to winning — same gold sunburst, same confetti,
- * same crown. The structure is unchanged and the rewards are unchanged; only
- * the volume is.
- */
-.win.tone-lost {
-  background:
-    radial-gradient(46% 42% at 50% 40%, #1d3355 0%, #12233d 45%, #0a0f1c 100%);
-}
-.win.tone-out {
-  background:
-    radial-gradient(46% 42% at 50% 40%, #33202a 0%, #1d1420 48%, #0a0714 100%);
-}
-.result-heading {
-  font-size: clamp(22px, 5vw, 34px);
-  color: var(--text);
-  text-align: center;
-  padding: 0 16px;
-}
-.tone-out .result-heading {
-  color: #f0a9a2;
-}
-.tone-lost .win-ribbon,
-.tone-out .win-ribbon {
-  filter: saturate(0.5) brightness(0.85);
-}
-.tone-out .rewards {
-  opacity: 0.75;
-}
-
-@media (max-width: 700px) {
-  .resume-bar {
-    margin: 0 12px 8px;
-  }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

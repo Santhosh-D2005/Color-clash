@@ -124,6 +124,14 @@ export function WinnerScreen({
       </div>
       <div className="win-ribbon">{winner?.name ?? 'Winner'}</div>
 
+      {youWon ? (
+        <div className="comic-speech-balloon">Colors never lie!</div>
+      ) : (
+        <div className="comic-speech-balloon">
+          {eliminated ? 'Better luck next time!' : 'Good game! Next round?'}
+        </div>
+      )}
+
       {youWon ? rewards : null}
 
       <div className="dim" style={{ fontSize: 13 }}>
@@ -165,7 +173,13 @@ export function SummaryScreen({
   return (
     <div className="screen bg-menu">
       <div className="rule-title">
-        <h1 className="h1">MATCH SUMMARY</h1>
+        <h1 className="h1">COLOR-CLASH: GAME OVER</h1>
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="waiting-balloon" style={{ margin: '0 auto 8px', fontSize: 17, padding: '8px 20px' }}>
+          Thanks for playing! ★
+        </div>
       </div>
 
       <div className="summary-body">

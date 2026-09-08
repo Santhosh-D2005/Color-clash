@@ -121,6 +121,10 @@ export function MainMenu({
         </div>
       ) : null}
 
+      <div className="rule-title" style={{ margin: '0 auto 6px' }}>
+        <h1 className="h1">CHOOSE YOUR MODE</h1>
+      </div>
+
       <div className="tile-row">
         <Tile
           title="PLAY"
@@ -154,6 +158,10 @@ export function MainMenu({
           to="#1e5a15"
           onClick={onCustomRoom}
         />
+      </div>
+
+      <div className="comic-good-luck-sticker" aria-hidden="true">
+        GOOD LUCK! ★
       </div>
 
       <nav className="navbar">

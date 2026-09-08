@@ -288,6 +288,12 @@ export function Table({
 
       {reason ? <div className="reason-toast">{ILLEGAL_REASON[reason] ?? reason}</div> : null}
 
+      {isMyTurn ? (
+        <div className="your-turn-bubble" role="status" aria-live="polite">
+          Your turn!
+        </div>
+      ) : null}
+
       <div className="hand-bar">
         <div className="emote-slot">
           <EmoteButton onPick={(id) => onEmote?.(id)} />

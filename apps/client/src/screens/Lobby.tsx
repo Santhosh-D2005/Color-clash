@@ -115,6 +115,13 @@ export function Lobby({
           <button className="btn btn-ghost" onClick={addBot} disabled={!canAdd}>
             + ADD BOT
           </button>
+          {seats.length < meta.maxPlayers ? (
+            <div style={{ textAlign: 'center', margin: '6px 0 2px' }}>
+              <div className="waiting-balloon" style={{ fontSize: 16, padding: '6px 18px' }}>
+                Waiting for players…
+              </div>
+            </div>
+          ) : null}
         </section>
 
         <section className="panel settings-list" aria-label="Game settings">

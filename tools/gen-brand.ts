@@ -106,41 +106,70 @@ function roundRect(x: number, y: number, w: number, h: number, r: number, fill: 
 const A: Record<string, () => string> = {
   /* ---- identity ---- */
 
-  logo: () =>
-    svg(
+  logo: () => {
+    // Exact Comic Pop-Art Logo (Panels 1, 2, 3)
+    const starburstPts = [
+      [291, 15], [328, 62], [385, 30], [402, 88], [460, 75], [455, 135],
+      [512, 142], [485, 198], [538, 235], [488, 268], [520, 320], [458, 332],
+      [465, 388], [405, 375], [382, 428], [328, 395], [291, 440], [254, 395],
+      [200, 428], [177, 375], [117, 388], [124, 332], [62, 320], [94, 268],
+      [44, 235], [97, 198], [70, 142], [127, 135], [122, 75], [180, 88],
+      [197, 30], [254, 62]
+    ].map(([x, y]) => `${x},${y * 0.88}`).join(' ');
+
+    return svg(
       582,
       414,
-      `<g>
-        ${prism(291, 122, 96, 45)}
-        <circle cx="291" cy="122" r="30" fill="${BRAND.ink}"/>
-        <circle cx="291" cy="122" r="16" fill="${BRAND.gold}"/>
-      </g>
-      <text x="291" y="286" font-family="${FONT}" font-size="86" font-weight="bold"
-            fill="${BRAND.paper}" text-anchor="middle" letter-spacing="6">COLOR</text>
-      <text x="291" y="372" font-family="${FONT}" font-size="86" font-weight="bold"
-            fill="url(#lg)" text-anchor="middle" letter-spacing="10">CLASH</text>
-      <rect x="150" y="300" width="282" height="5" fill="${BRAND.rim}"/>`,
-      linear('lg', BRAND.gold, '#e2483f', 110),
-    ),
+      `<!-- 3D Shadow for starburst -->
+      <polygon points="${starburstPts}" fill="#000000" transform="translate(6, 8)"/>
+      <!-- Cyan Comic Starburst -->
+      <polygon points="${starburstPts}" fill="#00b4d8" stroke="#000000" stroke-width="7"/>
+      <!-- Inner starburst accent -->
+      <polygon points="${starburstPts}" fill="#00e5ff" transform="scale(0.88) translate(38, 26)" opacity="0.75"/>
+
+      <!-- "COLOR-" 3D Extruded Black Shadow -->
+      <text x="299" y="180" font-family="Impact, Arial Black, sans-serif" font-size="112" font-weight="900"
+            fill="#000000" text-anchor="middle" letter-spacing="5" transform="rotate(-3 291 170)">COLOR-</text>
+      <text x="296" y="177" font-family="Impact, Arial Black, sans-serif" font-size="112" font-weight="900"
+            fill="#000000" text-anchor="middle" letter-spacing="5" transform="rotate(-3 291 170)">COLOR-</text>
+      <!-- "COLOR-" Foreground in Comic Yellow -->
+      <text x="291" y="170" font-family="Impact, Arial Black, sans-serif" font-size="112" font-weight="900"
+            fill="#ffd600" stroke="#000000" stroke-width="9" paint-order="stroke fill" text-anchor="middle" letter-spacing="5" transform="rotate(-3 291 170)">COLOR-</text>
+
+      <!-- "CLASH" 3D Extruded Black Shadow -->
+      <text x="299" y="292" font-family="Impact, Arial Black, sans-serif" font-size="136" font-weight="900"
+            fill="#000000" text-anchor="middle" letter-spacing="6" transform="rotate(-1 291 280)">CLASH</text>
+      <text x="296" y="288" font-family="Impact, Arial Black, sans-serif" font-size="136" font-weight="900"
+            fill="#000000" text-anchor="middle" letter-spacing="6" transform="rotate(-1 291 280)">CLASH</text>
+      <!-- "CLASH" Foreground in Comic Red -->
+      <text x="291" y="280" font-family="Impact, Arial Black, sans-serif" font-size="136" font-weight="900"
+            fill="#ff204e" stroke="#000000" stroke-width="10" paint-order="stroke fill" text-anchor="middle" letter-spacing="6" transform="rotate(-1 291 280)">CLASH</text>
+
+      <!-- Comic Subtitle Ribbon Banner -->
+      <!-- Shadow -->
+      <polygon points="62,342 522,342 506,398 78,398" fill="#000000"/>
+      <!-- Ribbon Left fold -->
+      <polygon points="42,365 72,345 72,390 42,380" fill="#d9d9d9" stroke="#000000" stroke-width="4"/>
+      <!-- Ribbon Right fold -->
+      <polygon points="540,365 510,345 510,390 540,380" fill="#d9d9d9" stroke="#000000" stroke-width="4"/>
+      <!-- Ribbon Front White Card -->
+      <polygon points="56,335 526,335 512,392 70,392" fill="#ffffff" stroke="#000000" stroke-width="6"/>
+      <text x="291" y="375" font-family="Impact, Arial Black, sans-serif" font-size="28" font-weight="bold"
+            fill="#000000" text-anchor="middle" letter-spacing="3">SAME COLORS. NEW BATTLES!</text>`
+    );
+  },
 
   splash_full: () =>
     svg(
       822,
       594,
-      `<rect width="822" height="594" fill="url(#bg)"/>
-      ${[...Array(9)].map((_, i) => shard(-60 + i * 104, -40, 78, 680, i % 2 ? '#ffffff08' : '#ffffff04')).join('')}
-      <g opacity="0.96">
-        ${prism(411, 214, 132, 45)}
-        <circle cx="411" cy="214" r="42" fill="${BRAND.ink}"/>
-        <circle cx="411" cy="214" r="22" fill="${BRAND.gold}"/>
-      </g>
-      <text x="411" y="416" font-family="${FONT}" font-size="76" font-weight="bold"
-            fill="${BRAND.paper}" text-anchor="middle" letter-spacing="8">COLOR</text>
-      <text x="411" y="492" font-family="${FONT}" font-size="76" font-weight="bold"
-            fill="${BRAND.gold}" text-anchor="middle" letter-spacing="12">CLASH</text>
-      <text x="411" y="546" font-family="${FONT}" font-size="21" font-weight="bold"
-            fill="${BRAND.dim}" text-anchor="middle" letter-spacing="4">FIVE MODES · ONE ENGINE</text>`,
-      radial('bg', BRAND.mid, BRAND.ink),
+      `<rect width="822" height="594" fill="#0096c7"/>
+      <g transform="translate(120, 90) scale(1.05)">
+        <text x="291" y="170" font-family="Impact, Arial Black, sans-serif" font-size="112" font-weight="900"
+              fill="#ffd600" stroke="#000000" stroke-width="9" paint-order="stroke fill" text-anchor="middle" letter-spacing="5">COLOR-</text>
+        <text x="291" y="280" font-family="Impact, Arial Black, sans-serif" font-size="136" font-weight="900"
+              fill="#ff204e" stroke="#000000" stroke-width="10" paint-order="stroke fill" text-anchor="middle" letter-spacing="6">CLASH</text>
+      </g>`
     ),
 
   /** The declaration button. Replaces the old branded call entirely. */
@@ -148,36 +177,32 @@ const A: Record<string, () => string> = {
     svg(
       496,
       220,
-      `<rect x="14" y="18" width="468" height="184" rx="52" fill="${BRAND.goldDeep}"/>
-      <rect x="14" y="8" width="468" height="184" rx="52" fill="url(#g)"/>
-      <rect x="38" y="26" width="420" height="66" rx="33" fill="#ffffff38"/>
-      <text x="248" y="128" font-family="${FONT}" font-size="76" font-weight="bold"
-            fill="${BRAND.ink}" text-anchor="middle" letter-spacing="6">CLASH!</text>`,
-      linear('g', '#ffd97a', BRAND.gold, 160),
+      `<rect x="14" y="22" width="468" height="180" rx="36" fill="#000000"/>
+      <rect x="10" y="12" width="468" height="180" rx="36" fill="#ffd600" stroke="#000000" stroke-width="8"/>
+      <rect x="24" y="24" width="440" height="70" rx="20" fill="#ffffff44"/>
+      <text x="248" y="138" font-family="Impact, Arial Black, sans-serif" font-size="108" font-weight="900"
+            fill="#ff204e" stroke="#000000" stroke-width="9" paint-order="stroke fill" text-anchor="middle" letter-spacing="8">CLASH!</text>`
     ),
 
   card_back: () =>
     svg(
       280,
       370,
-      `<rect width="280" height="370" rx="24" fill="${BRAND.deep}"/>
-      <rect x="10" y="10" width="260" height="350" rx="18" fill="${BRAND.ink}"/>
-      <g>${prism(140, 185, 108, 45, 0.95)}</g>
-      <circle cx="140" cy="185" r="46" fill="${BRAND.ink}"/>
-      <circle cx="140" cy="185" r="26" fill="${BRAND.gold}"/>
-      <rect x="10" y="10" width="260" height="350" rx="18" fill="none"
-            stroke="${BRAND.rim}" stroke-width="4"/>`,
+      `<rect width="280" height="370" rx="20" fill="#ffffff" stroke="#000000" stroke-width="8"/>
+      <rect x="14" y="14" width="252" height="342" rx="14" fill="#002b5c" stroke="#000000" stroke-width="4"/>
+      <circle cx="140" cy="185" r="72" fill="#ffd600" stroke="#000000" stroke-width="6"/>
+      <circle cx="140" cy="185" r="48" fill="#ff204e" stroke="#000000" stroke-width="5"/>
+      <text x="140" y="200" font-family="Impact, Arial Black, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" stroke="#000000" stroke-width="3" text-anchor="middle">CC</text>`
     ),
 
   banner_youwin: () =>
     svg(
       784,
       164,
-      `<polygon points="40,18 744,18 704,146 80,146" fill="url(#b)"/>
-      <polygon points="52,28 732,28 698,136 86,136" fill="none" stroke="#ffffff55" stroke-width="3"/>
-      <text x="392" y="112" font-family="${FONT}" font-size="82" font-weight="bold"
-            fill="${BRAND.ink}" text-anchor="middle" letter-spacing="8">YOU WIN!</text>`,
-      linear('b', '#ffd97a', BRAND.gold, 150),
+      `<polygon points="40,24 744,24 714,148 70,148" fill="#000000"/>
+      <polygon points="30,14 734,14 704,138 60,138" fill="#ffd600" stroke="#000000" stroke-width="7"/>
+      <text x="382" y="108" font-family="Impact, Arial Black, sans-serif" font-size="96" font-weight="900"
+            fill="#000000" text-anchor="middle" letter-spacing="8">YOU WIN!</text>`
     ),
 
   /* ---- HUD icons ---- */
