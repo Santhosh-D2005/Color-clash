@@ -539,9 +539,10 @@ export class MatchRoom {
       this.refreshTurnClock();
       this.broadcastSnapshots();
       this.save();
-    } catch {
+    } catch (e) {
       // A bot that produced an illegal command is a bug, not a cheat attempt.
       // Swallowing here keeps the room alive; the engine state is untouched.
+      console.warn(`Bot illegal command in room ${this.roomId}:`, (e as Error).message);
     }
   }
 
@@ -763,10 +764,11 @@ export class MatchRoom {
           room.acceptedCommands.add(command.commandId);
           room.commandLog.push(command);
           room.history.push({ seq: result.state.seq, events: result.events });
-        } catch {
+        } catch (e) {
           // A command the engine now refuses means the log and the code have
           // diverged. Stopping here restores the match up to the last state
           // both agree on, which is better than discarding it entirely.
+          console.warn(`Restore replay diverged in room ${room.roomId}:`, (e as Error).message);
           break;
         }
       }

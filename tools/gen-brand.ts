@@ -115,7 +115,7 @@ const A: Record<string, () => string> = {
       [200, 428], [177, 375], [117, 388], [124, 332], [62, 320], [94, 268],
       [44, 235], [97, 198], [70, 142], [127, 135], [122, 75], [180, 88],
       [197, 30], [254, 62]
-    ].map(([x, y]) => `${x},${y * 0.88}`).join(' ');
+    ].map(([x, y = 0]) => `${x},${y * 0.88}`).join(' ');
 
     return svg(
       582,
@@ -244,8 +244,8 @@ const A: Record<string, () => string> = {
       120,
       `<g transform="translate(80,60)">
         ${[...Array(8)]
-          .map((_, i) => `<rect x="-9" y="-52" width="18" height="24" rx="4" fill="${BRAND.text}" transform="rotate(${i * 45})"/>`)
-          .join('')}
+        .map((_, i) => `<rect x="-9" y="-52" width="18" height="24" rx="4" fill="${BRAND.text}" transform="rotate(${i * 45})"/>`)
+        .join('')}
         <circle r="34" fill="${BRAND.text}"/>
         <circle r="16" fill="${BRAND.deep}"/>
       </g>`,
@@ -319,14 +319,14 @@ const A: Record<string, () => string> = {
       268,
       `<g transform="translate(220,150)">
         ${[-28, -14, 0, 14, 28]
-          .map(
-            (a, i) =>
-              `<g transform="rotate(${a}) translate(0,-18)">
+        .map(
+          (a, i) =>
+            `<g transform="rotate(${a}) translate(0,-18)">
                  <rect x="-52" y="-96" width="104" height="150" rx="14"
                        fill="${BRAND.shard[i % 4]}" stroke="${BRAND.paper}" stroke-width="6"/>
                </g>`,
-          )
-          .join('')}
+        )
+        .join('')}
       </g>`,
     ),
 

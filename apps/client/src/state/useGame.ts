@@ -301,7 +301,8 @@ export function useLocalMatch(reducedMotion = false): LocalMatch {
           try {
             current = reduce(current, command, rng).state;
             applied.push(command);
-          } catch {
+          } catch (e) {
+            console.debug('Resume replay stopped at command', applied.length, (e as Error).message);
             break;
           }
         }
