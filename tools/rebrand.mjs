@@ -19,8 +19,18 @@ const DRY = process.argv.includes('--dry');
 
 const SKIP_DIRS = new Set(['node_modules', '.build', 'dist', '.git', 'android', 'test-results']);
 const EXTS = new Set([
-  '.ts', '.tsx', '.js', '.mjs', '.cjs', '.json', '.css', '.html',
-  '.webmanifest', '.yml', '.yaml', '.md',
+  '.ts',
+  '.tsx',
+  '.js',
+  '.mjs',
+  '.cjs',
+  '.json',
+  '.css',
+  '.html',
+  '.webmanifest',
+  '.yml',
+  '.yaml',
+  '.md',
 ]);
 
 /** [pattern, replacement] applied in order. */

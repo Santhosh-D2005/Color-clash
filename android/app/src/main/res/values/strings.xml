@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Color Clash</string>
+    <string name="title_activity_main">Color Clash</string>
+    <string name="package_name">com.geeksforgames.colorclash</string>
+    <string name="custom_url_scheme">com.geeksforgames.colorclash</string>
+</resources>

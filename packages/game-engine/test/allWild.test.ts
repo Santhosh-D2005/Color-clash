@@ -1,11 +1,14 @@
 import { createRng } from '@colorclash/shared';
+import { ALL_WILD_COLOR_MODE, allWildEffects, autoColorFor, reduce } from '@colorclash/game-engine';
 import {
-  ALL_WILD_COLOR_MODE,
-  allWildEffects,
-  autoColorFor,
-  reduce,
-} from '@colorclash/game-engine';
-import { activeId, buildFixture, cmd, describe, expect, handOf, it } from '@colorclash/test-fixtures';
+  activeId,
+  buildFixture,
+  cmd,
+  describe,
+  expect,
+  handOf,
+  it,
+} from '@colorclash/test-fixtures';
 
 const rng = () => createRng('allwild');
 

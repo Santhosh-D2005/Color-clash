@@ -111,7 +111,7 @@ export function presentEvents(events: GameEvent[], who: NameLookup): Presented {
 
   const isYou = (id?: PlayerId) => Boolean(id && who.you && id === who.you);
   const nameOf = (id?: PlayerId) =>
-    isYou(id) ? 'You' : who.players.find((p) => p.id === id)?.name ?? id ?? '';
+    isYou(id) ? 'You' : (who.players.find((p) => p.id === id)?.name ?? id ?? '');
   /** "Sam played" but "You play" — the log reads as narration either way. */
   const verb = (id: PlayerId | undefined, past: string, present: string) =>
     isYou(id) ? present : past;
@@ -124,9 +124,9 @@ export function presentEvents(events: GameEvent[], who: NameLookup): Presented {
   const cardName = (id?: CardId): string => {
     const card = id ? who.cards?.[id] : undefined;
     if (!card) return 'a card';
-    const color = card.primaryColor ? COLOR_LABEL[card.primaryColor] ?? card.primaryColor : '';
+    const color = card.primaryColor ? (COLOR_LABEL[card.primaryColor] ?? card.primaryColor) : '';
     const what =
-      card.kind === 'NUMBER' ? String(card.value ?? 0) : CARD_LABEL[card.kind] ?? card.kind;
+      card.kind === 'NUMBER' ? String(card.value ?? 0) : (CARD_LABEL[card.kind] ?? card.kind);
     return color ? `${color} ${what}` : what;
   };
 
@@ -192,7 +192,7 @@ export function presentEvents(events: GameEvent[], who: NameLookup): Presented {
           e.auto
             ? `Pile turns ${COLOR_LABEL[e.color] ?? e.color}`
             : `${nameOf(e.playerId)} ${verb(e.playerId, 'chose', 'choose')} ` +
-              `${COLOR_LABEL[e.color] ?? e.color}`,
+                `${COLOR_LABEL[e.color] ?? e.color}`,
         );
         break;
 

@@ -13,13 +13,7 @@
 declare namespace React {
   type Key = string | number;
   type ReactNode =
-    | ReactElement
-    | string
-    | number
-    | boolean
-    | null
-    | undefined
-    | Iterable<ReactNode>;
+    ReactElement | string | number | boolean | null | undefined | Iterable<ReactNode>;
 
   interface ReactElement {
     type: unknown;
@@ -86,7 +80,11 @@ declare namespace React2 {
     deps: React.DependencyList,
   ): T;
   function useRef<T>(initial: T): React.MutableRefObject<T>;
-  function createElement(type: unknown, props?: unknown, ...children: unknown[]): React.ReactElement;
+  function createElement(
+    type: unknown,
+    props?: unknown,
+    ...children: unknown[]
+  ): React.ReactElement;
   const StrictMode: React.FC<{ children?: React.ReactNode }>;
   const Fragment: React.FC<{ children?: React.ReactNode }>;
 }

@@ -1,8 +1,24 @@
 # Generated, and enormous: assets.gen.ts is base64 image data.
 apps/client/src/assets/assets.gen.ts
+# Also generated, by tools/gen-assets.ts. Formatting it would make
+# `npm run assets` produce a diff that fails format:check every time.
+apps/client/src/assets/assets.files.ts
+
 dist
 .build
 node_modules
 android
 data
 package-lock.json
+
+# A stale duplicate of apps/, e2e/ and packages/ left in the tree. Not built,
+# not imported, not tested — formatting it just doubles every diff.
+color-clash-fixed-sources
+# Scratch copy of the brand generator; tools/gen-brand.ts is the real one.
+scratch
+
+# Test and diagnostic output, not source.
+test-results
+playwright-report
+eslint-report.json
+*.tsbuildinfo

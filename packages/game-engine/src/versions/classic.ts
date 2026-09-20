@@ -84,10 +84,7 @@ export const classicManifest: VersionManifest = {
 
       case 'WILD_DRAW_FOUR':
         return stacking
-          ? [
-              { type: 'REQUEST_COLOR_CHOICE' },
-              { type: 'STACK', amount: 4, kind: 'WILD_DRAW_FOUR' },
-            ]
+          ? [{ type: 'REQUEST_COLOR_CHOICE' }, { type: 'STACK', amount: 4, kind: 'WILD_DRAW_FOUR' }]
           : [
               { type: 'REQUEST_COLOR_CHOICE' },
               { type: 'DRAW', target: 'NEXT', count: 4 },

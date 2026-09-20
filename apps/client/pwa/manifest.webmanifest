@@ -9,10 +9,7 @@
   "orientation": "any",
   "background_color": "#070f20",
   "theme_color": "#070f20",
-  "categories": [
-    "games",
-    "entertainment"
-  ],
+  "categories": ["games", "entertainment"],
   "icons": [
     {
       "src": "icons/icon-192.png",

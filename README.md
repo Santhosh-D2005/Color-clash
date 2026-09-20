@@ -119,13 +119,13 @@ Invariants from §6.1 are asserted after **every** accepted command:
 
 ## Rulesets
 
-| Version | Deck | Distinctive mechanics |
-| --- | --- | --- |
-| Classic Clash | 108 | Skip, Reverse (2-player = Skip), Draw Two, Wild, Wild Draw Four |
-| Flipstorm | 112 | Dual-side cards, Flip, Draw One/Five, Skip Everyone, Wild Draw Color |
-| Mayhem | 168 | +2/+4/+6/+10 stacking, 25-card elimination, 7 swap, 0 rotate, Discard All |
-| Wild Rush | 112 | Global target Draw Two, Double Skip (+3), all-wild legality |
-| Freestyle | 108 | Primary/secondary matrix, public FlexPowerTracker, alternate effects |
+| Version       | Deck | Distinctive mechanics                                                     |
+| ------------- | ---- | ------------------------------------------------------------------------- |
+| Classic Clash | 108  | Skip, Reverse (2-player = Skip), Draw Two, Wild, Wild Draw Four           |
+| Flipstorm     | 112  | Dual-side cards, Flip, Draw One/Five, Skip Everyone, Wild Draw Color      |
+| Mayhem        | 168  | +2/+4/+6/+10 stacking, 25-card elimination, 7 swap, 0 rotate, Discard All |
+| Wild Rush     | 112  | Global target Draw Two, Double Skip (+3), all-wild legality               |
+| Freestyle     | 108  | Primary/secondary matrix, public FlexPowerTracker, alternate effects      |
 
 Deck counts are asserted at generation time — a composition whose generated size
 disagrees with its manifest is a build failure, not a subtle in-game bug.
@@ -163,7 +163,7 @@ npm run dev:server     # serves the client and the match server on :8787
 Open `http://localhost:8787` on two devices on the same network (substitute the
 host machine's LAN address on the second one). **ONLINE** → **CREATE ROOM**
 gives the host a five-character code; the other player enters it under **JOIN
-ROOM**. Both press *I'm ready*, then the host starts. Empty seats can be filled
+ROOM**. Both press _I'm ready_, then the host starts. Empty seats can be filled
 with bots at any difficulty.
 
 The client never decides legality — `view.legalCardIds` arrives already computed
@@ -210,7 +210,7 @@ The workflow typechecks and runs the full test suite before it builds, wraps
 the workflow rather than added to `package.json`, so the repository stays
 dependency-free for anyone who does not want an APK.
 
-The output is a *debug* APK: installable on any device with "install unknown
+The output is a _debug_ APK: installable on any device with "install unknown
 apps" enabled, but not signed for a store.
 
 ### Signed release for the Play Store
@@ -239,14 +239,14 @@ awareness, hand-swap optimisation).
 
 ## Testing (§16)
 
-| Layer | Covered by |
-| --- | --- |
-| Unit | `deck`, `classic`, `flip`, `mayhem`, `allWild`, `flex`, `uno` |
-| Property | `properties` — card conservation, no duplicates, reachability, determinism |
-| Integration | full rounds per version, 2–10 players |
-| Network | `apps/server/src/room.test.ts` — reconnect, duplicate, stale, late join, resync |
-| Protocol | `apps/client/src/state/net.test.ts` — command stamping, acknowledgement, replay after a drop |
-| Edge cases | `edgeCases` — the complete §16.2 list |
+| Layer       | Covered by                                                                                   |
+| ----------- | -------------------------------------------------------------------------------------------- |
+| Unit        | `deck`, `classic`, `flip`, `mayhem`, `allWild`, `flex`, `uno`                                |
+| Property    | `properties` — card conservation, no duplicates, reachability, determinism                   |
+| Integration | full rounds per version, 2–10 players                                                        |
+| Network     | `apps/server/src/room.test.ts` — reconnect, duplicate, stale, late join, resync              |
+| Protocol    | `apps/client/src/state/net.test.ts` — command stamping, acknowledgement, replay after a drop |
+| Edge cases  | `edgeCases` — the complete §16.2 list                                                        |
 
 The runner is dependency-free (`tools/run-tests.ts`) and uses a
 Vitest-compatible `describe`/`it`/`expect` subset, so the suite can be pointed at

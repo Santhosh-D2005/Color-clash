@@ -33,8 +33,8 @@ export function NamePrompt({ onDone }: { onDone: (name: string) => void }) {
       <form className="panel name-card" onSubmit={submit}>
         <h1 className="h2 name-title">WHAT SHOULD WE CALL YOU?</h1>
         <p className="dim name-hint">
-          Other players see this name at the table. You can play offline without one,
-          but online is confusing when everyone shares a name.
+          Other players see this name at the table. You can play offline without one, but online is
+          confusing when everyone shares a name.
         </p>
 
         <input

@@ -25,7 +25,7 @@ export function faceOf(card: Card, deckSide?: DeckSide): CardSideData {
 
 export function describeCard(card: Card, deckSide?: DeckSide): string {
   const f = faceOf(card, deckSide);
-  const color = f.color ? COLOR_LABEL[f.color] ?? f.color : 'Wild';
+  const color = f.color ? (COLOR_LABEL[f.color] ?? f.color) : 'Wild';
   const what = f.kind === 'NUMBER' ? String(f.value ?? 0) : CARD_LABEL[f.kind];
   return `${color} ${what}`;
 }
@@ -59,7 +59,7 @@ export function CardFace({
     >
       <div
         className={`card-inner${isWild ? ' wild' : ''}${isDark ? ' dark-face' : ''}`}
-        style={{ ['--face' as string]: f.color ? COLOR_HEX[f.color] ?? '#333' : '#1b1b22' }}
+        style={{ ['--face' as string]: f.color ? (COLOR_HEX[f.color] ?? '#333') : '#1b1b22' }}
       >
         <span className={`card-glyph${long ? ' small' : ''}`}>{glyph}</span>
         <span className="card-corner tl">{corner}</span>

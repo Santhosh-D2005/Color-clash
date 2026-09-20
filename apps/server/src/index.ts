@@ -1,6 +1,11 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { join, resolve, extname } from 'node:path';
-import { createRng, type ClientMessage, type PlayerId, type ServerMessage } from '@colorclash/shared';
+import {
+  createRng,
+  type ClientMessage,
+  type PlayerId,
+  type ServerMessage,
+} from '@colorclash/shared';
 import { BOT_NAMES } from '@colorclash/ai';
 import { EMOTE_COOLDOWN_MS, isEmoteId } from '@colorclash/game-content';
 import { MatchRoom, makeRoomCode } from './room.js';
@@ -124,7 +129,8 @@ function restoreRooms(): void {
       store.remove(data.roomId);
     }
   }
-  if (restored > 0) console.log(`Restored ${restored} match${restored === 1 ? '' : 'es'} from disk`);
+  if (restored > 0)
+    console.log(`Restored ${restored} match${restored === 1 ? '' : 'es'} from disk`);
 }
 
 function cancelReap(roomId: string): void {
@@ -201,11 +207,7 @@ server.onConnection((conn) => {
   });
 });
 
-function handle(
-  session: Session,
-  msg: ClientMessage,
-  send: (m: ServerMessage) => void,
-): void {
+function handle(session: Session, msg: ClientMessage, send: (m: ServerMessage) => void): void {
   switch (msg.t) {
     case 'HELLO': {
       session.playerId = msg.playerId ?? `p-${rng.int(1e9).toString(36)}`;

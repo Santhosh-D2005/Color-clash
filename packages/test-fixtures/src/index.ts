@@ -54,7 +54,7 @@ export function buildFixture(fixture: Fixture): GameState {
     return id;
   };
 
-  const players = fixture.players.map((p, i) => ({
+  const players = fixture.players.map((p) => ({
     id: p.id,
     name: p.name ?? p.id,
     isBot: false,
@@ -153,7 +153,12 @@ export function cmd<T extends Command['type']>(
   playerId: PlayerId,
   extra: Record<string, unknown> = {},
 ): Command {
-  return { type, playerId, commandId: `c${Math.random().toString(36).slice(2)}`, ...extra } as Command;
+  return {
+    type,
+    playerId,
+    commandId: `c${Math.random().toString(36).slice(2)}`,
+    ...extra,
+  } as Command;
 }
 
 /** A fully shuffled, seeded match — used for smoke and property tests. */

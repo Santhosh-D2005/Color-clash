@@ -80,13 +80,16 @@ async function openClient(page: Page, name = RETURNING_PLAYER.name): Promise<voi
   // Each context gets its own stored profile: the two seats must be
   // distinguishable, which is the whole of the bug that made every online
   // player "PlayerOne".
-  await page.addInitScript((profile) => {
-    try {
-      localStorage.setItem('colorclash.profile', JSON.stringify(profile));
-    } catch {
-      /* storage unavailable */
-    }
-  }, { ...RETURNING_PLAYER, name });
+  await page.addInitScript(
+    (profile) => {
+      try {
+        localStorage.setItem('colorclash.profile', JSON.stringify(profile));
+      } catch {
+        /* storage unavailable */
+      }
+    },
+    { ...RETURNING_PLAYER, name },
+  );
   await page.goto(`http://127.0.0.1:${PORT}/`);
   await expect(page.getByText('QUICK MATCH')).toBeVisible({ timeout: 25_000 });
   await settle(page);

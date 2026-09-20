@@ -120,7 +120,10 @@ export function main(root = resolve(import.meta.dirname, '..')): void {
   }
 
   /** Changing this evicts the previous cache on the next launch. */
-  const buildId = new Date().toISOString().replace(/[^0-9]/g, '').slice(0, 14);
+  const buildId = new Date()
+    .toISOString()
+    .replace(/[^0-9]/g, '')
+    .slice(0, 14);
 
   mkdirSync(join(out, 'icons'), { recursive: true });
 
@@ -135,7 +138,10 @@ export function main(root = resolve(import.meta.dirname, '..')): void {
 
   /* ---- 2. the page, with the manifest link and worker registration ---- */
 
-  writeFileSync(join(out, 'index.html'), preparePage(readFileSync(join(web, 'index.html'), 'utf8')));
+  writeFileSync(
+    join(out, 'index.html'),
+    preparePage(readFileSync(join(web, 'index.html'), 'utf8')),
+  );
 
   /* ---- 3. manifest + worker ---- */
 

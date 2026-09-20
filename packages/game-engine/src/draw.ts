@@ -57,11 +57,7 @@ export function drawToPlayer(
  * Elimination rule — §2.4 / §8.4: "Elimination check runs immediately after every
  * draw." Called by the engine after *every* draw path, never by a ruleset.
  */
-export function checkElimination(
-  state: GameState,
-  playerId: PlayerId,
-  events: GameEvent[],
-): void {
+export function checkElimination(state: GameState, playerId: PlayerId, events: GameEvent[]): void {
   if (state.version !== 'MAYHEM') return;
   const p = player(state, playerId);
   if (p.eliminated) return;

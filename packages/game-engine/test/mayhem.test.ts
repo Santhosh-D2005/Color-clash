@@ -1,6 +1,14 @@
 import { createRng } from '@colorclash/shared';
 import { reduce } from '@colorclash/game-engine';
-import { activeId, buildFixture, cmd, describe, expect, handOf, it } from '@colorclash/test-fixtures';
+import {
+  activeId,
+  buildFixture,
+  cmd,
+  describe,
+  expect,
+  handOf,
+  it,
+} from '@colorclash/test-fixtures';
 
 const rng = () => createRng('mayhem');
 
@@ -19,7 +27,7 @@ const base = (over: Partial<Parameters<typeof buildFixture>[0]> = {}) =>
     ...over,
   });
 
-describe("MAYHEM — §2.4 source rule table", () => {
+describe('MAYHEM — §2.4 source rule table', () => {
   it('Draw Two opens a stacking context rather than drawing immediately', () => {
     const s0 = base({
       players: [
@@ -126,8 +134,30 @@ describe("MAYHEM — §2.4 source rule table", () => {
   it('a player is eliminated the moment a draw puts them at 25 cards (SOURCE)', () => {
     // 24 cards in hand plus a 1-card draw crosses the threshold exactly.
     const hand24 = [
-      'R0#0','R1#0','R1#1','R2#0','R2#1','R3#0','R3#1','R4#0','R4#1','R5#1','R6#0','R6#1',
-      'R7#0','R7#1','R8#0','R8#1','R9#0','R9#1','B1#0','B1#1','B2#0','B2#1','B3#0','B3#1',
+      'R0#0',
+      'R1#0',
+      'R1#1',
+      'R2#0',
+      'R2#1',
+      'R3#0',
+      'R3#1',
+      'R4#0',
+      'R4#1',
+      'R5#1',
+      'R6#0',
+      'R6#1',
+      'R7#0',
+      'R7#1',
+      'R8#0',
+      'R8#1',
+      'R9#0',
+      'R9#1',
+      'B1#0',
+      'B1#1',
+      'B2#0',
+      'B2#1',
+      'B3#0',
+      'B3#1',
     ];
     const s0 = buildFixture({
       version: 'MAYHEM',

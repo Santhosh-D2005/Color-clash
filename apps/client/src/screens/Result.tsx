@@ -177,7 +177,10 @@ export function SummaryScreen({
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div className="waiting-balloon" style={{ margin: '0 auto 8px', fontSize: 17, padding: '8px 20px' }}>
+        <div
+          className="waiting-balloon"
+          style={{ margin: '0 auto 8px', fontSize: 17, padding: '8px 20px' }}
+        >
           Thanks for playing! ★
         </div>
       </div>

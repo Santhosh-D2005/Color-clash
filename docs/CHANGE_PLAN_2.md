@@ -18,32 +18,32 @@ except where a numbered finding required it.
 
 ## What each finding changed
 
-| # | Finding | Change | Proof |
-| --- | --- | --- | --- |
-| 1 | The match clock counts up and means nothing | The header slot now shows cards left in the draw pile, labelled | `e2e/app.spec.ts` — "the header number is the deck" |
-| 2 | Being eliminated looks exactly like winning | Result screen has three tones; confetti and crown only when won | `e2e/play.spec.ts` — summary spec |
-| 3 | The standings order looks like a sorting bug | Each row leads with points, the value the list is actually ordered by | `Result.tsx` `scoreLine` |
-| 4 | The match total is a running total that never runs | Removed. Chained rounds do not exist yet, so neither does the number | `Result.tsx` `subLine` |
-| 5 | Wild Rush is the flattest mode to watch | Action banners for the Wild Rush card kinds, from existing events | `presentation.test.ts` (16 tests) |
-| 6 | No way to see play direction in landscape | Direction arrow moved into the turn chip, which landscape keeps | `e2e/app.spec.ts` — "play direction is readable" |
-| 7 | Emote bubbles inconsistent, one falls off screen | Bubbles take a side and are placed from it | `EmoteBubble` `side` |
-| 8 | The turn timer sits on top of the turn chip | Timer rendered inside the chip instead of over it | `Table.tsx` `TurnChip` |
-| 9 | The Clash window is about three quarters of a second | `clashGraceMs` — declared but never read — is now the floor on the pace | `pacing.test.ts`, `useGame.stepDelay` |
-| 10 | Coins do not survive closing the app, and a screen says they do | Profile persisted to the same store the sound preference uses | `e2e/profile.spec.ts` — currency spec |
-| 11 | Everyone online is called PlayerOne | One first-run name prompt, stored | `e2e/profile.spec.ts`, `e2e/online.spec.ts` |
-| 12 | Two lobby controls cannot be tapped on a phone | The lobby body scrolls instead of compressing its rows | Browser suite at phone-portrait |
-| 13 | Backgrounding the app loses the match | Seed + command log saved on every accepted command; menu offers Resume | `e2e/profile.spec.ts` — resume and discard |
-| 14 | Three config fields declared, defaulted, never read | Two removed, one (`clashGraceMs`) implemented — see #9 | `types.ts`, unit suite |
-| 15 | Two sound settings, the older one fake | One preference with a listener; both screens read and write it | `e2e/play.spec.ts` — sound persists |
-| 16 | A replayed match is not byte-identical | Timestamps documented as runtime metadata and excluded explicitly | `determinism.test.ts` (4 tests) |
-| 17 | Three sources disagree about player limits | One `limits.ts`: rule limit 2–10, seat limit 2–6, everything reads it | Unit suite across 2–10 players |
-| 18 | The audio context is never resumed | `suspended` resumes, `closed` recreates, on the next cue | `audio.ts` |
-| 19 | The new client logic has no unit tests | `presentation.test.ts` and `pacing.test.ts`; `pacing.ts` extracted so they need no React | 20 new tests |
-| 20 | The command log grows without bound | Checkpoint every 40 commands; the log folds into it | `persistence.test.ts` — checkpoint specs |
-| 21 | Every saved room is resurrected on boot | Boot restores only rooms saved in the last two minutes | `store.ts` `RESTORE_MAX_AGE_MS` |
-| 22 | The single-file build rests on deprecated compiler flags | One bundler. See below | CI builds all three targets |
-| 23 | The offline build is one 1.47 MB document | The APK ships real files; the splash ends when loading does | See below |
-| 24 | Four quality gates have never run anywhere | Cannot be fixed from here. See below | — |
+| #   | Finding                                                         | Change                                                                                   | Proof                                               |
+| --- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| 1   | The match clock counts up and means nothing                     | The header slot now shows cards left in the draw pile, labelled                          | `e2e/app.spec.ts` — "the header number is the deck" |
+| 2   | Being eliminated looks exactly like winning                     | Result screen has three tones; confetti and crown only when won                          | `e2e/play.spec.ts` — summary spec                   |
+| 3   | The standings order looks like a sorting bug                    | Each row leads with points, the value the list is actually ordered by                    | `Result.tsx` `scoreLine`                            |
+| 4   | The match total is a running total that never runs              | Removed. Chained rounds do not exist yet, so neither does the number                     | `Result.tsx` `subLine`                              |
+| 5   | Wild Rush is the flattest mode to watch                         | Action banners for the Wild Rush card kinds, from existing events                        | `presentation.test.ts` (16 tests)                   |
+| 6   | No way to see play direction in landscape                       | Direction arrow moved into the turn chip, which landscape keeps                          | `e2e/app.spec.ts` — "play direction is readable"    |
+| 7   | Emote bubbles inconsistent, one falls off screen                | Bubbles take a side and are placed from it                                               | `EmoteBubble` `side`                                |
+| 8   | The turn timer sits on top of the turn chip                     | Timer rendered inside the chip instead of over it                                        | `Table.tsx` `TurnChip`                              |
+| 9   | The Clash window is about three quarters of a second            | `clashGraceMs` — declared but never read — is now the floor on the pace                  | `pacing.test.ts`, `useGame.stepDelay`               |
+| 10  | Coins do not survive closing the app, and a screen says they do | Profile persisted to the same store the sound preference uses                            | `e2e/profile.spec.ts` — currency spec               |
+| 11  | Everyone online is called PlayerOne                             | One first-run name prompt, stored                                                        | `e2e/profile.spec.ts`, `e2e/online.spec.ts`         |
+| 12  | Two lobby controls cannot be tapped on a phone                  | The lobby body scrolls instead of compressing its rows                                   | Browser suite at phone-portrait                     |
+| 13  | Backgrounding the app loses the match                           | Seed + command log saved on every accepted command; menu offers Resume                   | `e2e/profile.spec.ts` — resume and discard          |
+| 14  | Three config fields declared, defaulted, never read             | Two removed, one (`clashGraceMs`) implemented — see #9                                   | `types.ts`, unit suite                              |
+| 15  | Two sound settings, the older one fake                          | One preference with a listener; both screens read and write it                           | `e2e/play.spec.ts` — sound persists                 |
+| 16  | A replayed match is not byte-identical                          | Timestamps documented as runtime metadata and excluded explicitly                        | `determinism.test.ts` (4 tests)                     |
+| 17  | Three sources disagree about player limits                      | One `limits.ts`: rule limit 2–10, seat limit 2–6, everything reads it                    | Unit suite across 2–10 players                      |
+| 18  | The audio context is never resumed                              | `suspended` resumes, `closed` recreates, on the next cue                                 | `audio.ts`                                          |
+| 19  | The new client logic has no unit tests                          | `presentation.test.ts` and `pacing.test.ts`; `pacing.ts` extracted so they need no React | 20 new tests                                        |
+| 20  | The command log grows without bound                             | Checkpoint every 40 commands; the log folds into it                                      | `persistence.test.ts` — checkpoint specs            |
+| 21  | Every saved room is resurrected on boot                         | Boot restores only rooms saved in the last two minutes                                   | `store.ts` `RESTORE_MAX_AGE_MS`                     |
+| 22  | The single-file build rests on deprecated compiler flags        | One bundler. See below                                                                   | CI builds all three targets                         |
+| 23  | The offline build is one 1.47 MB document                       | The APK ships real files; the splash ends when loading does                              | See below                                           |
+| 24  | Four quality gates have never run anywhere                      | Cannot be fixed from here. See below                                                     | —                                                   |
 
 ---
 
@@ -54,7 +54,7 @@ loader, a CDN copy of React and a second script to inline it are all gone.
 `apps/client/vite.single.config.ts` is the web configuration with the inlined
 asset registry and one chunk; `tools/build-single-file.ts` folds that chunk
 into the document and is now thirty lines. `tools/build-offline.mjs` is
-deleted — a Vite build already bundles React, so the single-file build *is* the
+deleted — a Vite build already bundles React, so the single-file build _is_ the
 offline build. `ignoreDeprecations` is gone from `tsconfig.json`, and there is
 no longer a `.build/tsconfig.build.json` to carry it.
 
@@ -82,18 +82,18 @@ time: this environment has no npm registry access, so ESLint, Prettier, the
 real type packages and Vite cannot be installed. That was the finding. It is
 not fixed by this pass and cannot be fixed from inside this environment.
 
-What *is* proven here, and was re-run after every change:
+What _is_ proven here, and was re-run after every change:
 
 - 212 unit and integration tests (up from 169; none deleted or weakened)
 - 75 browser tests (up from 60) across phone-portrait, phone-landscape and
   desktop — run against a build of the current application code produced by the
-  *previous* packaging pipeline, since the new one needs Vite. They prove the
+  _previous_ packaging pipeline, since the new one needs Vite. They prove the
   app behaves; they do not prove the new packaging, which is what the two test
   files below and the CI build step are for.
 - the offline typecheck, clean
 - the branding audit, clean
 
-Because the build migration replaced a target that *could* run here with one
+Because the build migration replaced a target that _could_ run here with one
 that cannot, its two packaging steps were split into pure functions and tested:
 `tools/build-single-file.test.ts` and `tools/build-pwa.test.ts`, 17 tests
 between them. They do not prove Vite runs; they prove that when it does, the
@@ -125,7 +125,7 @@ and rotation · flip mechanics · protocol behaviour · authoritative server mod
 · card rendering approach · visual design · progression and economy values
 
 Two things in that list were touched deliberately and are the findings, not
-regressions: the Result screen's *presentation* of scores (#2, #3, #4) and the
+regressions: the Result screen's _presentation_ of scores (#2, #3, #4) and the
 header slot that held the clock (#1). No score, rule or economy value changed.
 
 ---

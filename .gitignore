@@ -2,4 +2,13 @@ node_modules/
 dist/
 .build/
 *.log
-tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Test and diagnostic output.
+test-results/
+playwright-report/
+eslint-report.json
+
+# Build artefact — the signed outputs come from CI, not from the repo.
+*.apk
+*.aab

@@ -19,7 +19,7 @@ quote the rule tables directly.
 
 ## RF-001 — Flip number distribution
 
-**Source:** §2.3 pins the Flip *action* counts exactly ("8 Skips, 8 Reverses,
+**Source:** §2.3 pins the Flip _action_ counts exactly ("8 Skips, 8 Reverses,
 8 Draw Ones, 8 Flips, 4 Wilds, 4 Wild Draw Twos" = 40 cards) but states no
 number distribution. Appendix A Table 18 records the Flip deck size as
 "source-defined dual side composition", i.e. deliberately unstated.
@@ -37,7 +37,7 @@ assert every source-stated light and dark action count.
 
 ## RF-002 — Mayhem base composition
 
-**Source:** §2.4 pins the total (168) and the *additions* ("8 Draw Four,
+**Source:** §2.4 pins the total (168) and the _additions_ ("8 Draw Four,
 8 Discard All, 4 Wild Draw Six, 4 Wild Draw Ten, 4 Wild Reverse Skip" = 28
 cards). It does not restate the base. Classic's 108 plus those 28 is 136, so
 32 cards are unaccounted for by the source text alone.
@@ -47,19 +47,19 @@ slots are filled as one extra Skip / Reverse / Draw Two per colour (+12), three
 Skip Everyone per colour (+12), and four extra Wild plus four extra Wild Draw
 Four (+8).
 
-| Card | Count | Origin |
-| --- | --- | --- |
-| Numbers (0×1, 1–9×2 per colour) | 76 | as Classic |
-| Skip / Reverse / Draw Two | 12 each | RF-002 |
-| Draw Four | 8 | **SOURCE** |
-| Discard All | 8 | **SOURCE** |
-| Skip Everyone | 12 | RF-002 |
-| Wild | 8 | RF-002 |
-| Wild Draw Four | 8 | RF-002 |
-| Wild Draw Six | 4 | **SOURCE** |
-| Wild Draw Ten | 4 | **SOURCE** |
-| Wild Reverse Skip | 4 | **SOURCE** |
-| **Total** | **168** | **SOURCE** |
+| Card                            | Count   | Origin     |
+| ------------------------------- | ------- | ---------- |
+| Numbers (0×1, 1–9×2 per colour) | 76      | as Classic |
+| Skip / Reverse / Draw Two       | 12 each | RF-002     |
+| Draw Four                       | 8       | **SOURCE** |
+| Discard All                     | 8       | **SOURCE** |
+| Skip Everyone                   | 12      | RF-002     |
+| Wild                            | 8       | RF-002     |
+| Wild Draw Four                  | 8       | RF-002     |
+| Wild Draw Six                   | 4       | **SOURCE** |
+| Wild Draw Ten                   | 4       | **SOURCE** |
+| Wild Reverse Skip               | 4       | **SOURCE** |
+| **Total**                       | **168** | **SOURCE** |
 
 **Switch:** `MAYHEM_DECK` in `packages/game-content/src/decks.ts`.
 
@@ -72,7 +72,7 @@ RF-002 slots cannot silently break a source count.
 
 ## RF-003 — Flex deck size
 
-**Source:** §2.6 defines the flex *mechanic* in full (primary symbol plus a
+**Source:** §2.6 defines the flex _mechanic_ in full (primary symbol plus a
 secondary triangle matrix, a public power token, Flex Number / Flex Draw Two /
 Flex Skip) but gives no deck. Table 18 records it as "source-defined flex
 matrix".
@@ -170,7 +170,7 @@ opening Draw Two makes seat 0 draw two and lose its turn, an opening Wild (and
 Wild Draw Four) demands a colour before play begins.
 
 **RF-008** covers the one case the literal reading does not settle: an opening
-**Reverse** has no previous player to reverse *from*. The default flips the
+**Reverse** has no previous player to reverse _from_. The default flips the
 direction and leaves the turn on the dealer seat (the seat before player 0), so
 the dealer plays first — the table convention. It is expressed as
 `[{ REVERSE }, { NO_ADVANCE }]` in each manifest's `resolveOpeningDiscard`, so
@@ -228,7 +228,7 @@ being a pure function of the card makes it identical in local play, on the
 server, for a bot, and after a reconnect, without consuming a random number or
 depending on turn order.
 
-The *target* choice on Wild Target Draw Two is untouched: unlike colour, it
+The _target_ choice on Wild Target Draw Two is untouched: unlike colour, it
 changes the outcome.
 
 **Switch:** `ALL_WILD_COLOR_MODE` in `packages/game-engine/src/versions/allWild.ts`.
@@ -259,7 +259,7 @@ when the reset happens.
 **Source:** §2.4 — "Draw penalties +2/+4/+6/+10 can pass iteratively when
 matching or higher cards are played".
 
-**Resolution:** the phrase qualifies the *penalty magnitude*, not the colour. A
+**Resolution:** the phrase qualifies the _penalty magnitude_, not the colour. A
 response must be a draw card worth at least the current minimum response
 penalty; no colour match is required. An earlier draft imposed a colour
 requirement as well and was corrected — that would have been an invented rule.

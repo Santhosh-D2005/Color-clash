@@ -125,7 +125,10 @@ export async function startMode(page: Page, mode: RegExp): Promise<void> {
   await openMenu(page);
   await page.getByText('GAME MODES').click();
   await page.getByRole('button', { name: mode }).click();
-  await page.getByRole('button', { name: /^START/i }).first().click();
+  await page
+    .getByRole('button', { name: /^START/i })
+    .first()
+    .click();
   await expect(page.getByRole('button', { name: /Draw pile/ })).toBeVisible();
   await settle(page);
   await clearOpeningChoice(page);

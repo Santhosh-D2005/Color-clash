@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Card, CommandInput, PlayerView } from '@colorclash/shared';
-import { COLOR_HEX, COLOR_INK, COLOR_LABEL, ILLEGAL_REASON, VERSION_META } from '@colorclash/game-content';
+import {
+  COLOR_HEX,
+  COLOR_INK,
+  COLOR_LABEL,
+  ILLEGAL_REASON,
+  VERSION_META,
+} from '@colorclash/game-content';
 import type { EmoteId } from '@colorclash/game-content';
 import { offersFlexChoice } from '@colorclash/game-engine';
 import { asset, avatarFor } from '../assets/index.js';
@@ -33,7 +39,6 @@ export function Table({
   onEmote,
   onCommand,
   onExit,
-  elapsed,
   sound,
   onSound,
   reducedMotion,
@@ -50,17 +55,13 @@ export function Table({
   onEmote?: (id: EmoteId) => void;
   onCommand: (c: CommandInput) => void;
   onExit: () => void;
-  elapsed: number;
   sound: boolean;
   onSound: (on: boolean) => void;
   reducedMotion: boolean;
   onReducedMotion: (on: boolean) => void;
 }) {
   const me = view.you;
-  const opponents = useMemo(
-    () => view.players.filter((p) => p.id !== me),
-    [view.players, me],
-  );
+  const opponents = useMemo(() => view.players.filter((p) => p.id !== me), [view.players, me]);
   const activeId = view.players[view.activePlayerIndex]?.id;
   const isMyTurn = activeId === me && !view.awaitingChoice;
   const myChoice = view.awaitingChoice?.playerId === me ? view.awaitingChoice : undefined;
@@ -111,7 +112,10 @@ export function Table({
       </div>
 
       <div className="felt">
-        <div className={`direction-ring${view.direction === -1 ? ' ccw' : ''}`} aria-hidden="true" />
+        <div
+          className={`direction-ring${view.direction === -1 ? ' ccw' : ''}`}
+          aria-hidden="true"
+        />
 
         {opponents.slice(0, 3).map((p, i) => {
           const seatIndex = view.players.findIndex((x) => x.id === p.id);
@@ -128,7 +132,10 @@ export function Table({
                 {/* A left-hand seat opens its bubble to the right, and the
                     other way round, so neither runs off the screen edge. */}
                 {emotes?.[p.id] ? (
-                  <EmoteBubble id={emotes[p.id]!} side={seatSlots[i] === 'left' ? 'left' : 'right'} />
+                  <EmoteBubble
+                    id={emotes[p.id]!}
+                    side={seatSlots[i] === 'left' ? 'left' : 'right'}
+                  />
                 ) : null}
               </div>
               <div>
@@ -330,7 +337,11 @@ export function Table({
                   className={`card-slot ${playable ? 'playable' : 'blocked'}`}
                   onClick={() => {
                     if (!playable) return;
-                    if (view.version === 'FLEX' && view.flexPowerAvailable && offersFlexChoice(card)) {
+                    if (
+                      view.version === 'FLEX' &&
+                      view.flexPowerAvailable &&
+                      offersFlexChoice(card)
+                    ) {
                       setFlexPrompt(card);
                       return;
                     }
@@ -357,7 +368,10 @@ export function Table({
         </div>
 
         {view.mayPass ? (
-          <button className="btn btn-ghost" onClick={() => onCommand({ type: 'END_TURN', playerId: me })}>
+          <button
+            className="btn btn-ghost"
+            onClick={() => onCommand({ type: 'END_TURN', playerId: me })}
+          >
             PASS
           </button>
         ) : null}
@@ -394,9 +408,7 @@ export function Table({
       ) : null}
 
       {/* Screen 7 — colour picker, plus target and swap choices */}
-      {myChoice ? (
-        <ChoiceModal view={view} onCommand={onCommand} />
-      ) : null}
+      {myChoice ? <ChoiceModal view={view} onCommand={onCommand} /> : null}
 
       {paused ? (
         <MatchSettings
@@ -413,9 +425,7 @@ export function Table({
         />
       ) : null}
 
-      {rulesOpen ? (
-        <RulesSheet version={view.version} onClose={() => setRulesOpen(false)} />
-      ) : null}
+      {rulesOpen ? <RulesSheet version={view.version} onClose={() => setRulesOpen(false)} /> : null}
 
       {flexPrompt ? (
         <div className="scrim">
@@ -549,7 +559,9 @@ function TurnChip({ view }: { view: PlayerView }) {
           */}
           <span
             className="turn-dir"
-            aria-label={view.direction === 1 ? 'Play order: clockwise' : 'Play order: anticlockwise'}
+            aria-label={
+              view.direction === 1 ? 'Play order: clockwise' : 'Play order: anticlockwise'
+            }
           >
             {view.direction === 1 ? '↻' : '↺'}
           </span>{' '}
@@ -678,12 +690,6 @@ function flightOrigin(view: PlayerView, playerId: string): string {
   const opponents = view.players.filter((p) => p.id !== view.you);
   const slot = opponents.findIndex((p) => p.id === playerId);
   return ['from-left', 'from-top', 'from-right'][slot] ?? 'from-top';
-}
-
-function formatTime(seconds: number): string {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 }
 
 /** Ticking match clock, kept out of engine state so it cannot affect rules. */

@@ -110,11 +110,7 @@ export const mayhemManifest: VersionManifest = {
 
       case 'WILD_REVERSE_SKIP':
         // §8.4: "modeled as a combined effect so direction and skipping cannot drift".
-        return [
-          { type: 'REQUEST_COLOR_CHOICE' },
-          { type: 'REVERSE' },
-          { type: 'SKIP', count: 1 },
-        ];
+        return [{ type: 'REQUEST_COLOR_CHOICE' }, { type: 'REVERSE' }, { type: 'SKIP', count: 1 }];
 
       default:
         return [];
@@ -144,11 +140,7 @@ export const mayhemManifest: VersionManifest = {
   },
 };
 
-function penalty(
-  stacking: boolean,
-  amount: number,
-  kind: Card['kind'],
-): Resolution[] {
+function penalty(stacking: boolean, amount: number, kind: Card['kind']): Resolution[] {
   return stacking
     ? [{ type: 'STACK', amount, kind }]
     : [

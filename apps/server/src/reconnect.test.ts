@@ -15,7 +15,9 @@ import { FakeTimers } from './timers.js';
 
 function cards(room: MatchRoom): number {
   const s = room.debugState()!;
-  return s.players.reduce((n, p) => n + p.hand.length, 0) + s.drawPile.length + s.discardPile.length;
+  return (
+    s.players.reduce((n, p) => n + p.hand.length, 0) + s.drawPile.length + s.discardPile.length
+  );
 }
 
 function timedRoom(turnTimeoutMs = 30_000) {
@@ -47,12 +49,27 @@ function legal(view: PlayerView, id: string): Command {
   const choice = view.awaitingChoice;
   if (choice && choice.playerId === view.you) {
     if (choice.type === 'COLOR' || choice.type === 'DRAW_COLOR') {
-      return { commandId: id, playerId: view.you, type: 'CHOOSE_COLOR', color: choice.eligibleColors![0]! };
+      return {
+        commandId: id,
+        playerId: view.you,
+        type: 'CHOOSE_COLOR',
+        color: choice.eligibleColors![0]!,
+      };
     }
     if (choice.type === 'SWAP_HAND') {
-      return { commandId: id, playerId: view.you, type: 'SWAP_HAND', targetId: choice.eligibleTargets![0]! };
+      return {
+        commandId: id,
+        playerId: view.you,
+        type: 'SWAP_HAND',
+        targetId: choice.eligibleTargets![0]!,
+      };
     }
-    return { commandId: id, playerId: view.you, type: 'CHOOSE_TARGET', targetId: choice.eligibleTargets![0]! };
+    return {
+      commandId: id,
+      playerId: view.you,
+      type: 'CHOOSE_TARGET',
+      targetId: choice.eligibleTargets![0]!,
+    };
   }
   if (view.mayPass) return { commandId: id, playerId: view.you, type: 'END_TURN' };
   if (view.legalCardIds.length > 0) {

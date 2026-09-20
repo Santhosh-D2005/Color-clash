@@ -135,9 +135,7 @@ export function applyResolutions(
         if (suppressed) continuation.push({ type: 'NO_ADVANCE' });
         if (advance - 1 !== 0) continuation.push({ type: 'SKIP', count: advance - 1 });
         continuation.push(...(r.type === 'REQUEST_COLOR_CHOICE' ? (r.continuation ?? []) : []));
-        continuation.push(
-          ...(r.type === 'REQUEST_TARGET_CHOICE' ? (r.continuation ?? []) : []),
-        );
+        continuation.push(...(r.type === 'REQUEST_TARGET_CHOICE' ? (r.continuation ?? []) : []));
         continuation.push(...rest);
 
         state.awaitingChoice = buildChoice(state, actorId, r, continuation);
@@ -278,12 +276,7 @@ function drawUntilColor(
   }
 }
 
-function swapHands(
-  state: GameState,
-  aId: PlayerId,
-  bId: PlayerId,
-  events: GameEvent[],
-): void {
+function swapHands(state: GameState, aId: PlayerId, bId: PlayerId, events: GameEvent[]): void {
   const a = player(state, aId);
   const b = player(state, bId);
   const tmp = a.hand;
@@ -296,11 +289,7 @@ function swapHands(
  * §2.4 / §8.4: "Discard All filters the acting hand by active/matching color and
  * moves matching cards to discard in one transaction."
  */
-function discardAllOfColor(
-  state: GameState,
-  actorId: PlayerId,
-  events: GameEvent[],
-): void {
+function discardAllOfColor(state: GameState, actorId: PlayerId, events: GameEvent[]): void {
   const color = state.activeColor;
   if (!color) return;
   const p = player(state, actorId);

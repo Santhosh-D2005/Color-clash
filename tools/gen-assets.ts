@@ -31,8 +31,7 @@ const files = readdirSync(DIR)
 const names = files.map((f) => basename(f, '.png'));
 const union = names.map((n) => `  | ${JSON.stringify(n)}`).join('\n');
 
-const HEADER = (kind: string) => `/* eslint-disable */
-// GENERATED FILE — do not edit by hand.
+const HEADER = (kind: string) => `// GENERATED FILE — do not edit by hand.
 // Produced by tools/gen-assets.ts. ${kind}
 // Regenerate the images themselves with: npm run brand
 

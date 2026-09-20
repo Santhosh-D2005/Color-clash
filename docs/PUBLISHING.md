@@ -45,7 +45,7 @@ Two things to understand:
 
 - **`-validity 10000`** is about 27 years. Play requires a key valid well past
   2033; do not shorten this.
-- **Back the file up.** If you lose `colorclash-release.jks` *and* have not enrolled in
+- **Back the file up.** If you lose `colorclash-release.jks` _and_ have not enrolled in
   Play App Signing, you can never update your app — you would have to publish a
   new listing under a new package id and lose your installs and reviews.
 
@@ -53,7 +53,7 @@ Two things to understand:
 
 When you create the app in the Play Console, opt in to **Play App Signing**
 (it is the default for new apps). Google then holds the key that actually signs
-what users install, and the key you just made becomes your *upload key* — used
+what users install, and the key you just made becomes your _upload key_ — used
 only to prove uploads come from you. If you lose an upload key, Google can reset
 it. That is the safety net, and it is worth taking.
 
@@ -71,12 +71,12 @@ cat keystore.b64
 Copy that output. Then on GitHub: **Settings → Secrets and variables → Actions →
 New repository secret**, and add four:
 
-| Secret | Value |
-| --- | --- |
-| `ANDROID_KEYSTORE_BASE64` | the base64 text you just copied |
-| `ANDROID_KEYSTORE_PASSWORD` | the keystore password |
-| `ANDROID_KEY_ALIAS` | `clash-upload` |
-| `ANDROID_KEY_PASSWORD` | the key password (same as the store password unless you set a different one) |
+| Secret                      | Value                                                                        |
+| --------------------------- | ---------------------------------------------------------------------------- |
+| `ANDROID_KEYSTORE_BASE64`   | the base64 text you just copied                                              |
+| `ANDROID_KEYSTORE_PASSWORD` | the keystore password                                                        |
+| `ANDROID_KEY_ALIAS`         | `clash-upload`                                                               |
+| `ANDROID_KEY_PASSWORD`      | the key password (same as the store password unless you set a different one) |
 
 Then delete `keystore.b64` from your device — the plain base64 is as sensitive
 as the keystore itself:

@@ -71,8 +71,8 @@ export function ComingSoon({ which, onClose }: { which: string; onClose: () => v
       >
         <div className="soon-badge">NOT BUILT YET</div>
         <p className="dim soon-detail">
-          Everything below is planned but not in the game yet. Your coins and gems are being
-          banked now and will carry over.
+          Everything below is planned but not in the game yet. Your coins and gems are being banked
+          now and will carry over.
         </p>
         {ROADMAP.map((key) => {
           const item = COPY[key]!;

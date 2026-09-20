@@ -97,17 +97,14 @@ export function patchBuildGradle(source: string, opts: SigningOptions): string {
       '$1\n            signingConfig signingConfigs.release',
     );
     if (out === before) {
-      throw new PatchError('could not find a `release { }` build type to attach the signing config to');
+      throw new PatchError(
+        'could not find a `release { }` build type to attach the signing config to',
+      );
     }
   }
 
   // 3. version code / name
-  out = replaceOrThrow(
-    out,
-    /versionCode\s+\d+/,
-    `versionCode ${opts.versionCode}`,
-    'versionCode',
-  );
+  out = replaceOrThrow(out, /versionCode\s+\d+/, `versionCode ${opts.versionCode}`, 'versionCode');
   out = replaceOrThrow(
     out,
     /versionName\s+"[^"]*"/,

@@ -97,7 +97,11 @@ export function MainMenu({
               {savedLabel ?? 'In progress'} · {saved.seats.length} players
             </span>
           </button>
-          <button className="resume-discard" onClick={onDiscardSaved} aria-label="Discard the unfinished match">
+          <button
+            className="resume-discard"
+            onClick={onDiscardSaved}
+            aria-label="Discard the unfinished match"
+          >
             DISCARD
           </button>
         </div>

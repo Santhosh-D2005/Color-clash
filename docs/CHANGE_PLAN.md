@@ -32,13 +32,13 @@ final names instead of being rewritten.
 Nothing about the rules changes. What changes is every string, image and
 identifier that carries the old brand.
 
-| Layer | Change |
-| --- | --- |
-| npm scope | the old scope → `@colorclash/*` across all 7 workspace packages and every import |
+| Layer              | Change                                                                                                                                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| npm scope          | the old scope → `@colorclash/*` across all 7 workspace packages and every import                                                                                                                      |
 | Engine identifiers | the declaration call's identifiers became `clashPending`, `clashCalled`, `CALL_CLASH`, `CLASH_CALLED` / `CLASH_PENDING` / `CLASH_PENALTY`, `clashPenaltyCards`, `clashGraceMs`; `uno.ts` → `clash.ts` |
-| Artwork | All 41 game images plus icons and splash screens regenerated from original vector sources in `tools/gen-brand.ts` |
-| App identity | `capacitor.config.json`, PWA manifest, `index.html` title, package names, workflow artifact names |
-| Mode names | Classic Clash, Flipstorm, Mayhem, Wild Rush, Freestyle |
+| Artwork            | All 41 game images plus icons and splash screens regenerated from original vector sources in `tools/gen-brand.ts`                                                                                     |
+| App identity       | `capacitor.config.json`, PWA manifest, `index.html` title, package names, workflow artifact names                                                                                                     |
+| Mode names         | Classic Clash, Flipstorm, Mayhem, Wild Rush, Freestyle                                                                                                                                                |
 
 The identifier rename is deliberate even though the brief says not to rename
 internal identifiers unnecessarily: part 29 asks for a repository-wide audit
@@ -60,16 +60,16 @@ only gain an original glyph set and card-back.
 
 ## 2. Player-facing fixes
 
-| Part | Issue | Change | Files |
-| --- | --- | --- | --- |
-| 5 | Clock uses a coin icon | New `icon_clock` asset; timer swaps to it | `Table.tsx`, brand generator |
-| 6 | Negative scores on summary | Presentation only: winner shows banked points, others show remaining hand value. Scoring maths untouched | `Result.tsx`, `scoring.ts`, `Standing` gains `handValue`/`banked` |
-| 7 | Dead settings gear | In-match pause sheet: sound, motion, rules, leave, resume. Portrait and landscape | new `MatchSettings.tsx`, `Table.tsx`, CSS |
-| 8 | Dead emote button | Eight predefined emotes, sent over the existing protocol as a new `EMOTE` message; no game state touched | `protocol.ts`, `room.ts`, server `index.ts`, `net.ts`, `useOnline.ts`, new `EmoteBar.tsx` |
-| 9 | Five inert nav buttons | Polished Coming Soon sheet naming what each will hold. Economy values untouched | `MainMenu.tsx`, CSS |
-| 10 | No rules anywhere | Per-mode rules sheet reachable from mode select and the pause sheet | new `Rules.tsx`, new `rules.ts` content module |
-| 12 | Opponent actions unreadable | `presentEvents` rewritten to name player, action, card and result | `presentation.ts` |
-| 11 | Sound toggle controls nothing | WebAudio synthesised cues, no audio files, driven by the engine event stream, gated by the toggle, persisted | new `audio.ts`, `useGame.ts`, `useOnline.ts` |
+| Part | Issue                         | Change                                                                                                       | Files                                                                                     |
+| ---- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| 5    | Clock uses a coin icon        | New `icon_clock` asset; timer swaps to it                                                                    | `Table.tsx`, brand generator                                                              |
+| 6    | Negative scores on summary    | Presentation only: winner shows banked points, others show remaining hand value. Scoring maths untouched     | `Result.tsx`, `scoring.ts`, `Standing` gains `handValue`/`banked`                         |
+| 7    | Dead settings gear            | In-match pause sheet: sound, motion, rules, leave, resume. Portrait and landscape                            | new `MatchSettings.tsx`, `Table.tsx`, CSS                                                 |
+| 8    | Dead emote button             | Eight predefined emotes, sent over the existing protocol as a new `EMOTE` message; no game state touched     | `protocol.ts`, `room.ts`, server `index.ts`, `net.ts`, `useOnline.ts`, new `EmoteBar.tsx` |
+| 9    | Five inert nav buttons        | Polished Coming Soon sheet naming what each will hold. Economy values untouched                              | `MainMenu.tsx`, CSS                                                                       |
+| 10   | No rules anywhere             | Per-mode rules sheet reachable from mode select and the pause sheet                                          | new `Rules.tsx`, new `rules.ts` content module                                            |
+| 12   | Opponent actions unreadable   | `presentEvents` rewritten to name player, action, card and result                                            | `presentation.ts`                                                                         |
+| 11   | Sound toggle controls nothing | WebAudio synthesised cues, no audio files, driven by the engine event stream, gated by the toggle, persisted | new `audio.ts`, `useGame.ts`, `useOnline.ts`                                              |
 
 ## 3. Pacing — parts 15, 16, 24
 
@@ -77,8 +77,8 @@ The single biggest finding. Fixed at the presentation layer only.
 
 - New `usePacedEvents` queue: engine events are consumed one at a time on a
   600–900 ms cadence rather than all at once. The final state is whatever the
-  engine already produced — the queue changes *when* the UI sees each event,
-  never *what* happened.
+  engine already produced — the queue changes _when_ the UI sees each event,
+  never _what_ happened.
 - Local play: the bot driver becomes async and yields between decisions.
 - Server: `runBots` becomes an async pump with `setTimeout(0)` yields plus a
   configurable visible delay, so one room's bots cannot monopolise the event
@@ -115,13 +115,13 @@ the wall-clock spacing between them moves.
 
 ## 6. Tooling — parts 17, 18, 21, 22, 23
 
-| Part | Change | Note |
-| --- | --- | --- |
-| 17 | Prettier + a small ESLint flat config, with `lint`/`format`/`format:check` scripts | Config committed; the sandbox has no registry access so CI is where it first runs |
-| 18 | `@types/node`, `@types/react`, `@types/react-dom` added as devDependencies; the hand-written shims move behind an offline-only tsconfig | Both modes documented; neither build breaks |
-| 21 | `.github/workflows/ci.yml` on push and pull request: install, typecheck, lint, unit tests, Playwright | |
-| 22 | Web build moves to the existing Vite config. The single-file `--module system --outFile` path is kept **only** for the offline and APK targets, which need a self-contained document | |
-| 23 | Web build serves real image files and lazy-loads the heavy ones; offline and APK keep the inlined data URIs | |
+| Part | Change                                                                                                                                                                               | Note                                                                              |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| 17   | Prettier + a small ESLint flat config, with `lint`/`format`/`format:check` scripts                                                                                                   | Config committed; the sandbox has no registry access so CI is where it first runs |
+| 18   | `@types/node`, `@types/react`, `@types/react-dom` added as devDependencies; the hand-written shims move behind an offline-only tsconfig                                              | Both modes documented; neither build breaks                                       |
+| 21   | `.github/workflows/ci.yml` on push and pull request: install, typecheck, lint, unit tests, Playwright                                                                                |                                                                                   |
+| 22   | Web build moves to the existing Vite config. The single-file `--module system --outFile` path is kept **only** for the offline and APK targets, which need a self-contained document |                                                                                   |
+| 23   | Web build serves real image files and lazy-loads the heavy ones; offline and APK keep the inlined data URIs                                                                          |                                                                                   |
 
 ## 7. Tests — parts 20, 31
 
@@ -163,7 +163,7 @@ producing output.
 
 **Bugs the new tests found in the new work**, each fixed:
 
-- The turn clock was armed *after* the snapshot was broadcast, so the countdown
+- The turn clock was armed _after_ the snapshot was broadcast, so the countdown
   never reached any client even though the server was timing turns correctly.
 - The top opponent seat overlapped the discard pile in landscape, and the hand
   bar ended a few pixels below the fold.

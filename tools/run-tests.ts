@@ -11,7 +11,26 @@ import { pathToFileURL } from 'node:url';
 import { runAll } from '@colorclash/test-fixtures';
 
 const ROOT = resolve(import.meta.dirname, '..');
-const SKIP = new Set(['node_modules', 'dist', '.git', 'build']);
+// Directories the walker must not descend into.
+//
+// `color-clash-fixed-sources` earns its place here the hard way: it is a stale
+// duplicate of apps/ and packages/ left in the tree, and it carries two of its
+// own *.test.ts files. The runner was finding them and running 31 tests against
+// code that is never built, never imported and has already drifted from the
+// real files — a suite reporting 301 passing tests when 270 of them were the
+// ones that actually mattered. Passing tests over dead code are worse than no
+// tests: they read as coverage.
+const SKIP = new Set([
+  'node_modules',
+  'dist',
+  '.git',
+  'build',
+  '.build',
+  'color-clash-fixed-sources',
+  'scratch',
+  'test-results',
+  'playwright-report',
+]);
 
 function findTests(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {

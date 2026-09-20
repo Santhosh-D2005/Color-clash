@@ -15,13 +15,7 @@ import type { OnlineMatch } from '../state/useOnline.js';
  * never disagree about who is in a seat.
  */
 
-export function OnlineHome({
-  net,
-  onBack,
-}: {
-  net: OnlineMatch;
-  onBack: () => void;
-}) {
+export function OnlineHome({ net, onBack }: { net: OnlineMatch; onBack: () => void }) {
   const [code, setCode] = useState('');
   const [version, setVersion] = useState<GameVersion>('CLASSIC');
   const connected = net.status === 'CONNECTED';
@@ -44,7 +38,11 @@ export function OnlineHome({
         {net.error ? (
           <div className="net-error" role="alert">
             {net.error}
-            <button className="btn btn-ghost" onClick={net.clearError} style={{ padding: '4px 12px' }}>
+            <button
+              className="btn btn-ghost"
+              onClick={net.clearError}
+              style={{ padding: '4px 12px' }}
+            >
               Dismiss
             </button>
           </div>
@@ -112,13 +110,7 @@ export function OnlineHome({
   );
 }
 
-export function OnlineLobby({
-  net,
-  onLeave,
-}: {
-  net: OnlineMatch;
-  onLeave: () => void;
-}) {
+export function OnlineLobby({ net, onLeave }: { net: OnlineMatch; onLeave: () => void }) {
   const room = net.room!;
   const me = room.seats.find((s) => s.playerId === net.playerId);
   const isHost = room.hostId === net.playerId;
@@ -148,7 +140,10 @@ export function OnlineLobby({
 
       <div className="lobby-body">
         <section className="panel seat-list" aria-label="Players">
-          <div className="setting-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div
+            className="setting-label"
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
             <span>Players</span>
             <span>
               {room.seats.length}/{room.maxSeats}
@@ -325,8 +320,7 @@ function ConnectionPill({ net }: { net: OnlineMatch }) {
     RECONNECTING: 'Reconnecting…',
     CLOSED: 'Disconnected',
   };
-  const tone =
-    net.status === 'CONNECTED' ? 'ok' : net.status === 'RECONNECTING' ? 'warn' : 'bad';
+  const tone = net.status === 'CONNECTED' ? 'ok' : net.status === 'RECONNECTING' ? 'warn' : 'bad';
   return (
     <div className={`conn-pill ${tone}`} aria-live="polite">
       <i />

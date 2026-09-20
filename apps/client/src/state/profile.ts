@@ -37,10 +37,16 @@ export const NAME_MAX = 16;
  * let someone smuggle layout into another player's seat label.
  */
 export function normaliseName(raw: string): string {
-  return raw
-    .replace(/[\u0000-\u001f\u007f]/g, '')
-    .trim()
-    .slice(0, NAME_MAX);
+  return (
+    raw
+      // The control characters are the point: this is the strip that stops a
+      // name smuggling layout into another player's seat label. no-control-regex
+      // exists to catch them arriving by accident, which is not the case here.
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\u0000-\u001f\u007f]/g, '')
+      .trim()
+      .slice(0, NAME_MAX)
+  );
 }
 
 export function isValidName(raw: string): boolean {

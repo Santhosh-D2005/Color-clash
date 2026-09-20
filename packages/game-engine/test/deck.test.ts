@@ -138,11 +138,7 @@ describe('deck composition — Launch Checklist "validate each deck count agains
   it('declared expectedTotal matches generated size for every composition', () => {
     expect(getManifest('CLASSIC').createDeck(rng()).length).toBe(CLASSIC_DECK.expectedTotal);
     expect(getManifest('FLIP').createDeck(rng()).length).toBe(FLIP_DECK.expectedTotal);
-    expect(getManifest('MAYHEM').createDeck(rng()).length).toBe(
-      MAYHEM_DECK.expectedTotal,
-    );
-    expect(
-      Object.values(ALL_WILD_DECK).reduce((a, b) => a + (b ?? 0), 0),
-    ).toBe(ALL_WILD_TOTAL);
+    expect(getManifest('MAYHEM').createDeck(rng()).length).toBe(MAYHEM_DECK.expectedTotal);
+    expect(Object.values(ALL_WILD_DECK).reduce((a, b) => a + (b ?? 0), 0)).toBe(ALL_WILD_TOTAL);
   });
 });

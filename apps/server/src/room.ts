@@ -14,7 +14,13 @@ import {
   type RngLike,
 } from '@colorclash/shared';
 import { configFor, VERSION_META } from '@colorclash/game-content';
-import { buildPlayerView, cloneState, createMatch, getManifest, reduce } from '@colorclash/game-engine';
+import {
+  buildPlayerView,
+  cloneState,
+  createMatch,
+  getManifest,
+  reduce,
+} from '@colorclash/game-engine';
 import { decide } from '@colorclash/ai';
 import { INLINE_TIMERS, type TimerHandle, type Timers } from './timers.js';
 
@@ -631,7 +637,10 @@ export class MatchRoom {
     const view = this.viewFor(actor);
     if (!view) return;
 
-    for (const command of autoCommandsFor(view, () => `auto-${this.roomId}-${this.autoCommandSeq++}`)) {
+    for (const command of autoCommandsFor(
+      view,
+      () => `auto-${this.roomId}-${this.autoCommandSeq++}`,
+    )) {
       const before = this.state?.seq;
       const out = this.submit(command);
       if (!out.accepted || this.state?.seq === before) break;
@@ -790,9 +799,7 @@ export class MatchRoom {
    */
   resync(playerId: PlayerId, sinceSeq: number): { view?: PlayerView; missed: GameEvent[] } {
     if (!this.state) return { missed: [] };
-    const missed = this.history
-      .filter((h) => h.seq > sinceSeq)
-      .flatMap((h) => h.events);
+    const missed = this.history.filter((h) => h.seq > sinceSeq).flatMap((h) => h.events);
     return { view: buildPlayerView(this.state, playerId), missed };
   }
 

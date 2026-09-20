@@ -28,8 +28,17 @@ const SKIP_DIRS = new Set([
 ]);
 
 const EXTS = new Set([
-  '.ts', '.tsx', '.js', '.mjs', '.cjs', '.json', '.css', '.html',
-  '.webmanifest', '.yml', '.yaml',
+  '.ts',
+  '.tsx',
+  '.js',
+  '.mjs',
+  '.cjs',
+  '.json',
+  '.css',
+  '.html',
+  '.webmanifest',
+  '.yml',
+  '.yaml',
 ]);
 
 /**
@@ -89,9 +98,7 @@ if (findings.length > 0) {
     console.error(`  ${f.file}:${f.line}  (${f.what})`);
     console.error(`    ${f.text}`);
   }
-  console.error(
-    '\nThe app ships as Color Clash. See docs/BRANDING.md for what each name became.',
-  );
+  console.error('\nThe app ships as Color Clash. See docs/BRANDING.md for what each name became.');
   process.exit(1);
 }
 

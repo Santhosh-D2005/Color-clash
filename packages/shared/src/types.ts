@@ -12,12 +12,7 @@ export type Color = string;
 export type Direction = 1 | -1;
 export type DeckSide = 'LIGHT_SIDE' | 'DARK_SIDE';
 
-export type GameVersion =
-  | 'CLASSIC'
-  | 'FLIP'
-  | 'MAYHEM'
-  | 'ALL_WILD'
-  | 'FLEX';
+export type GameVersion = 'CLASSIC' | 'FLIP' | 'MAYHEM' | 'ALL_WILD' | 'FLEX';
 
 /**
  * Every distinct card behaviour across all five rulesets.

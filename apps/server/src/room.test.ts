@@ -1,4 +1,3 @@
-import { createRng } from '@colorclash/shared';
 import type { Command, GameVersion, PlayerView } from '@colorclash/shared';
 import { describe, expect, it } from '@colorclash/test-fixtures';
 import { MatchRoom } from './room.js';
@@ -185,7 +184,7 @@ describe('MatchRoom — authoritative server (§10, §15)', () => {
     expect(view!.players).toHaveLength(2);
   });
 
-  it('a snapshot never contains another player\'s hand (§15)', () => {
+  it("a snapshot never contains another player's hand (§15)", () => {
     const r = room();
     r.start('H');
     const view = r.viewFor('H')!;

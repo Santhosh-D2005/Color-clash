@@ -9,7 +9,7 @@ import type { DeckComposition } from '@colorclash/game-content';
  * card rather than a random uuid.
  */
 
-let makeId = (parts: (string | number | undefined)[]): string =>
+const makeId = (parts: (string | number | undefined)[]): string =>
   parts.filter((p) => p !== undefined && p !== '').join('#');
 
 export function colorCode(color: Color): string {

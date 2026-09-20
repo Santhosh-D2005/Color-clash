@@ -40,7 +40,8 @@ export type WsServer = {
 
 export function createWsServer(): WsServer {
   let connectionCb: ((conn: WsConnection, req: IncomingMessage) => void) | undefined;
-  let httpCb: ((url: string) => { body: string | Uint8Array; type: string } | undefined) | undefined;
+  let httpCb:
+    ((url: string) => { body: string | Uint8Array; type: string } | undefined) | undefined;
   let counter = 0;
 
   const http = createServer((req, res) => {

@@ -17,7 +17,7 @@
  *
  *   npx tsx tools/gen-brand.ts
  */
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
 
@@ -95,10 +95,6 @@ function shard(x: number, y: number, w: number, h: number, fill: string, skew = 
   return `<polygon points="${x + s},${y} ${x + w},${y} ${x + w - s},${y + h} ${x},${y + h}" fill="${fill}"/>`;
 }
 
-function roundRect(x: number, y: number, w: number, h: number, r: number, fill: string, extra = ''): string {
-  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" ${extra}/>`;
-}
-
 /* ------------------------------------------------------------------ */
 /* Individual assets                                                   */
 /* ------------------------------------------------------------------ */
@@ -109,13 +105,41 @@ const A: Record<string, () => string> = {
   logo: () => {
     // Exact Comic Pop-Art Logo (Panels 1, 2, 3)
     const starburstPts = [
-      [291, 15], [328, 62], [385, 30], [402, 88], [460, 75], [455, 135],
-      [512, 142], [485, 198], [538, 235], [488, 268], [520, 320], [458, 332],
-      [465, 388], [405, 375], [382, 428], [328, 395], [291, 440], [254, 395],
-      [200, 428], [177, 375], [117, 388], [124, 332], [62, 320], [94, 268],
-      [44, 235], [97, 198], [70, 142], [127, 135], [122, 75], [180, 88],
-      [197, 30], [254, 62]
-    ].map(([x, y = 0]) => `${x},${y * 0.88}`).join(' ');
+      [291, 15],
+      [328, 62],
+      [385, 30],
+      [402, 88],
+      [460, 75],
+      [455, 135],
+      [512, 142],
+      [485, 198],
+      [538, 235],
+      [488, 268],
+      [520, 320],
+      [458, 332],
+      [465, 388],
+      [405, 375],
+      [382, 428],
+      [328, 395],
+      [291, 440],
+      [254, 395],
+      [200, 428],
+      [177, 375],
+      [117, 388],
+      [124, 332],
+      [62, 320],
+      [94, 268],
+      [44, 235],
+      [97, 198],
+      [70, 142],
+      [127, 135],
+      [122, 75],
+      [180, 88],
+      [197, 30],
+      [254, 62],
+    ]
+      .map(([x, y = 0]) => `${x},${y * 0.88}`)
+      .join(' ');
 
     return svg(
       582,
@@ -155,7 +179,7 @@ const A: Record<string, () => string> = {
       <!-- Ribbon Front White Card -->
       <polygon points="56,335 526,335 512,392 70,392" fill="#ffffff" stroke="#000000" stroke-width="6"/>
       <text x="291" y="375" font-family="Impact, Arial Black, sans-serif" font-size="28" font-weight="bold"
-            fill="#000000" text-anchor="middle" letter-spacing="3">SAME COLORS. NEW BATTLES!</text>`
+            fill="#000000" text-anchor="middle" letter-spacing="3">SAME COLORS. NEW BATTLES!</text>`,
     );
   },
 
@@ -169,7 +193,7 @@ const A: Record<string, () => string> = {
               fill="#ffd600" stroke="#000000" stroke-width="9" paint-order="stroke fill" text-anchor="middle" letter-spacing="5">COLOR-</text>
         <text x="291" y="280" font-family="Impact, Arial Black, sans-serif" font-size="136" font-weight="900"
               fill="#ff204e" stroke="#000000" stroke-width="10" paint-order="stroke fill" text-anchor="middle" letter-spacing="6">CLASH</text>
-      </g>`
+      </g>`,
     ),
 
   /** The declaration button. Replaces the old branded call entirely. */
@@ -181,7 +205,7 @@ const A: Record<string, () => string> = {
       <rect x="10" y="12" width="468" height="180" rx="36" fill="#ffd600" stroke="#000000" stroke-width="8"/>
       <rect x="24" y="24" width="440" height="70" rx="20" fill="#ffffff44"/>
       <text x="248" y="138" font-family="Impact, Arial Black, sans-serif" font-size="108" font-weight="900"
-            fill="#ff204e" stroke="#000000" stroke-width="9" paint-order="stroke fill" text-anchor="middle" letter-spacing="8">CLASH!</text>`
+            fill="#ff204e" stroke="#000000" stroke-width="9" paint-order="stroke fill" text-anchor="middle" letter-spacing="8">CLASH!</text>`,
     ),
 
   card_back: () =>
@@ -192,7 +216,7 @@ const A: Record<string, () => string> = {
       <rect x="14" y="14" width="252" height="342" rx="14" fill="#002b5c" stroke="#000000" stroke-width="4"/>
       <circle cx="140" cy="185" r="72" fill="#ffd600" stroke="#000000" stroke-width="6"/>
       <circle cx="140" cy="185" r="48" fill="#ff204e" stroke="#000000" stroke-width="5"/>
-      <text x="140" y="200" font-family="Impact, Arial Black, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" stroke="#000000" stroke-width="3" text-anchor="middle">CC</text>`
+      <text x="140" y="200" font-family="Impact, Arial Black, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" stroke="#000000" stroke-width="3" text-anchor="middle">CC</text>`,
     ),
 
   banner_youwin: () =>
@@ -202,7 +226,7 @@ const A: Record<string, () => string> = {
       `<polygon points="40,24 744,24 714,148 70,148" fill="#000000"/>
       <polygon points="30,14 734,14 704,138 60,138" fill="#ffd600" stroke="#000000" stroke-width="7"/>
       <text x="382" y="108" font-family="Impact, Arial Black, sans-serif" font-size="96" font-weight="900"
-            fill="#000000" text-anchor="middle" letter-spacing="8">YOU WIN!</text>`
+            fill="#000000" text-anchor="middle" letter-spacing="8">YOU WIN!</text>`,
     ),
 
   /* ---- HUD icons ---- */
@@ -244,8 +268,11 @@ const A: Record<string, () => string> = {
       120,
       `<g transform="translate(80,60)">
         ${[...Array(8)]
-        .map((_, i) => `<rect x="-9" y="-52" width="18" height="24" rx="4" fill="${BRAND.text}" transform="rotate(${i * 45})"/>`)
-        .join('')}
+          .map(
+            (_, i) =>
+              `<rect x="-9" y="-52" width="18" height="24" rx="4" fill="${BRAND.text}" transform="rotate(${i * 45})"/>`,
+          )
+          .join('')}
         <circle r="34" fill="${BRAND.text}"/>
         <circle r="16" fill="${BRAND.deep}"/>
       </g>`,
@@ -319,14 +346,14 @@ const A: Record<string, () => string> = {
       268,
       `<g transform="translate(220,150)">
         ${[-28, -14, 0, 14, 28]
-        .map(
-          (a, i) =>
-            `<g transform="rotate(${a}) translate(0,-18)">
+          .map(
+            (a, i) =>
+              `<g transform="rotate(${a}) translate(0,-18)">
                  <rect x="-52" y="-96" width="104" height="150" rx="14"
                        fill="${BRAND.shard[i % 4]}" stroke="${BRAND.paper}" stroke-width="6"/>
                </g>`,
-        )
-        .join('')}
+          )
+          .join('')}
       </g>`,
     ),
 

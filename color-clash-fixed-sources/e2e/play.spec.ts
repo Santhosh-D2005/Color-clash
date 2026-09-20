@@ -52,17 +52,34 @@ test('opponents take visibly separate turns', async ({ page }) => {
   // step, which is observable as the seat counts changing at separate moments
   // rather than all at once.
   const seatCounts = () =>
-    page.locator('.seat .seat-meta').allInnerTexts().then((t) => t.join('|'));
+    page
+      .locator('.seat .seat-meta')
+      .allInnerTexts()
+      .then((t) => t.join('|'));
 
   const act = async () => {
     // Drawing can leave you still on turn and able to pass, in which case the
     // opponents are correctly waiting on you and nothing should be moving.
-    if (await page.getByRole('button', { name: 'PASS' }).isVisible().catch(() => false)) {
-      await page.getByRole('button', { name: 'PASS' }).click().catch(() => {});
+    if (
+      await page
+        .getByRole('button', { name: 'PASS' })
+        .isVisible()
+        .catch(() => false)
+    ) {
+      await page
+        .getByRole('button', { name: 'PASS' })
+        .click()
+        .catch(() => {});
     } else if ((await playableCards(page).count()) > 0) {
-      await playableCards(page).first().click().catch(() => {});
+      await playableCards(page)
+        .first()
+        .click()
+        .catch(() => {});
     } else {
-      await page.getByRole('button', { name: /Draw pile/ }).click().catch(() => {});
+      await page
+        .getByRole('button', { name: /Draw pile/ })
+        .click()
+        .catch(() => {});
     }
     // Playing a wild opens a colour picker whose scrim blocks everything
     // underneath, so the table would sit still for a reason that has nothing
@@ -85,7 +102,12 @@ test('opponents take visibly separate turns', async ({ page }) => {
     // If the turn came back to us without any opponent moving, keep it going —
     // including when what came back is a choice rather than a card.
     await clearOpeningChoice(page);
-    if (await page.getByRole('button', { name: 'PASS' }).isVisible().catch(() => false)) {
+    if (
+      await page
+        .getByRole('button', { name: 'PASS' })
+        .isVisible()
+        .catch(() => false)
+    ) {
       await act();
     }
   }
@@ -208,7 +230,9 @@ test('the bottom menu is one honest entry, not five dead ones', async ({ page })
   const nav = page.locator('.navbar .nav-item');
   await expect(nav).toHaveCount(1);
   for (const gone of ['STORE', 'COLLECTION', 'MISSIONS', 'LEADERBOARD']) {
-    await expect(page.getByRole('button', { name: new RegExp(`${gone} — not built yet`) })).toHaveCount(0);
+    await expect(
+      page.getByRole('button', { name: new RegExp(`${gone} — not built yet`) }),
+    ).toHaveCount(0);
   }
 
   await nav.click();
@@ -241,8 +265,19 @@ test('the summary reports results without negative numbers as the headline', asy
 
   const deadline = Date.now() + 60_000;
   while (Date.now() < deadline) {
-    if (await page.getByText('MATCH SUMMARY').isVisible().catch(() => false)) break;
-    if (await page.getByRole('button', { name: 'SUMMARY' }).isVisible().catch(() => false)) {
+    if (
+      await page
+        .getByText('MATCH SUMMARY')
+        .isVisible()
+        .catch(() => false)
+    )
+      break;
+    if (
+      await page
+        .getByRole('button', { name: 'SUMMARY' })
+        .isVisible()
+        .catch(() => false)
+    ) {
       await page.getByRole('button', { name: 'SUMMARY' }).click({ timeout: 5000 });
       await page.waitForTimeout(300);
       continue;
@@ -256,21 +291,57 @@ test('the summary reports results without negative numbers as the headline', asy
     const playable = playableCards(page).first();
     if ((await playableCards(page).count()) > 0) {
       await playable.click(quick).catch(() => {});
-    } else if (await page.getByRole('button', { name: 'PASS' }).isVisible().catch(() => false)) {
-      await page.getByRole('button', { name: 'PASS' }).click(quick).catch(() => {});
+    } else if (
+      await page
+        .getByRole('button', { name: 'PASS' })
+        .isVisible()
+        .catch(() => false)
+    ) {
+      await page
+        .getByRole('button', { name: 'PASS' })
+        .click(quick)
+        .catch(() => {});
     } else {
-      await page.getByRole('button', { name: /Draw pile/ }).click(quick).catch(() => {});
+      await page
+        .getByRole('button', { name: /Draw pile/ })
+        .click(quick)
+        .catch(() => {});
     }
     // A choice blocks everything else; answer it and carry on.
-    if (await page.locator('.color-choice').first().isVisible().catch(() => false)) {
-      await page.locator('.color-choice').first().click(quick).catch(() => {});
-    } else if (await page.locator('.target-row').first().isVisible().catch(() => false)) {
-      await page.locator('.target-row').first().click(quick).catch(() => {});
+    if (
+      await page
+        .locator('.color-choice')
+        .first()
+        .isVisible()
+        .catch(() => false)
+    ) {
+      await page
+        .locator('.color-choice')
+        .first()
+        .click(quick)
+        .catch(() => {});
+    } else if (
+      await page
+        .locator('.target-row')
+        .first()
+        .isVisible()
+        .catch(() => false)
+    ) {
+      await page
+        .locator('.target-row')
+        .first()
+        .click(quick)
+        .catch(() => {});
     }
     await page.waitForTimeout(150);
   }
 
-  if (!(await page.getByText('MATCH SUMMARY').isVisible().catch(() => false))) {
+  if (
+    !(await page
+      .getByText('MATCH SUMMARY')
+      .isVisible()
+      .catch(() => false))
+  ) {
     test.skip(true, 'round did not finish inside the window');
   }
 

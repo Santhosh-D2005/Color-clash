@@ -27,12 +27,7 @@ import type {
  * cannot be inferred from animation state" (§10.1).
  */
 
-export type ConnectionStatus =
-  | 'IDLE'
-  | 'CONNECTING'
-  | 'CONNECTED'
-  | 'RECONNECTING'
-  | 'CLOSED';
+export type ConnectionStatus = 'IDLE' | 'CONNECTING' | 'CONNECTED' | 'RECONNECTING' | 'CLOSED';
 
 export type NetListeners = {
   onStatus?(status: ConnectionStatus, detail?: string): void;

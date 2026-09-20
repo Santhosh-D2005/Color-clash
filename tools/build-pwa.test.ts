@@ -71,7 +71,12 @@ describe('PWA packaging — the page', () => {
 });
 
 describe('PWA packaging — the precache list', () => {
-  const emitted = ['index.html', 'assets/app-a1b2c3.js', 'assets/app-d4e5f6.css', 'assets/logo.png'];
+  const emitted = [
+    'index.html',
+    'assets/app-a1b2c3.js',
+    'assets/app-d4e5f6.css',
+    'assets/logo.png',
+  ];
 
   it('caches every emitted file, so the install is genuinely offline', () => {
     const list = precacheList(emitted);

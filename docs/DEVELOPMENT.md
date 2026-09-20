@@ -23,10 +23,10 @@ same links directly.
 
 ## Typechecking: two modes, both real
 
-| Command | Config | What it proves |
-| --- | --- | --- |
-| `npm run typecheck` | `tsconfig.json` | The tree compiles with **no dependencies at all**, using the hand-written shims in `types/` |
-| `npm run typecheck:installed` | `tsconfig.installed.json` | The tree compiles against the **real** `@types/node`, `@types/react` and `vite/client` |
+| Command                       | Config                    | What it proves                                                                              |
+| ----------------------------- | ------------------------- | ------------------------------------------------------------------------------------------- |
+| `npm run typecheck`           | `tsconfig.json`           | The tree compiles with **no dependencies at all**, using the hand-written shims in `types/` |
+| `npm run typecheck:installed` | `tsconfig.installed.json` | The tree compiles against the **real** `@types/node`, `@types/react` and `vite/client`      |
 
 The shims exist because this project must be checkable and testable on a
 machine with no registry access, which is a genuine constraint on it. They are
@@ -44,11 +44,11 @@ an attempt at a second `@types/node`.
 
 Three outputs, **one bundler**.
 
-| Command | Output | For |
-| --- | --- | --- |
-| `npm run build:web` | `apps/client/dist` | The web. Real image files, hashed and cacheable |
-| `npm run build:pwa` | `dist/pwa` | Installable app, and the Android wrapper's web assets |
-| `npm run build:single` | `dist/color-clash.html` | One self-contained, offline-capable document |
+| Command                | Output                  | For                                                   |
+| ---------------------- | ----------------------- | ----------------------------------------------------- |
+| `npm run build:web`    | `apps/client/dist`      | The web. Real image files, hashed and cacheable       |
+| `npm run build:pwa`    | `dist/pwa`              | Installable app, and the Android wrapper's web assets |
+| `npm run build:single` | `dist/color-clash.html` | One self-contained, offline-capable document          |
 
 All three are Vite. `build:pwa` runs `build:web` and adds a manifest, an icon
 set and a service worker; `build:single` runs the same project through
@@ -90,11 +90,11 @@ See `docs/BRANDING.md`.
 
 ## Tests
 
-| Command | What |
-| --- | --- |
-| `npm test` | Engine, rulesets, server room, network protocol. No browser, no network |
-| `npm run test:e2e` | Playwright, against the built PWA served over http |
-| `npm run audit:brand` | Fails if the previous trademark reappears anywhere shippable |
+| Command               | What                                                                    |
+| --------------------- | ----------------------------------------------------------------------- |
+| `npm test`            | Engine, rulesets, server room, network protocol. No browser, no network |
+| `npm run test:e2e`    | Playwright, against the built PWA served over http                      |
+| `npm run audit:brand` | Fails if the previous trademark reappears anywhere shippable            |
 
 The unit suite has its own runner (`tools/run-tests.ts`) for the same reason
 the shims exist: it has to work with nothing installed.
@@ -117,12 +117,12 @@ specs run on desktop only, and spawn a real match server.
 npm run dev:server
 ```
 
-| Variable | Default | Effect |
-| --- | --- | --- |
-| `PORT` | `8787` | |
-| `CLASH_TURN_TIMEOUT_MS` | `30000` | Time a player has before the server plays a legal move for them. `0` disables |
-| `CLASH_BOT_DELAY_MS` | `700` | Gap between visible bot moves; also the yield that keeps one room's bots off another room's back |
-| `CLASH_DATA_DIR` | `data/rooms` | Where live matches are persisted |
+| Variable                | Default      | Effect                                                                                           |
+| ----------------------- | ------------ | ------------------------------------------------------------------------------------------------ |
+| `PORT`                  | `8787`       |                                                                                                  |
+| `CLASH_TURN_TIMEOUT_MS` | `30000`      | Time a player has before the server plays a legal move for them. `0` disables                    |
+| `CLASH_BOT_DELAY_MS`    | `700`        | Gap between visible bot moves; also the yield that keeps one room's bots off another room's back |
+| `CLASH_DATA_DIR`        | `data/rooms` | Where live matches are persisted                                                                 |
 
 **Persistence** is one JSON file per room holding a seed and the accepted
 command log — not the board. The engine is a deterministic reducer, so replaying

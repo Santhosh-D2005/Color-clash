@@ -97,7 +97,9 @@ export function expect<T>(actual: T) {
       if (codeOrMessage) {
         const text = `${(err as Error)?.message ?? ''} ${(err as { code?: string })?.code ?? ''}`;
         if (!text.includes(codeOrMessage)) {
-          throw new AssertionError(`expected throw matching "${codeOrMessage}", got "${text.trim()}"`);
+          throw new AssertionError(
+            `expected throw matching "${codeOrMessage}", got "${text.trim()}"`,
+          );
         }
       }
     },

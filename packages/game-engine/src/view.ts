@@ -1,4 +1,11 @@
-import type { Card, CardId, GameState, PlayerId, PlayerView, PublicPlayer } from '@colorclash/shared';
+import type {
+  Card,
+  CardId,
+  GameState,
+  PlayerId,
+  PlayerView,
+  PublicPlayer,
+} from '@colorclash/shared';
 import { canDraw, legalCardIds } from './legal.js';
 
 /**

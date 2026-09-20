@@ -35,10 +35,7 @@ export function Lobby({
     const names = ['Sunny', 'Moonlight', 'TigerX', 'Nova', 'Echo', 'Rook', 'Vega', 'Pixel'];
     const taken = new Set(seats.map((s) => s.name));
     const name = names.find((n) => !taken.has(n)) ?? `Bot ${seats.length}`;
-    onSeats([
-      ...seats,
-      { id: `bot-${seats.length}`, name, isBot: true, botTier: 'NORMAL' },
-    ]);
+    onSeats([...seats, { id: `bot-${seats.length}`, name, isBot: true, botTier: 'NORMAL' }]);
   };
 
   return (
@@ -146,7 +143,9 @@ export function Lobby({
             <span className="setting-label">Draw rule</span>
             <select
               value={config.drawRule}
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onConfig({ drawRule: e.target.value as MatchConfig['drawRule'] })}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                onConfig({ drawRule: e.target.value as MatchConfig['drawRule'] })
+              }
             >
               <option value="DRAW_ONE">Draw One</option>
               <option value="DRAW_UNTIL_PLAYABLE">Draw Until Playable</option>
@@ -158,7 +157,11 @@ export function Lobby({
               Stacking
               {version === 'MAYHEM' ? '' : ' (house rule)'}
             </span>
-            <Toggle on={config.stacking} onChange={(v) => onConfig({ stacking: v })} label="Stacking" />
+            <Toggle
+              on={config.stacking}
+              onChange={(v) => onConfig({ stacking: v })}
+              label="Stacking"
+            />
           </div>
 
           {/*

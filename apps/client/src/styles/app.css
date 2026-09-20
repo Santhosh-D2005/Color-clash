@@ -159,7 +159,9 @@ button {
   background-image:
     radial-gradient(rgba(0, 229, 255, 0.15) 18%, transparent 19%),
     radial-gradient(rgba(255, 214, 0, 0.1) 18%, transparent 19%);
-  background-position: 0 0, 10px 10px;
+  background-position:
+    0 0,
+    10px 10px;
   background-size: 20px 20px;
 }
 
@@ -172,7 +174,9 @@ button {
   overflow: hidden;
   background: var(--comic-blue);
   border: var(--border-ink-thick);
-  box-shadow: 0 0 0 4px #000000, 10px 10px 0px #000000;
+  box-shadow:
+    0 0 0 4px #000000,
+    10px 10px 0px #000000;
 }
 
 @media (orientation: portrait) {
@@ -211,7 +215,9 @@ button {
   background-image:
     radial-gradient(rgba(0, 0, 0, 0.22) 18%, transparent 19%),
     repeating-conic-gradient(from 0deg at 50% 50%, #00b4d8 0deg 12deg, #0077b6 12deg 24deg);
-  background-size: 16px 16px, 100% 100%;
+  background-size:
+    16px 16px,
+    100% 100%;
 }
 
 /* Yellow Sunburst (Loading, Splash) */
@@ -221,7 +227,9 @@ button {
   background-image:
     radial-gradient(rgba(0, 0, 0, 0.18) 18%, transparent 19%),
     repeating-conic-gradient(from 0deg at 50% 50%, #ffe600 0deg 10deg, #ffb700 10deg 20deg);
-  background-size: 16px 16px, 100% 100%;
+  background-size:
+    16px 16px,
+    100% 100%;
 }
 
 /* Win Screen Sunbursts */
@@ -230,7 +238,9 @@ button {
   background-image:
     radial-gradient(rgba(0, 0, 0, 0.18) 18%, transparent 19%),
     repeating-conic-gradient(from 0deg at 50% 50%, #00e5ff 0deg 10deg, #0077b6 10deg 20deg);
-  background-size: 16px 16px, 100% 100%;
+  background-size:
+    16px 16px,
+    100% 100%;
 }
 .bg-win.tone-lost,
 .bg-win.tone-out {
@@ -238,7 +248,9 @@ button {
   background-image:
     radial-gradient(rgba(0, 0, 0, 0.2) 18%, transparent 19%),
     repeating-conic-gradient(from 0deg at 50% 50%, #ff204e 0deg 10deg, #9d0208 10deg 20deg);
-  background-size: 16px 16px, 100% 100%;
+  background-size:
+    16px 16px,
+    100% 100%;
 }
 
 /* ------------------------------------------------------------------ */
@@ -329,7 +341,10 @@ button {
   color: #000000;
   border: var(--border-ink);
   box-shadow: var(--shadow-comic);
-  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease), filter var(--micro) var(--ease);
+  transition:
+    transform var(--micro) var(--ease),
+    box-shadow var(--micro) var(--ease),
+    filter var(--micro) var(--ease);
 }
 .btn:hover:not(:disabled) {
   transform: translate(-1px, -1px);
@@ -374,7 +389,9 @@ button {
   box-shadow: 3px 3px 0px #000000;
   display: grid;
   place-items: center;
-  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
+  transition:
+    transform var(--micro) var(--ease),
+    box-shadow var(--micro) var(--ease);
   color: #000000;
 }
 .icon-btn:hover {
@@ -452,7 +469,12 @@ button {
   display: block;
   height: 100%;
   border-radius: 8px;
-  background: linear-gradient(180deg, #fff777 0%, var(--comic-yellow) 50%, var(--comic-orange) 100%);
+  background: linear-gradient(
+    180deg,
+    #fff777 0%,
+    var(--comic-yellow) 50%,
+    var(--comic-orange) 100%
+  );
   border: 1.5px solid #000000;
   transition: width 200ms linear;
 }
@@ -576,11 +598,15 @@ button {
   border: var(--border-ink-thick);
   box-shadow: var(--shadow-comic-lg);
   color: #ffffff;
-  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
+  transition:
+    transform var(--micro) var(--ease),
+    box-shadow var(--micro) var(--ease);
 }
 .tile:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 0 2px #000, 8px 8px 0px #000000;
+  box-shadow:
+    0 0 0 2px #000,
+    8px 8px 0px #000000;
 }
 .tile:active {
   transform: translate(2px, 2px);
@@ -744,11 +770,15 @@ button {
   border: var(--border-ink-thick);
   box-shadow: var(--shadow-comic-lg);
   color: #ffffff;
-  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
+  transition:
+    transform var(--micro) var(--ease),
+    box-shadow var(--micro) var(--ease);
 }
 .mode-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 0 2px #000, 8px 8px 0px #000000;
+  box-shadow:
+    0 0 0 2px #000,
+    8px 8px 0px #000000;
 }
 .mode-card:focus-visible {
   outline: 3px solid var(--comic-yellow);
@@ -1020,7 +1050,9 @@ button {
 }
 .turn-chip.you {
   background: var(--comic-yellow);
-  box-shadow: 0 0 0 2px #000, 4px 4px 0px #000000;
+  box-shadow:
+    0 0 0 2px #000,
+    4px 4px 0px #000000;
 }
 .turn-chip-name {
   font-family: var(--font-comic);
@@ -1083,10 +1115,25 @@ button {
 .draw-pile.actionable {
   animation: comic-draw-pulse 1.4s ease-in-out infinite;
 }
+/*
+ * The pulse animates the ring only — never `transform`.
+ *
+ * A transform changes the element's client rect, and this animation is
+ * `infinite` on the very element a player (or a test) is meant to click. Any
+ * actionability check that waits for a stable bounding box therefore waits
+ * forever: the browser suite failed 80 times in a row on "element is not
+ * stable" against a draw pile that was visible, enabled and perfectly usable
+ * by a human.
+ *
+ * `box-shadow` is painted outside the border box and affects neither layout
+ * nor the client rect, so the affordance survives and the box stands still.
+ * The ring widens from 4px to 6px to carry the emphasis the lift used to give.
+ */
 @keyframes comic-draw-pulse {
   50% {
-    box-shadow: 0 0 0 4px var(--comic-yellow), 6px 6px 0px #000000;
-    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+      0 0 0 6px var(--comic-yellow),
+      6px 6px 0px #000000;
   }
 }
 .draw-pile img {
@@ -1122,7 +1169,28 @@ button {
   inset: -28px;
   border-radius: 50%;
   background: var(--comic-yellow) !important;
-  clip-path: polygon(50% 0%, 63% 18%, 85% 6%, 82% 28%, 100% 35%, 88% 53%, 98% 70%, 78% 75%, 79% 98%, 60% 88%, 45% 100%, 35% 85%, 15% 95%, 20% 73%, 0% 65%, 15% 48%, 2% 32%, 22% 28%, 18% 5%, 38% 18%);
+  clip-path: polygon(
+    50% 0%,
+    63% 18%,
+    85% 6%,
+    82% 28%,
+    100% 35%,
+    88% 53%,
+    98% 70%,
+    78% 75%,
+    79% 98%,
+    60% 88%,
+    45% 100%,
+    35% 85%,
+    15% 95%,
+    20% 73%,
+    0% 65%,
+    15% 48%,
+    2% 32%,
+    22% 28%,
+    18% 5%,
+    38% 18%
+  );
   animation: comic-halo-spin 8s linear infinite;
   opacity: 0.95;
   z-index: -1;
@@ -1177,6 +1245,7 @@ button {
   left: 50%;
   transform: translateX(-50%);
 }
+
 .seat-avatar {
   position: relative;
 }
@@ -1191,7 +1260,9 @@ button {
 }
 .seat.active .seat-avatar img {
   border-color: #000000;
-  box-shadow: 0 0 0 3px var(--comic-yellow), 4px 4px 0px #000000;
+  box-shadow:
+    0 0 0 3px var(--comic-yellow),
+    4px 4px 0px #000000;
 }
 .seat.out {
   opacity: 0.45;
@@ -1282,13 +1353,17 @@ button {
 /* Playable Card Pop-out (Panel 7) */
 .card-slot.playable .card {
   border: 3px solid #000000;
-  box-shadow: 0 0 0 2px var(--comic-yellow), 4px 4px 0px #000000;
+  box-shadow:
+    0 0 0 2px var(--comic-yellow),
+    4px 4px 0px #000000;
   cursor: pointer;
 }
 .card-slot.playable:hover .card,
 .card-slot.playable:focus-within .card {
   transform: translateY(-20px) rotate(-1deg);
-  box-shadow: 0 0 0 3px var(--comic-yellow), 6px 6px 0px #000000;
+  box-shadow:
+    0 0 0 3px var(--comic-yellow),
+    6px 6px 0px #000000;
   z-index: 4;
 }
 .card-slot.blocked .card {
@@ -1363,9 +1438,16 @@ button {
   animation: clash-comic-shake 0.8s infinite ease-in-out;
 }
 @keyframes clash-comic-shake {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.08) rotate(-4deg); }
-  75% { transform: scale(1.08) rotate(4deg); }
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.08) rotate(-4deg);
+  }
+  75% {
+    transform: scale(1.08) rotate(4deg);
+  }
 }
 .clash-countdown {
   position: absolute;
@@ -1434,7 +1516,9 @@ button {
   text-transform: uppercase;
   color: var(--comic-yellow);
   -webkit-text-stroke: 3px #000000;
-  text-shadow: 4px 4px 0px #000000, 0 0 20px rgba(255, 214, 0, 0.8);
+  text-shadow:
+    4px 4px 0px #000000,
+    0 0 20px rgba(255, 214, 0, 0.8);
   transform: rotate(-3deg);
   display: inline-block;
   background: #ff204e;
@@ -1833,7 +1917,9 @@ button {
   box-shadow: var(--shadow-comic-sm);
   user-select: none;
   flex-shrink: 0;
-  transition: transform var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
+  transition:
+    transform var(--micro) var(--ease),
+    box-shadow var(--micro) var(--ease);
 }
 .card.lg {
   --card-w: 86px;
@@ -2094,9 +2180,17 @@ button {
   animation: comic-pop 250ms var(--ease);
 }
 @keyframes comic-pop {
-  0% { transform: scale(0.3) rotate(-8deg); opacity: 0; }
-  70% { transform: scale(1.15) rotate(3deg); }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  0% {
+    transform: scale(0.3) rotate(-8deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 .emote-bubble.from-right::after {
@@ -2351,4 +2445,81 @@ button {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Table layout guards — MUST STAY LAST                               */
+/* ------------------------------------------------------------------ */
+/*
+ * These rules are at the end of the file deliberately, and moving them
+ * breaks them.
+ *
+ * A media query adds no specificity. `.card.lg` is declared later in this
+ * stylesheet, so an identical `.card.lg` inside a media query placed above it
+ * simply loses on source order. The first version of this fix sat next to the
+ * seat rules and silently did nothing to the card size: the pile row stayed
+ * 166px tall, landed at y=128, and the top seat ended at exactly y=128 — a
+ * zero-pixel margin that passed the bounding-box test on one machine and
+ * failed it on another.
+ *
+ * Every number below was measured in a real browser across twelve viewports,
+ * not derived.
+ */
+
+/*
+ * Side seats sit at `top: 50%` — the band the centred `.pile-row` occupies —
+ * and `.seat` is z-index 3 against the pile row's 2, so the name chips painted
+ * straight over the draw pile and the discard. Portrait has empty felt above
+ * the piles, so the side seats move into it.
+ *
+ * The offset is a constant, not a percentage: half the pile row (83px) plus
+ * half a seat (31px) plus a gap. The pile row has a fixed height, so a
+ * percentage drifts with the viewport and stops clearing it on small screens.
+ */
+@media (orientation: portrait) {
+  .seat.left,
+  .seat.right {
+    transform: translateY(calc(-50% - 122px));
+  }
+}
+
+/*
+ * Short landscape was worse: `.felt` was 144px tall and the `.pile-row` inside
+ * it was 166px, so the piles overflowed their own container before a single
+ * seat was placed. Nothing scaled with viewport height — `--card-w` stayed at
+ * 64px whether the screen was 839px tall or 360px.
+ *
+ * So the cards shrink here, which returns height to the felt (a shorter hand
+ * bar leaves more for it), the seat chips become compact, and the felt
+ * reserves a band at the top for the seat that lives there. Measured result:
+ * seat 74-118, pile 137-247, felt 74-248 — 19px of clearance, inside its
+ * container.
+ */
+@media (orientation: landscape) and (max-height: 480px) {
+  :root {
+    --card-w: 44px;
+    --card-h: 66px;
+  }
+  .card.lg {
+    --card-w: 48px;
+    --card-h: 72px;
+  }
+  .felt {
+    padding-top: 62px;
+  }
+  .seat {
+    padding: 2px;
+    gap: 5px;
+  }
+  .seat-avatar img {
+    width: 30px;
+    height: 30px;
+  }
+  .seat-meta {
+    font-size: 12px;
+    padding: 1px 6px;
+  }
+  .seat.top {
+    top: 0;
+  }
 }

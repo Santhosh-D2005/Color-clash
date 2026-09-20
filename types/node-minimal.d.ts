@@ -98,7 +98,11 @@ declare module 'node:child_process' {
   export function execFileSync(
     file: string,
     args?: string[],
-    options?: { stdio?: string; cwd?: string },
+    // `shell` matters on Windows: Node refuses to spawn a .cmd through
+    // execFile without it (CVE-2024-27980), so tools/build-single-file.ts
+    // passes it. The shim has to know the field exists or the offline
+    // typecheck rejects correct code.
+    options?: { stdio?: string; cwd?: string; shell?: boolean },
   ): Buffer;
 }
 

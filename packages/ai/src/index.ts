@@ -188,9 +188,7 @@ function answerChoice(view: PlayerView, tier: BotTier, rng: RngLike): Command {
         tier === 'EASY'
           ? targets[rng.int(targets.length)]!
           : // Hit whoever is closest to going out.
-            [...targets].sort(
-              (a, b) => handCountOf(view, a) - handCountOf(view, b),
-            )[0]!;
+            [...targets].sort((a, b) => handCountOf(view, a) - handCountOf(view, b))[0]!;
       return {
         commandId: nextCommandId(me),
         playerId: me,
@@ -203,9 +201,7 @@ function answerChoice(view: PlayerView, tier: BotTier, rng: RngLike): Command {
       const targets = choice.eligibleTargets ?? [];
       // Swap into the smallest hand available; if ours is already smallest,
       // take from the player closest to winning anyway to slow them down.
-      const target = [...targets].sort(
-        (a, b) => handCountOf(view, a) - handCountOf(view, b),
-      )[0]!;
+      const target = [...targets].sort((a, b) => handCountOf(view, a) - handCountOf(view, b))[0]!;
       return {
         commandId: nextCommandId(me),
         playerId: me,
@@ -319,4 +315,14 @@ export const BOT_TIER_LABEL: Record<BotTier, string> = {
 };
 
 /** Deterministic bot names for local matches, taken from the supplied key art. */
-export const BOT_NAMES = ['Sunny', 'Moonlight', 'TigerX', 'Nova', 'Echo', 'Rook', 'Vega', 'Pixel', 'Ada'];
+export const BOT_NAMES = [
+  'Sunny',
+  'Moonlight',
+  'TigerX',
+  'Nova',
+  'Echo',
+  'Rook',
+  'Vega',
+  'Pixel',
+  'Ada',
+];

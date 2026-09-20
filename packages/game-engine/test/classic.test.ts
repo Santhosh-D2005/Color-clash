@@ -1,6 +1,14 @@
 import { createRng } from '@colorclash/shared';
 import { reduce } from '@colorclash/game-engine';
-import { activeId, buildFixture, cmd, describe, expect, handOf, it } from '@colorclash/test-fixtures';
+import {
+  activeId,
+  buildFixture,
+  cmd,
+  describe,
+  expect,
+  handOf,
+  it,
+} from '@colorclash/test-fixtures';
 
 const rng = () => createRng('classic');
 
@@ -30,10 +38,14 @@ describe('CLASSIC — §2.2 source rule table', () => {
   });
 
   it('a value match across colours is legal (SOURCE "Value match")', () => {
-    const s0 = base({ discardPile: ['B7#0'], activeColor: 'BLUE', players: [
-      { id: 'P1', hand: ['R7#0', 'G2#0'] },
-      { id: 'P2', hand: ['Y9#0'] },
-    ] });
+    const s0 = base({
+      discardPile: ['B7#0'],
+      activeColor: 'BLUE',
+      players: [
+        { id: 'P1', hand: ['R7#0', 'G2#0'] },
+        { id: 'P2', hand: ['Y9#0'] },
+      ],
+    });
     const s = reduce(s0, cmd('PLAY_CARD', 'P1', { cardId: 'R7#0' }), rng()).state;
     expect(s.activeColor).toBe('RED');
   });
@@ -44,23 +56,27 @@ describe('CLASSIC — §2.2 source rule table', () => {
   });
 
   it('Skip advances the turn +2 (SOURCE)', () => {
-    const s0 = base({ players: [
-      { id: 'P1', hand: ['RSK#0', 'G2#0'] },
-      { id: 'P2', hand: ['B7#0'] },
-      { id: 'P3', hand: ['R3#0'] },
-      { id: 'P4', hand: ['Y3#0'] },
-    ] });
+    const s0 = base({
+      players: [
+        { id: 'P1', hand: ['RSK#0', 'G2#0'] },
+        { id: 'P2', hand: ['B7#0'] },
+        { id: 'P3', hand: ['R3#0'] },
+        { id: 'P4', hand: ['Y3#0'] },
+      ],
+    });
     const s = reduce(s0, cmd('PLAY_CARD', 'P1', { cardId: 'RSK#0' }), rng()).state;
     expect(activeId(s)).toBe('P3');
   });
 
   it('Reverse inverts direction in a 4-player game', () => {
-    const s0 = base({ players: [
-      { id: 'P1', hand: ['RRV#0', 'G2#0'] },
-      { id: 'P2', hand: ['B7#0'] },
-      { id: 'P3', hand: ['R3#0'] },
-      { id: 'P4', hand: ['Y3#0'] },
-    ] });
+    const s0 = base({
+      players: [
+        { id: 'P1', hand: ['RRV#0', 'G2#0'] },
+        { id: 'P2', hand: ['B7#0'] },
+        { id: 'P3', hand: ['R3#0'] },
+        { id: 'P4', hand: ['Y3#0'] },
+      ],
+    });
     const s = reduce(s0, cmd('PLAY_CARD', 'P1', { cardId: 'RRV#0' }), rng()).state;
     expect(s.direction).toBe(-1);
     expect(activeId(s)).toBe('P4');
@@ -85,12 +101,14 @@ describe('CLASSIC — §2.2 source rule table', () => {
   });
 
   it('Draw Two makes the next player draw 2 and moves over them (+2)', () => {
-    const s0 = base({ players: [
-      { id: 'P1', hand: ['RD2#0', 'G2#0'] },
-      { id: 'P2', hand: ['B7#0'] },
-      { id: 'P3', hand: ['R3#0'] },
-      { id: 'P4', hand: ['Y3#0'] },
-    ] });
+    const s0 = base({
+      players: [
+        { id: 'P1', hand: ['RD2#0', 'G2#0'] },
+        { id: 'P2', hand: ['B7#0'] },
+        { id: 'P3', hand: ['R3#0'] },
+        { id: 'P4', hand: ['Y3#0'] },
+      ],
+    });
     const s = reduce(s0, cmd('PLAY_CARD', 'P1', { cardId: 'RD2#0' }), rng()).state;
     expect(handOf(s, 'P2')).toHaveLength(3);
     expect(activeId(s)).toBe('P3');
@@ -136,12 +154,14 @@ describe('CLASSIC — §2.2 source rule table', () => {
   });
 
   it('Wild Draw Four: select colour, target draws 4, then skip (SOURCE)', () => {
-    const s0 = base({ players: [
-      { id: 'P1', hand: ['WD4#0', 'G2#0'] },
-      { id: 'P2', hand: ['B7#0'] },
-      { id: 'P3', hand: ['R3#0'] },
-      { id: 'P4', hand: ['Y3#0'] },
-    ] });
+    const s0 = base({
+      players: [
+        { id: 'P1', hand: ['WD4#0', 'G2#0'] },
+        { id: 'P2', hand: ['B7#0'] },
+        { id: 'P3', hand: ['R3#0'] },
+        { id: 'P4', hand: ['Y3#0'] },
+      ],
+    });
     const played = reduce(s0, cmd('PLAY_CARD', 'P1', { cardId: 'WD4#0' }), rng()).state;
     const done = reduce(played, cmd('CHOOSE_COLOR', 'P1', { color: 'BLUE' }), rng()).state;
     expect(done.activeColor).toBe('BLUE');

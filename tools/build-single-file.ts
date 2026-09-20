@@ -102,13 +102,23 @@ export function main(root = resolve(import.meta.dirname, '..')): void {
   const outDir = join(root, 'dist');
 
   /* 1. One bundler, same as the web build */
-  const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+  const win = process.platform === 'win32';
+  const npm = win ? 'npm.cmd' : 'npm';
   try {
-    execFileSync(npm, ['run', 'build:onefile'], { cwd: client, stdio: 'inherit' });
-  } catch {
+    // `shell: true` on Windows is not optional. Since the fix for
+    // CVE-2024-27980, Node refuses to spawn a .bat or .cmd file through
+    // execFile without a shell and throws EINVAL before the child starts — so
+    // npm never runs, emits nothing, and the failure looks like a build error
+    // with no build output above it.
+    execFileSync(npm, ['run', 'build:onefile'], { cwd: client, stdio: 'inherit', shell: win });
+  } catch (e) {
+    // Report what actually happened. Guessing "dependencies are missing" sent
+    // at least one person to `npm install` on a machine where the dependencies
+    // were already installed and the web build had just succeeded.
+    console.error(`\nThe one-document build failed: ${(e as Error).message}`);
     console.error(
-      '\nThe one-document build needs the project dependencies installed.\n' +
-        'Run `npm install` first — this target is Vite, same as `npm run build:web`.',
+      "If the output above is empty, npm did not start. Otherwise the error is Vite's.\n" +
+        'This target is Vite, same as `npm run build:web`, so it needs `npm install` to have run.',
     );
     process.exit(1);
   }
@@ -142,8 +152,7 @@ export function main(root = resolve(import.meta.dirname, '..')): void {
 
   const mb = (Buffer.byteLength(document) / 1024 / 1024).toFixed(2);
   console.log(
-    `\nBuilt ${outFile} — ${mb} MB, self-contained\n` +
-      `Built ${fragFile} — skeleton-free variant`,
+    `\nBuilt ${outFile} — ${mb} MB, self-contained\n` + `Built ${fragFile} — skeleton-free variant`,
   );
 }
 

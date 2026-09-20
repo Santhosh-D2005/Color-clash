@@ -28,9 +28,7 @@ self.addEventListener('install', (event) => {
       .open(CACHE)
       // One missing icon should not abort the whole install, so each entry is
       // added individually and failures are tolerated.
-      .then((cache) =>
-        Promise.all(SHELL.map((url) => cache.add(url).catch(() => undefined))),
-      )
+      .then((cache) => Promise.all(SHELL.map((url) => cache.add(url).catch(() => undefined))))
       .then(() => self.skipWaiting()),
   );
 });
@@ -39,9 +37,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) =>
-        Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))),
-      )
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim()),
   );
 });

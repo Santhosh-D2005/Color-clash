@@ -191,12 +191,7 @@ function illegalReason(state: GameState, cardId: CardId, playerId: PlayerId): st
 /* DRAW_CARD                                                           */
 /* ------------------------------------------------------------------ */
 
-function applyDraw(
-  state: GameState,
-  playerId: PlayerId,
-  rng: RngLike,
-  events: GameEvent[],
-): void {
+function applyDraw(state: GameState, playerId: PlayerId, rng: RngLike, events: GameEvent[]): void {
   assertDrawAllowed(state, playerId);
 
   // Taking an outstanding penalty stack ends the turn (§2.4: the cumulative
@@ -348,7 +343,7 @@ function applySwapHand(
   resumeAfterChoice(state, playerId, continuation, rng, events);
 }
 
-function applyChallenge(state: GameState, playerId: PlayerId): void {
+function applyChallenge(state: GameState, _playerId: PlayerId): void {
   // Table 9: "Optional challenge hook | Only if enabled by version config".
   // Left explicitly unimplemented rather than guessed: the source blueprint
   // defines no challenge outcome. See docs/RULE_FLAGS.md RF-009.
@@ -512,11 +507,7 @@ export function scoreRound(state: GameState, winnerId: PlayerId): Standing[] {
 export { legalCardIds, isPlayable };
 
 /** The card the given player would be told about in a "why not?" tooltip. */
-export function describeIllegal(
-  state: GameState,
-  cardId: CardId,
-  playerId: PlayerId,
-): string {
+export function describeIllegal(state: GameState, cardId: CardId, playerId: PlayerId): string {
   return illegalReason(state, cardId, playerId);
 }
 

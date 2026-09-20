@@ -12,10 +12,7 @@ export function assertInvariants(state: GameState): void {
   const claim = (id: string, zone: string) => {
     const prev = seen.get(id);
     if (prev) {
-      throw new RuleError(
-        'CARD_DUPLICATED',
-        `Card ${id} exists in both ${prev} and ${zone}`,
-      );
+      throw new RuleError('CARD_DUPLICATED', `Card ${id} exists in both ${prev} and ${zone}`);
     }
     seen.set(id, zone);
   };

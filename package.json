@@ -8,6 +8,9 @@
     "apps/*"
   ],
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "link": "node tools/link-workspaces.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -28,9 +31,13 @@
     "build:web": "npm run build --workspace @colorclash/client",
     "build:single": "tsx tools/build-single-file.ts",
     "build:pwa": "npm run build:web && tsx tools/build-pwa.ts",
-    "verify": "npm run typecheck && npm test && npm run audit:brand"
+    "verify": "npm run typecheck && npm test && npm run audit:brand && npm run build:pwa"
   },
   "devDependencies": {
+    "@capacitor/android": "^6.2.2",
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.2.2",
+    "@capacitor/core": "^6.2.2",
     "@eslint/js": "^9.17.0",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.2",

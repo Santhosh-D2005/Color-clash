@@ -13,13 +13,7 @@ import { Sheet } from './Sheet.js';
  * Deliberately short lines rather than paragraphs: this is opened mid-match on
  * a phone, by someone who wants one specific answer.
  */
-export function RulesSheet({
-  version,
-  onClose,
-}: {
-  version: GameVersion;
-  onClose: () => void;
-}) {
+export function RulesSheet({ version, onClose }: { version: GameVersion; onClose: () => void }) {
   const meta = VERSION_META[version];
   const sheet = rulesFor(version);
 

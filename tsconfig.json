@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true,
-    
+
     "jsx": "react-jsx",
     "types": [],
     "paths": {
@@ -23,5 +23,11 @@
       "@colorclash/test-fixtures": ["./packages/test-fixtures/src/index.ts"]
     }
   },
-  "include": ["types/**/*", "packages/*/src/**/*", "packages/*/test/**/*", "apps/*/src/**/*", "tools/**/*"]
+  "include": [
+    "types/**/*",
+    "packages/*/src/**/*",
+    "packages/*/test/**/*",
+    "apps/*/src/**/*",
+    "tools/**/*"
+  ]
 }

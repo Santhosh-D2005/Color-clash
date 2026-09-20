@@ -1,6 +1,14 @@
 import { createRng } from '@colorclash/shared';
 import { face, reduce } from '@colorclash/game-engine';
-import { activeId, buildFixture, cmd, describe, expect, handOf, it } from '@colorclash/test-fixtures';
+import {
+  activeId,
+  buildFixture,
+  cmd,
+  describe,
+  expect,
+  handOf,
+  it,
+} from '@colorclash/test-fixtures';
 
 const rng = () => createRng('flip');
 
@@ -158,9 +166,7 @@ describe('FLIP — §2.3 source rule table', () => {
     });
     const s = reduce(s0, cmd('PLAY_CARD', 'P1', { cardId: 'PFL#0' }), rng()).state;
     const total =
-      s.players.reduce((n, p) => n + p.hand.length, 0) +
-      s.drawPile.length +
-      s.discardPile.length;
+      s.players.reduce((n, p) => n + p.hand.length, 0) + s.drawPile.length + s.discardPile.length;
     expect(total).toBe(112);
   });
 });

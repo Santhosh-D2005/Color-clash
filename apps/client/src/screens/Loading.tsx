@@ -90,7 +90,13 @@ export function Loading({ onDone }: { onDone: () => void }) {
       </div>
       <img className="splash-logo" src={asset('logo')} alt="Color Clash" />
       <span className="comic-ribbon-sub">SAME COLORS. NEW BATTLES!</span>
-      <div className="progress" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
+      <div
+        className="progress"
+        role="progressbar"
+        aria-valuenow={pct}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
         <i style={{ width: `${Math.max(pct, 8)}%` }} />
       </div>
       <div className="progress-label">

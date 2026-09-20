@@ -11,15 +11,7 @@
  * affect a match beyond being annoying — which the server's rate limit handles.
  */
 
-export type EmoteId =
-  | 'NICE'
-  | 'OOF'
-  | 'THINKING'
-  | 'HURRY'
-  | 'LAUGH'
-  | 'WOW'
-  | 'GG'
-  | 'SORRY';
+export type EmoteId = 'NICE' | 'OOF' | 'THINKING' | 'HURRY' | 'LAUGH' | 'WOW' | 'GG' | 'SORRY';
 
 export type Emote = {
   id: EmoteId;

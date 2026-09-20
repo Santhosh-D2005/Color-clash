@@ -20,12 +20,7 @@ export const CLASSIC_COLORS: Color[] = ['RED', 'YELLOW', 'GREEN', 'BLUE'];
  * the difference rather than silently correcting it.
  */
 export const FLIP_LIGHT_COLORS: Color[] = ['PINK', 'TEAL', 'PURPLE', 'ORANGE'];
-export const FLIP_DARK_COLORS: Color[] = [
-  'DARK_PINK',
-  'DARK_TEAL',
-  'DARK_PURPLE',
-  'DARK_ORANGE',
-];
+export const FLIP_DARK_COLORS: Color[] = ['DARK_PINK', 'DARK_TEAL', 'DARK_PURPLE', 'DARK_ORANGE'];
 
 export function flipColorsFor(side: DeckSide): Color[] {
   return side === 'LIGHT_SIDE' ? FLIP_LIGHT_COLORS : FLIP_DARK_COLORS;

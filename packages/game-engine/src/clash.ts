@@ -31,11 +31,7 @@ export function enterClashPendingIfNeeded(
   }
 }
 
-export function applyClashCall(
-  state: GameState,
-  playerId: PlayerId,
-  events: GameEvent[],
-): void {
+export function applyClashCall(state: GameState, playerId: PlayerId, events: GameEvent[]): void {
   const p = player(state, playerId);
   // Idempotent: a second call is accepted and changes nothing.
   if (state.clashCalled.includes(playerId)) return;

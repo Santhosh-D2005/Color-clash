@@ -6,7 +6,12 @@ import type {
   ResolveContext,
   VersionManifest,
 } from '@colorclash/shared';
-import { ALL_WILD_DECK, ALL_WILD_TOTAL, CLASSIC_COLORS, RULE_PLAYER_LIMIT } from '@colorclash/game-content';
+import {
+  ALL_WILD_DECK,
+  ALL_WILD_TOTAL,
+  CLASSIC_COLORS,
+  RULE_PLAYER_LIMIT,
+} from '@colorclash/game-content';
 import { assertDeckSize, kindCode } from '../deck.js';
 
 /**
@@ -125,7 +130,11 @@ export function allWildEffects(
     case 'WILD_TARGET_DRAW_TWO':
       // SOURCE: "Active player targets any player index globally; target draws 2."
       // The target choice stays: that one genuinely changes the outcome.
-      return [color, { type: 'REQUEST_TARGET_CHOICE' }, { type: 'DRAW', target: 'CHOSEN', count: 2 }];
+      return [
+        color,
+        { type: 'REQUEST_TARGET_CHOICE' },
+        { type: 'DRAW', target: 'CHOSEN', count: 2 },
+      ];
 
     case 'WILD_SKIP':
       return [color, { type: 'SKIP', count: 1 }];

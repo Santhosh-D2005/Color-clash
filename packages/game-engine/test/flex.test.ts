@@ -1,6 +1,14 @@
 import { createRng } from '@colorclash/shared';
 import { isPlayable, reduce } from '@colorclash/game-engine';
-import { activeId, buildFixture, cmd, describe, expect, handOf, it } from '@colorclash/test-fixtures';
+import {
+  activeId,
+  buildFixture,
+  cmd,
+  describe,
+  expect,
+  handOf,
+  it,
+} from '@colorclash/test-fixtures';
 
 const rng = () => createRng('flex');
 

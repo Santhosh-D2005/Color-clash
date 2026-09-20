@@ -81,13 +81,7 @@ export const VERSION_META: Record<GameVersion, VersionMeta> = {
   },
 };
 
-export const VERSION_ORDER: GameVersion[] = [
-  'CLASSIC',
-  'FLIP',
-  'MAYHEM',
-  'ALL_WILD',
-  'FLEX',
-];
+export const VERSION_ORDER: GameVersion[] = ['CLASSIC', 'FLIP', 'MAYHEM', 'ALL_WILD', 'FLEX'];
 
 export const DEFAULT_CONFIG: MatchConfig = {
   winCondition: 'ONE_ROUND',
@@ -106,9 +100,7 @@ export const DEFAULT_CONFIG: MatchConfig = {
  * Mayhem (§2.4); elsewhere it is an opt-in table rule exposed in
  * the lobby, defaulting off so Classic matches the source rules exactly.
  */
-export const VERSION_CONFIG_DEFAULTS: Partial<
-  Record<GameVersion, Partial<MatchConfig>>
-> = {
+export const VERSION_CONFIG_DEFAULTS: Partial<Record<GameVersion, Partial<MatchConfig>>> = {
   CLASSIC: { stacking: false },
   FLIP: { stacking: false },
   MAYHEM: { stacking: true },
@@ -116,10 +108,7 @@ export const VERSION_CONFIG_DEFAULTS: Partial<
   FLEX: { stacking: false },
 };
 
-export function configFor(
-  version: GameVersion,
-  overrides: Partial<MatchConfig> = {},
-): MatchConfig {
+export function configFor(version: GameVersion, overrides: Partial<MatchConfig> = {}): MatchConfig {
   return {
     ...DEFAULT_CONFIG,
     ...(VERSION_CONFIG_DEFAULTS[version] ?? {}),

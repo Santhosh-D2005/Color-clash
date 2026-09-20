@@ -115,9 +115,7 @@ describe('§16.2 must-pass edge cases', () => {
     const rest = s0.drawPile;
     const withHand = {
       ...emptied,
-      players: emptied.players.map((p, i) =>
-        i === 0 ? { ...p, hand: [...p.hand, ...rest] } : p,
-      ),
+      players: emptied.players.map((p, i) => (i === 0 ? { ...p, hand: [...p.hand, ...rest] } : p)),
     };
     const top = withHand.discardPile[withHand.discardPile.length - 1]!;
     const out = reduce(withHand, cmd('DRAW_CARD', 'P1'), rng());
@@ -175,8 +173,30 @@ describe('§16.2 must-pass edge cases', () => {
 
   it('Mayhem player hits 25 cards exactly after a draw', () => {
     const hand24 = [
-      'R0#0','R1#0','R1#1','R2#0','R2#1','R3#0','R3#1','R4#0','R4#1','R5#1','R6#0','R6#1',
-      'R7#0','R7#1','R8#0','R8#1','R9#0','R9#1','B1#0','B1#1','B2#0','B2#1','B3#0','B3#1',
+      'R0#0',
+      'R1#0',
+      'R1#1',
+      'R2#0',
+      'R2#1',
+      'R3#0',
+      'R3#1',
+      'R4#0',
+      'R4#1',
+      'R5#1',
+      'R6#0',
+      'R6#1',
+      'R7#0',
+      'R7#1',
+      'R8#0',
+      'R8#1',
+      'R9#0',
+      'R9#1',
+      'B1#0',
+      'B1#1',
+      'B2#0',
+      'B2#1',
+      'B3#0',
+      'B3#1',
     ];
     const s0 = buildFixture({
       version: 'MAYHEM',
@@ -320,10 +340,7 @@ describe('§16.2 must-pass edge cases', () => {
         isBot: true,
         botTier: 'NORMAL' as const,
       }));
-      const { state } = createMatch(
-        { gameId: 'g', version, seed: `bots-${version}`, players },
-        r,
-      );
+      const { state } = createMatch({ gameId: 'g', version, seed: `bots-${version}`, players }, r);
       const out = runBotTurns(state, r, { maxSteps: 5000 });
       assertInvariants(out.state);
       expect(out.state.status).toBe('MATCH_END');

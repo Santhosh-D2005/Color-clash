@@ -22,7 +22,13 @@ import { BOT_PACE_MAX_MS, botPace, flightMs } from './pacing.js';
 
 // Re-exported so existing importers keep working; the values live in pacing.ts
 // where they can be tested without React.
-export { BOT_PACE_MAX_MS, BOT_PACE_MIN_MS, BOT_PACE_REDUCED_MS, FLIGHT_MS, botPace } from './pacing.js';
+export {
+  BOT_PACE_MAX_MS,
+  BOT_PACE_MIN_MS,
+  BOT_PACE_REDUCED_MS,
+  FLIGHT_MS,
+  botPace,
+} from './pacing.js';
 
 /**
  * Local match controller.
@@ -82,7 +88,10 @@ export function useLocalMatch(reducedMotion = false): LocalMatch {
    * engine has accepted. Held in a ref rather than state because it changes on
    * every move and nothing renders from it.
    */
-  const logRef = useRef<{ setup: Omit<SavedMatch, 'format' | 'savedAt' | 'commands'>; commands: Command[] } | null>(null);
+  const logRef = useRef<{
+    setup: Omit<SavedMatch, 'format' | 'savedAt' | 'commands'>;
+    commands: Command[];
+  } | null>(null);
   const bannerSeq = useRef(0);
   const flightSeq = useRef(0);
   /** The scheduled next bot step, so it can be cancelled on reset or unmount. */
@@ -308,7 +317,12 @@ export function useLocalMatch(reducedMotion = false): LocalMatch {
         // reuse an id that is already in the log.
         commandSeq.current = applied.length + 1;
         logRef.current = {
-          setup: { version: saved.version, seed: saved.seed, config: saved.config, seats: saved.seats },
+          setup: {
+            version: saved.version,
+            seed: saved.seed,
+            config: saved.config,
+            seats: saved.seats,
+          },
           commands: applied,
         };
 

@@ -16,11 +16,11 @@ shippable file, and it runs in CI and in `npm run verify`.
 meeting at a point, with a gold core. Every other asset is built from that one
 shape rule — shards, chevrons, and a 12-degree shear that runs through the set.
 
-| | |
-| --- | --- |
-| Name | Color Clash |
-| Package id | `com.geeksforgames.colorclash` |
-| npm scope | `@colorclash/*` |
+|                  |                                                     |
+| ---------------- | --------------------------------------------------- |
+| Name             | Color Clash                                         |
+| Package id       | `com.geeksforgames.colorclash`                      |
+| npm scope        | `@colorclash/*`                                     |
 | Declaration call | **CLASH!** — shouted when you play down to one card |
 
 ### Palette
@@ -30,26 +30,26 @@ CSS custom properties at the top of `apps/client/src/styles/app.css` and by
 `COLOR_HEX` in `packages/game-content/src/colors.ts`. The four shard colours
 are deliberately off the primary hues.
 
-| Role | Hex |
-| --- | --- |
+| Role    | Hex       |
+| ------- | --------- |
 | Shard 1 | `#e2483f` |
 | Shard 2 | `#f2b134` |
 | Shard 3 | `#2f9e5e` |
 | Shard 4 | `#2f7fd4` |
-| Ink | `#070f20` |
-| Gold | `#f0b840` |
+| Ink     | `#070f20` |
+| Gold    | `#f0b840` |
 
 ### Mode names
 
 Gameplay is untouched. Only the names changed.
 
-| Was | Now | Engine id |
-| --- | --- | --- |
-| Classic | **Classic Clash** | `CLASSIC` |
-| Flip | **Flipstorm** | `FLIP` |
-| Show 'Em No Mercy | **Mayhem** | `MAYHEM` |
-| All Wild | **Wild Rush** | `ALL_WILD` |
-| Flex | **Freestyle** | `FLEX` |
+| Was               | Now               | Engine id  |
+| ----------------- | ----------------- | ---------- |
+| Classic           | **Classic Clash** | `CLASSIC`  |
+| Flip              | **Flipstorm**     | `FLIP`     |
+| Show 'Em No Mercy | **Mayhem**        | `MAYHEM`   |
+| All Wild          | **Wild Rush**     | `ALL_WILD` |
+| Flex              | **Freestyle**     | `FLEX`     |
 
 Three engine ids are unchanged because they are plain descriptions of what the
 mode does rather than anyone's brand — a deck that flips, cards that are all
@@ -79,13 +79,13 @@ recognisable card feature.
 
 ### Licensing record
 
-| Asset class | Source | Licence | Commercial use | Attribution |
-| --- | --- | --- | --- | --- |
-| All game images, icons, splash screens | `tools/gen-brand.ts` (original vector) | Owned by this project | Yes | None required |
-| Card faces | CSS in `apps/client/src/styles/app.css` | Owned by this project | Yes | None required |
-| Sound | Synthesised at runtime in `apps/client/src/state/audio.ts` — WebAudio oscillators and a generated noise buffer | Owned by this project | Yes | None required |
-| Body typeface | Barlow, via Google Fonts, with a full system-font fallback | SIL Open Font License 1.1 | Yes | None required |
-| Display typeface | Nunito, via Google Fonts, with a full system-font fallback | SIL Open Font License 1.1 | Yes | None required |
+| Asset class                            | Source                                                                                                         | Licence                   | Commercial use | Attribution   |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------- | -------------- | ------------- |
+| All game images, icons, splash screens | `tools/gen-brand.ts` (original vector)                                                                         | Owned by this project     | Yes            | None required |
+| Card faces                             | CSS in `apps/client/src/styles/app.css`                                                                        | Owned by this project     | Yes            | None required |
+| Sound                                  | Synthesised at runtime in `apps/client/src/state/audio.ts` — WebAudio oscillators and a generated noise buffer | Owned by this project     | Yes            | None required |
+| Body typeface                          | Barlow, via Google Fonts, with a full system-font fallback                                                     | SIL Open Font License 1.1 | Yes            | None required |
+| Display typeface                       | Nunito, via Google Fonts, with a full system-font fallback                                                     | SIL Open Font License 1.1 | Yes            | None required |
 
 There are no audio files in this repository. Every cue — card, draw, penalty,
 declaration, elimination, victory — is generated from oscillators when it plays,

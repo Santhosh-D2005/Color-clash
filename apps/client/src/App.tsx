@@ -8,7 +8,7 @@ import { NamePrompt } from './screens/NamePrompt.js';
 import { ModeSelect } from './screens/ModeSelect.js';
 import { Lobby } from './screens/Lobby.js';
 import { OnlineHome, OnlineLobby } from './screens/OnlineLobby.js';
-import { Table, useElapsed } from './screens/Table.js';
+import { Table } from './screens/Table.js';
 import { SummaryScreen, WinnerScreen, type ResultSource } from './screens/Result.js';
 import { HUMAN_ID, useLocalMatch, type Seat } from './state/useGame.js';
 import { useOnlineMatch } from './state/useOnline.js';
@@ -88,7 +88,6 @@ export default function App() {
 
   const local = useLocalMatch(reducedMotion);
   const net = useOnlineMatch();
-  const elapsed = useElapsed(screen === 'TABLE');
   const emotes = useEmotes();
 
   /** The toggle is the whole contract: off means no audio node is created. */
@@ -126,7 +125,9 @@ export default function App() {
           : toStandings(calculateRoundScore(s, s.winnerId ?? s.players[0]!.id)),
       );
       const won = s.winnerId === HUMAN_ID;
-      setProfile((p) => (p ? { ...p, coins: p.coins + (won ? 100 : 25), gems: p.gems + (won ? 50 : 10) } : p));
+      setProfile((p) =>
+        p ? { ...p, coins: p.coins + (won ? 100 : 25), gems: p.gems + (won ? 50 : 10) } : p,
+      );
       const t = setTimeout(() => setScreen('WINNER'), 700);
       return () => clearTimeout(t);
     }
@@ -162,7 +163,9 @@ export default function App() {
       // is only a fallback for a client that joined after the event.
       setStandings(net.standings.length > 0 ? net.standings : standingsFromView(net.view));
       const won = net.view.winnerId === net.playerId;
-      setProfile((p) => (p ? { ...p, coins: p.coins + (won ? 100 : 25), gems: p.gems + (won ? 50 : 10) } : p));
+      setProfile((p) =>
+        p ? { ...p, coins: p.coins + (won ? 100 : 25), gems: p.gems + (won ? 50 : 10) } : p,
+      );
       const t = setTimeout(() => setScreen('WINNER'), 700);
       return () => clearTimeout(t);
     }
@@ -354,7 +357,6 @@ export default function App() {
               onEmote={sendEmote}
               onCommand={dispatch}
               onExit={backToMenu}
-              elapsed={elapsed}
               sound={sound}
               onSound={changeSound}
               reducedMotion={reducedMotion}
@@ -414,7 +416,6 @@ export default function App() {
     dispatch,
     source,
     standings,
-    elapsed,
     resultSource,
     saved,
     sound,
@@ -445,9 +446,7 @@ export default function App() {
           />
         ) : null}
 
-        {menuRules ? (
-          <RulesSheet version={version} onClose={() => setMenuRules(false)} />
-        ) : null}
+        {menuRules ? <RulesSheet version={version} onClose={() => setMenuRules(false)} /> : null}
       </div>
     </div>
   );

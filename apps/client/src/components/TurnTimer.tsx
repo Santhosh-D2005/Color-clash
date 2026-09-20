@@ -39,9 +39,7 @@ export function TurnTimer({ turn, you }: { turn: TurnClock; you: string }) {
       role="timer"
       aria-live={urgent && mine ? 'assertive' : 'off'}
       aria-label={
-        mine
-          ? `${seconds} seconds left in your turn`
-          : `${seconds} seconds left in this turn`
+        mine ? `${seconds} seconds left in your turn` : `${seconds} seconds left in this turn`
       }
     >
       <div className="turn-timer-bar" style={{ width: `${fraction * 100}%` }} aria-hidden="true" />

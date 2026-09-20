@@ -12,13 +12,7 @@ import { describe, expect, it } from '@colorclash/test-fixtures';
  * leaks a card shows up here rather than in production.
  */
 
-const VERSIONS: GameVersion[] = [
-  'CLASSIC',
-  'FLIP',
-  'MAYHEM',
-  'ALL_WILD',
-  'FLEX',
-];
+const VERSIONS: GameVersion[] = ['CLASSIC', 'FLIP', 'MAYHEM', 'ALL_WILD', 'FLEX'];
 
 function totalCards(state: GameState): number {
   return (
@@ -30,11 +24,7 @@ function totalCards(state: GameState): number {
 
 function noDuplicates(state: GameState): boolean {
   const seen = new Set<string>();
-  const zones = [
-    ...state.players.flatMap((p) => p.hand),
-    ...state.drawPile,
-    ...state.discardPile,
-  ];
+  const zones = [...state.players.flatMap((p) => p.hand), ...state.drawPile, ...state.discardPile];
   for (const id of zones) {
     if (seen.has(id)) return false;
     seen.add(id);
@@ -53,10 +43,7 @@ describe('properties — card conservation and reachability (§16.1)', () => {
           isBot: true,
           botTier: 'NORMAL' as const,
         }));
-        const { state } = createMatch(
-          { gameId: 'g', version, seed: `${seed}`, players },
-          rng,
-        );
+        const { state } = createMatch({ gameId: 'g', version, seed: `${seed}`, players }, rng);
         const deckSize = Object.keys(state.cards).length;
         expect(totalCards(state)).toBe(deckSize);
 
@@ -87,10 +74,7 @@ describe('properties — card conservation and reachability (§16.1)', () => {
           isBot: true,
           botTier: 'NORMAL' as const,
         }));
-        const { state } = createMatch(
-          { gameId: 'g', version, seed: `${seed}`, players },
-          rng,
-        );
+        const { state } = createMatch({ gameId: 'g', version, seed: `${seed}`, players }, rng);
         const out = runBotTurns(state, rng, { maxSteps: 6000 });
         expect(out.state.status).toBe('MATCH_END');
         expect(out.state.winnerId).toBeDefined();
@@ -136,10 +120,7 @@ describe('properties — card conservation and reachability (§16.1)', () => {
           isBot: true,
           botTier: 'HARD' as const,
         }));
-        const { state } = createMatch(
-          { gameId: 'g', version, seed: 'det', players },
-          rng,
-        );
+        const { state } = createMatch({ gameId: 'g', version, seed: 'det', players }, rng);
         const out = runBotTurns(state, rng, { maxSteps: 5000 });
         return {
           winner: out.state.winnerId,
@@ -152,7 +133,7 @@ describe('properties — card conservation and reachability (§16.1)', () => {
     }
   });
 
-  it('a player view never exposes another player\'s hand (§15)', () => {
+  it("a player view never exposes another player's hand (§15)", () => {
     for (const version of VERSIONS) {
       const rng = createRng(`view-${version}`);
       const players = ['A', 'B', 'C'].map((id) => ({
@@ -190,10 +171,7 @@ describe('properties — card conservation and reachability (§16.1)', () => {
       isBot: true,
       botTier: 'CHAOS' as const,
     }));
-    const { state } = createMatch(
-      { gameId: 'g', version: 'CLASSIC', seed: 's', players },
-      rng,
-    );
+    const { state } = createMatch({ gameId: 'g', version: 'CLASSIC', seed: 's', players }, rng);
     const view = buildPlayerView(state, 'A');
     const keys = Object.keys(view).sort();
     expect(keys).not.toContain('drawPile');

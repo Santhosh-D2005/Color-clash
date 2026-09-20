@@ -19,8 +19,12 @@ function viteResolve(url: URL): string {
 /** Workspace source, consumed as TypeScript by every build. */
 export const WORKSPACE_ALIASES: Record<string, string> = {
   '@colorclash/shared': viteResolve(new URL('../../packages/shared/src/index.ts', import.meta.url)),
-  '@colorclash/game-content': viteResolve(new URL('../../packages/game-content/src/index.ts', import.meta.url)),
-  '@colorclash/game-engine': viteResolve(new URL('../../packages/game-engine/src/index.ts', import.meta.url)),
+  '@colorclash/game-content': viteResolve(
+    new URL('../../packages/game-content/src/index.ts', import.meta.url),
+  ),
+  '@colorclash/game-engine': viteResolve(
+    new URL('../../packages/game-engine/src/index.ts', import.meta.url),
+  ),
   '@colorclash/ai/driver': viteResolve(new URL('../../packages/ai/src/driver.ts', import.meta.url)),
   '@colorclash/ai': viteResolve(new URL('../../packages/ai/src/index.ts', import.meta.url)),
 };

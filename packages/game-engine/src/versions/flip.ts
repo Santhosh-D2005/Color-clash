@@ -140,9 +140,7 @@ export const flipManifest: VersionManifest = {
     }
     for (const [kind, count] of Object.entries(FLIP_DECK.wilds)) {
       for (let copy = 0; copy < (count ?? 0); copy++) {
-        cards.push(
-          makeFlipCard(`${kindCode(kind as CardKind)}#${copy}`, kind as CardKind),
-        );
+        cards.push(makeFlipCard(`${kindCode(kind as CardKind)}#${copy}`, kind as CardKind));
       }
     }
     return assertDeckSize(cards, FLIP_DECK.expectedTotal, 'FLIP');
@@ -221,10 +219,7 @@ function effectsFor(kind: CardKind): Resolution[] {
     case 'WILD_DRAW_COLOR':
       // SOURCE: "Active player chooses a color; target draws continuously until
       // they match it." The source states no skip, so the target keeps its turn.
-      return [
-        { type: 'REQUEST_DRAW_COLOR_CHOICE' },
-        { type: 'DRAW_UNTIL_COLOR', target: 'NEXT' },
-      ];
+      return [{ type: 'REQUEST_DRAW_COLOR_CHOICE' }, { type: 'DRAW_UNTIL_COLOR', target: 'NEXT' }];
 
     default:
       return [];
